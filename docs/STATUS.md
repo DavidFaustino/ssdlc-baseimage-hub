@@ -1,10 +1,10 @@
 # Marco atual — Base Image Hub e workflows
 
-**Revisão:** 10 de novembro de 2026. Este é um ponto de retomada: o que foi observado, o que pode ser reproduzido neste repositório e o que continua aberto.
+**Revisão:** 10 de novembro de 2026. Este é um ponto de retomada: o que foi observado, o que pode ser reproduzido neste repositório e o que continua aberto. **Prioridade atual:** reproduzir e aceitar as provas publicadas nesta cópia, no computador de trabalho. Depois, confrontar o resultado com o AS-IS documentado. Integração e evolução operacional do Hub vêm depois dessa revisão.
 
 ## Em uma leitura
 
-A POC local mostrou que é possível vincular **digest da plataforma → pacote instalado → correção Debian → decisão registrada** no caso testado. Isso ainda não está encaixado na cadeia de imagens base já existente. O protótipo visual deste repositório não executa a POC. O workflow completo com BMAD ainda é desenho; houve provas sintéticas de partes dele.
+A POC local mostrou que é possível vincular **digest da plataforma → pacote instalado → correção Debian → decisão registrada** no caso testado. Nesta cópia, **A** repete a detecção OCI e **C** repete a correlação sobre entradas históricas arquivadas; **B** é a alternativa Diun à detecção de A e **V** recolhe o feed pelo Vunnel. Essas provas são separadas e não formam uma execução A/B/V→C alimentada por saídas novas. O protótipo visual não executa a POC. O workflow completo com BMAD ainda é desenho; houve provas sintéticas de partes dele.
 
 | Frente | Estado | Evidência e limite |
 |---|---|---|
@@ -28,13 +28,13 @@ Para conferir a interface por conta própria, abra [`index.html`](../index.html)
 3. Na execução, simule um pedido: primeiro cancele, depois confirme. Confira o recibo, o retorno do foco e o histórico atualizado sem trocar de tela. Nenhum workflow externo é executado.
 4. Em **Imagens**, filtre certificadas e registros sem evidência. A imagem sem execução vinculada não pode apresentar certificação concluída; a fonte desconhecida não pode afirmar plataforma resolvida.
 
-## O que esta entrega permite fazer
+## O que fazer com esta entrega agora
 
-- Entender [o processo informado e o encaixe proposto](ARCHITECTURE.md).
-- Ler [resultados e limites da POC](POC.md), conferir [as evidências incluídas](../poc/EVIDENCE.md) e repetir as partes executáveis pelo [runbook](RUNBOOK.md).
-- Revisar [o contrato dos workflows](WORKFLOWS.md) e seguir uma [próxima etapa ordenada](NEXT-STEPS.md).
+1. Conferir [as evidências incluídas](../poc/EVIDENCE.md), repetir A e C pelo [runbook](RUNBOOK.md) e comparar com [resultados e limites da POC](POC.md). B e V podem ser repetidos como ensaios adicionais de detecção e de fonte de correção, sem tratá-los como dependências de C.
+2. Registrar o que bateu, o que diferiu e o que não pode ser refeito nesta cópia, seguindo o [checklist](EXECUCAO.md). Essa aceitação é do **material reproduzido**, não da imagem ou ferramenta para produção.
+3. Só então reler [o processo informado e o encaixe proposto](ARCHITECTURE.md) para identificar aproveitamento no AS-IS. O [plano posterior](NEXT-STEPS.md) separa integração e produto dessa tarefa imediata.
 
-**Para reproduzir agora:** siga os cenários separados A, B, V e C do [runbook](RUNBOOK.md). **Para apenas auditar registros anteriores:** leia a matriz de 44 casos, o recibo integrado histórico e o resumo BMAD, sabendo que suas capturas ou executores completos não foram publicados. O leitor não deve somar essas duas classes como se formassem uma única execução portátil.
+**Para reproduzir agora:** comece pelas provas separadas A e C no [runbook](RUNBOOK.md); B e V estão disponíveis como ensaios adicionais de detecção e de fonte de correção. **Para apenas auditar registros anteriores:** leia a matriz de 44 casos, o recibo integrado histórico e o resumo BMAD, sabendo que suas capturas ou executores completos não foram publicados. O leitor não deve somar essas duas classes como se formassem uma única execução portátil.
 
 ## Decisões que **não** foram tomadas
 

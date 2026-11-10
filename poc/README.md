@@ -2,6 +2,8 @@
 
 Este diretório contém scripts e capturas selecionados da prova local. Para executar, comece pelo [runbook](../docs/RUNBOOK.md). Para saber exatamente quais arquivos foram incluídos, consulte o [inventário de evidências](EVIDENCE.md).
 
+O uso imediato deste pacote é **reproduzir e conferir os ensaios publicados em outro computador**. Comece pela decisão/recuperação **C** sobre entradas arquivadas e pela detecção direta **A** em registry local. **B** e **Vunnel** continuam disponíveis como ensaios de outra entrada e da fonte de correção; executar esses cenários não significa adotar as ferramentas. C consome evidências para decidir, não compete com A/B como observador. A ligação entre saídas recém-geradas e C e o encaixe no CI/Hub pertencem a uma avaliação posterior.
+
 ## O que pode ser repetido daqui
 
 - **Correlação local arquivada:** usa observações OCI históricas já capturadas para verificar pacote e correção, persistir o estado em SQLite e emitir recibos. O replay não consulta uma tag pública nem aprova imagem.

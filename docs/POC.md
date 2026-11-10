@@ -4,6 +4,8 @@
 
 A POC mostrou que é possível **detectar uma troca controlada de digest**, relacionar o manifesto `linux/amd64` ao pacote `libexpat1` e à correção Debian, persistir uma decisão de **validar candidata** e retomá-la sem duplicação. Ela **não** implantou um monitor, certificou uma imagem ou decidiu adotar Diun/Vunnel. As execuções reproduzíveis deste repositório são separadas; o ensaio integrado anterior e a matriz de 44 casos são registros auditáveis, não uma execução integral portátil.
 
+**Objetivo da próxima conferência:** repetir no computador de trabalho primeiro **C** (decisão e recuperação sobre entradas arquivadas) e **A** (detecção OCI sobre tag local controlada), comparar saídas novas com os critérios do runbook e anotar diferenças. **B** e **Vunnel** são ensaios adicionais já publicados para estudar outra entrada e outra coleta; não são ferramentas escolhidas. A avaliação de encaixe no processo existente vem depois da reprodução. Integração com CI/Hub, operação contínua e reconstrução dos 44 casos não são condições para concluir essa conferência.
+
 **Como ler as provas:** “reexecutável” abaixo significa que o comando e os insumos necessários estão publicados; “registro histórico” significa que há recibo ou resumo, mas não todos os insumos/executores para recalcular o resultado. O sucesso separado de A, B, Vunnel e C não demonstra que suas saídas já percorrem uma pipeline única.
 
 O [runbook](RUNBOOK.md) explica as entradas, comandos, asserções e falhas. O [inventário](../poc/EVIDENCE.md) diz exatamente o que foi publicado e o que falta para repetir cada afirmação.
@@ -48,4 +50,4 @@ O resultado útil para o processo existente é o **contrato de evidência**: fix
 - As capturas brutas que originaram as 44 linhas somam aproximadamente **211 MB** e não estão publicadas. Os 34 blobs brutos de camadas da leitura pública também não estão aqui.
 - Não foram testados neste pacote o registry proxy corporativo, publicação, certificação, consumidores, operação contínua ou todas as distribuições/CVEs.
 
-**Próxima lacuna técnica:** construir e testar a ligação entre produtores e C com entradas novas e recibos verificáveis, ou manter os ensaios separados como evidência de componentes. Isso é trabalho futuro, não resultado desta POC.
+**Trabalho técnico eventual, depois da conferência:** se o reuso for considerado útil no processo já documentado, avaliar a ligação entre produtores e C com entradas novas e recibos verificáveis. Isso não faz parte da reprodução atual nem transforma B/Vunnel em componentes aprovados.

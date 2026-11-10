@@ -1,6 +1,6 @@
 # Arquitetura: processo atual e encaixe da POC
 
-**Estado em 10/11/2026.** O AS-IS abaixo vem da documentação do processo de imagens base e de esclarecimentos do responsável. Esta POC não inspecionou os jobs corporativos nem se conectou a JFrog, ECR ou EKS. A evolução funcional do protótipo local descrita na seção 6 foi autorizada; ferramenta, integração corporativa e implantação continuam sem aprovação.
+**Estado em 10/11/2026.** O AS-IS abaixo vem da documentação do processo de imagens base e de esclarecimentos do responsável. Esta POC não inspecionou os jobs corporativos nem se conectou a JFrog, ECR ou EKS. **Use esta arquitetura depois de reproduzir e conferir os experimentos publicados**: ela serve para identificar o que se aproveita no processo atual, não para substituir a revisão do material. A evolução funcional do protótipo local da seção 6 foi autorizada; ferramenta, integração corporativa e implantação continuam sem aprovação.
 
 ## 1. AS-IS: da imagem upstream à aplicação
 

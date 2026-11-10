@@ -1,6 +1,8 @@
 # Runbook técnico da POC de atualização de imagem base
 
-Este documento permite inspecionar as provas e repetir **as execuções publicadas**. A pergunta da POC é: após uma tag apontar para outro conteúdo, conseguimos identificar o manifesto da plataforma, relacionar a versão do pacote à correção Debian, emitir uma decisão auditável e retomá-la sem duplicação?
+Este documento permite inspecionar as provas e repetir **as execuções publicadas no computador de trabalho**. O objetivo atual é reproduzir os ensaios disponíveis, conferir entradas e resultados e só depois avaliar o que pode ser reaproveitado no processo de imagens base já documentado. A pergunta da POC é: após uma tag apontar para outro conteúdo, conseguimos identificar o manifesto da plataforma, relacionar a versão do pacote à correção Debian, emitir uma decisão auditável e retomá-la sem duplicação?
+
+**Leitura e execução:** a ordem já usada neste documento é C1/C2, que repetem a correlação e a retomada com entradas arquivadas, seguida de A, que observa a troca controlada no registry local. São as duas provas principais para esta reprodução. B (Diun) repete a detecção por outra entrada, e Vunnel consulta uma fonte de correção atual: ambos são ensaios disponíveis para comparação, sem compromisso de adoção. C correlaciona as evidências e registra a decisão; **não** é uma terceira alternativa de observação. Não é necessário conectar as peças ao CI, ao Hub ou entre si para terminar esta conferência.
 
 ## Escopo e estado das provas
 
@@ -15,7 +17,7 @@ O caso usa a tag local `fixture.local/distroless/java21-debian13:local-replay`, 
 | A/B → C em uma única execução | **Não reexecutável com os comandos deste PR** | Há um [recibo integrado histórico](../poc/experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json), mas o produtor público atual de C lê observações arquivadas, não as saídas novas de A, B ou Vunnel. |
 | Comparação de 44 linhas | Auditável nos [resultados publicados](../poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json); replay integral indisponível | As capturas brutas de aproximadamente 211 MB e parte do executor original não foram publicadas. |
 
-**Não trate esta página como um pipeline fim a fim executável.** Os comandos abaixo demonstram capacidades separadas. O recibo integrado histórico preserva o resultado do laboratório, mas não substitui a ligação operacional entre os scripts publicados.
+**Não trate esta página como um pipeline fim a fim executável.** Os comandos abaixo demonstram capacidades separadas. O recibo integrado histórico preserva o resultado do laboratório, mas não substitui a ligação operacional entre os scripts publicados. A ausência dessa ligação e das capturas brutas dos 44 casos é limite do pacote, não critério para impedir a reprodução de C e A.
 
 ## Mapa das execuções reais
 

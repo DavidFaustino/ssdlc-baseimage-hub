@@ -1,8 +1,12 @@
-# Próxima etapa: tornar o Hub útil no processo atual
+# Próximas etapas: primeiro reproduzir, depois decidir o encaixe
 
-O marco técnico está em [Estado atual](STATUS.md). A evolução funcional do **protótipo local** foi autorizada para mostrar e ensaiar quatro capacidades: acompanhar a execução, rastrear a imagem até o consumo, encaminhar ações pelos sistemas existentes e investigar bloqueios. Isso **não** autoriza alterar o CI, conectar serviços corporativos ou publicar uma decisão de certificação. A arquitetura e os critérios desta etapa estão em [Arquitetura](ARCHITECTURE.md), seção 6.
+**Próximo trabalho:** baixar o repositório no computador de trabalho, entender entradas e saídas dos experimentos publicados, reproduzir A e C pelo [runbook](RUNBOOK.md) e conferir os resultados com [POC](POC.md) e [evidências](../poc/EVIDENCE.md). B (Diun) e V (Vunnel) podem ser repetidos para comparar as ferramentas. **C correlaciona entradas arquivadas; não é uma alternativa a A/B nem recebe automaticamente saídas novas de A/B/V.** Registrar o que coincidiu, diferiu ou não pode ser reproduzido. A aceitação dessa revisão cabe ao usuário.
 
-## Entrega local — histórias e tarefas executáveis
+**Depois da reprodução aceita:** usar a [arquitetura AS-IS](ARCHITECTURE.md) já documentada para identificar o que efetivamente acrescenta valor ao processo atual. Integração com CI e serviços, escolha de ferramentas e evolução operacional do produto ficam em etapa posterior. A POC não publicou as capturas brutas dos 44 casos nem todos os blobs da inspeção pública; portanto, não prometemos reexecução integral desses trabalhos a partir desta cópia.
+
+O planejamento de produto abaixo foi registrado e a prévia local foi evoluída, mas **não é a tarefa imediata desta revisão**. Ele permanece aqui para que o contexto não se perca. A arquitetura e os critérios desse recorte estão em [Arquitetura](ARCHITECTURE.md), seção 6. A autorização para evoluir o protótipo não autoriza alterar CI, conectar serviços corporativos ou publicar certificação.
+
+## Contexto preservado: evolução funcional do protótipo local
 
 Cada história usa **um conjunto coerente de dados demonstrativos**. Toda imagem, run, gate, evidência e consumidor da demonstração compartilha identificadores e digests compatíveis. O operador deve poder percorrer a cadeia sem saltar para uma POC histórica como se fosse operação atual.
 
@@ -45,7 +49,7 @@ Cada história usa **um conjunto coerente de dados demonstrativos**. Toda imagem
 - Conferir que botões de pedido não chamam Actions, JFrog, ECR ou EKS; nenhum ato de aprovação ou publicação pode ser simulado como real.
 - Confrontar textos e telas com o AS-IS abaixo e com [Estado atual](STATUS.md); registrar lacunas corporativas como pendências, sem criar responsáveis, datas ou resultados.
 
-## Integração real — dependências ainda abertas
+## Etapa posterior: integração real — dependências ainda abertas
 
 1. Confirmar com donos dos sistemas os contratos de leitura de Actions, JFrog, scans, recibos, SBOM, atestações, ECR e EKS, além de IDs compartilhados e frescor de cada fonte.
 2. Confirmar autoridade, responsável e registro de aprovação dos dois gates; o fluxo equivalente da segunda camada continua pendente.
@@ -53,7 +57,7 @@ Cada história usa **um conjunto coerente de dados demonstrativos**. Toda imagem
 4. Testar em ambiente autorizado o vínculo `origem → proxy → digest avaliado → ECR → consumidor`, inclusive cache, plataforma, falha, retomada e dados desatualizados.
 5. Só então decidir implantação, mecanismo de integração e eventual papel de Renovate; a avaliação de Renovate é estudo separado, não requisito da entrega local.
 
-## Trabalho técnico anterior que continua válido
+## Contexto preservado: planejamento anterior da POC
 
 O roteiro abaixo preserva a linha de investigação da POC. Ele não deve ser confundido com a implementação das quatro capacidades do Hub.
 
@@ -70,4 +74,4 @@ O roteiro abaixo preserva a linha de investigação da POC. Ele não deve ser co
 
 As tarefas 1–3 definem o contrato. O desenho da interface (4) pode começar em paralelo, mas só fica alinhado quando essas regras forem confirmadas. A execução do piloto (6) depende do plano autorizado (5). A escolha de ferramenta (7) depende do resultado e **não exige** inventar uma operação contínua fora do escopo desta POC. O trabalho de workflow (8) é uma frente separada e pode ser planejado em paralelo sem mudar a decisão de arquitetura.
 
-Para conferir as provas que já existem, siga o [runbook](RUNBOOK.md) e o [inventário de evidências](../poc/EVIDENCE.md). Para discutir o encaixe, comece por [Processo atual e proposta](ARCHITECTURE.md).
+Para a revisão atual, siga [runbook](RUNBOOK.md) e [inventário de evidências](../poc/EVIDENCE.md) antes de discutir o [encaixe no processo atual](ARCHITECTURE.md).

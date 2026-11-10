@@ -2,6 +2,8 @@
 
 Este arquivo responde **qual prova sustenta cada conclusão e o que pode ser reexecutado a partir deste repositório**. Para interpretação, veja o [relatório técnico](../docs/POC.md); para comandos, entradas, asserções e diagnóstico, siga o [runbook](../docs/RUNBOOK.md).
 
+Para a conferência em outro computador, as linhas **C** e **A** da matriz abaixo são as referências principais: C repete decisão e recuperação com fontes arquivadas; A repete a detecção na tag local. B e Vunnel são ensaios publicados adicionais, não uma escolha de ferramentas. A matriz histórica de 44 casos permanece auditável apenas nos registros selecionados, sem replay integral; essa ausência não impede repetir C e A.
+
 ## Verificação inicial
 
 O [manifesto SHA-256](evidence/SHA256SUMS) lista **55 arquivos selecionados** desta cópia pública. Na pasta `poc/`, execute `shasum -a 256 -c evidence/SHA256SUMS` (Linux: `sha256sum -c evidence/SHA256SUMS`). Registre também `git rev-parse HEAD` e `git status --short`. **Os 55 hashes cobrem evidências listadas, não scripts, testes ou dependências.** Um hash válido não substitui revisão do código nem demonstra que o experimento histórico foi repetido.

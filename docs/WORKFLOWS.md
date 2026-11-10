@@ -2,6 +2,8 @@
 
 Esta frente organiza **como desenvolver e retomar trabalho** com BMAD Method, CIS, TEA e BMad Loop. Ela é diferente da lógica que avalia imagens base. O fluxo completo abaixo é um **contrato proposto**; só algumas partes foram executadas em testes isolados.
 
+Esta frente **não é pré-requisito** para repetir os ensaios de imagem base publicados no [runbook](RUNBOOK.md). A conferência atual em outro computador se concentra em C (decisão sobre entradas arquivadas) e A (detecção local). Uma história real de domínio e a integração com CI/Hub só seriam avaliadas depois, se o reuso for decidido.
+
 ## Fluxo proposto
 
 ```mermaid
@@ -58,8 +60,8 @@ Para uma história real do Hub, o pacote de G0 deve declarar também **qual capa
 
 **Não foi executado:** o ciclo completo Discovery → especificação → histórias → Loop → verificação → fechamento para uma história real de atualização de imagem base. O perfil enxuto de revisão e a gestão de contexto não foram homologados como padrão geral. Nenhuma das ferramentas de coordenação estudadas em outras provas foi escolhida para este fluxo.
 
-## Como continuar sem inventar avanço
+## Se uma história real for autorizada depois
 
-Escolha uma história de domínio pequena **depois** de fechar o contrato e a revisão do pacote. Antes de despachar ao Loop, exija preflight, diff permitido e verificação determinística. Registre cada tentativa como uma execução própria; se houver bloqueio ou resultado incerto, preserve o estado e retome a partir dele. Só marque o ciclo como concluído quando a evidência final estiver reunida e revisada.
+Se esta frente voltar ao escopo, escolha uma história de domínio pequena **depois** de fechar o contrato e a revisão do pacote. Antes de despachar ao Loop, exija preflight, diff permitido e verificação determinística. Registre cada tentativa como uma execução própria; se houver bloqueio ou resultado incerto, preserve o estado e retome a partir dele. Só marque o ciclo como concluído quando a evidência final estiver reunida e revisada. Nada disso é condição para conferir agora as provas C e A do runbook.
 
 A procedência dos relatórios locais está em [Fontes](SOURCES.md). O [estado geral](STATUS.md) separa esse trabalho do protótipo visual e da POC de correlação.

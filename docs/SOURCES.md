@@ -2,6 +2,8 @@
 
 Este índice evita duas confusões: documento antigo com status desatualizado e arquivo de prova confundido com decisão aprovada. Parte dos scripts, fixtures e recibos foi migrada para [`poc/`](../poc/EVIDENCE.md). O acervo operacional bruto de 44 casos ainda não foi copiado. Os títulos abaixo identificam materiais que permanecem no acervo privado; **eles não são caminhos nem arquivos disponíveis neste repositório**.
 
+Para repetir **C arquivado** e **A local** no computador de trabalho, use os insumos publicados e o [runbook](RUNBOOK.md); não é necessário reconstruir o acervo privado nem redesenhar o processo empresarial já descrito em [Arquitetura](ARCHITECTURE.md). O material ausente limita a repetição integral dos 44 casos e das provas BMAD, sem invalidar os ensaios publicados. B/Diun e Vunnel permanecem alternativas estudadas, não decisões de adoção.
+
 | Material local | Uso nesta síntese | Estado de importação |
 |---|---|---|
 | Acervo privado: `Gerenciamento end-to-end de imagens-base.md` | Cadeia AS-IS informada, rebuild diário, gates e consumidores. | Resumido sem nomes de organização. Original permanece no acervo local. |
