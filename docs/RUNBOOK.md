@@ -8,7 +8,7 @@ Este guia explica **o que cada teste faz, como executá-lo e como ler o resultad
 
 O caso congelado usa uma imagem Distroless Java 21 sobre Debian 13. Há dois manifestos históricos da mesma variante, com o pacote `libexpat1` antes e depois da correção. **Tag** é o nome mutável da imagem; **digest** identifica o conteúdo recebido; **advisory** é o comunicado da correção.
 
-Na prática, o teste faz quatro coisas: serve a mesma tag localmente apontando primeiro para o conteúdo antigo e depois para o novo; verifica se A ou B percebe a troca; cruza a versão do pacote com a correção no passo C; e repete a leitura para confirmar que nenhuma decisão duplicada foi gravada. A fonte Debian ou o Vunnel informa a correção; nenhum dos dois inspeciona a imagem por conta própria.
+No conjunto das provas, fazemos quatro coisas: servimos a mesma tag localmente apontando primeiro para o conteúdo antigo e depois para o novo; verificamos se A ou B percebe a troca; cruzamos a versão do pacote com a correção no passo C; e repetimos a leitura para confirmar que nenhuma decisão duplicada foi gravada. Esses passos estão em execuções separadas neste pacote. A fonte Debian ou o Vunnel informa a correção; nenhum dos dois inspeciona a imagem por conta própria.
 
 | Peça | Função | Prova que você pode repetir aqui |
 |---|---|---|
@@ -18,6 +18,64 @@ Na prática, o teste faz quatro coisas: serve a mesma tag localmente apontando p
 | **C — correlação** | Vincula digest, plataforma, pacote e correção; registra decisão em SQLite. | Replay da decisão com entradas históricas congeladas. |
 
 **Limite da ligação:** os comandos A, B e Vunnel abaixo são execuções separadas. O replay C usa entradas arquivadas. Os recibos originais mostram A e B chegando à mesma decisão no laboratório; estes comandos **não** repetem automaticamente a comparação operacional inteira de 44 casos.
+
+## Como os dados passam pelo processo
+
+```mermaid
+flowchart TD
+  F["Fixture: tag, índices e manifestos históricos"] --> A["A: consulta OCI direta"]
+  F --> B["B: Diun no registry local"]
+  A --> E["Evento: digest mudou"]
+  B --> N["Aviso: digest mudou"]
+  E --> I["Validar imagem, tag, plataforma e bytes do manifesto filho"]
+  N --> I
+  I --> P["Vincular pacote libexpat1 ao digest da plataforma"]
+  D["Advisory Debian arquivado: versão corrigida"] --> Q["Comparar versão instalada com correção"]
+  P --> Q
+  Q --> C["C: decidir e registrar estado"]
+  C --> S["SQLite + recibos: validar candidata, aguardar ou desconhecido"]
+  V["Vunnel: feed Debian atual"] --> R["Recibo de coleta separado"]
+```
+
+O diagrama mostra **a lógica do domínio**: aviso de mudança sozinho não prova correção; é preciso conferir o manifesto da plataforma, o pacote e o advisory antes da decisão. **Não é um comando único do pacote público.** A e B produzem novas observações separadas; C reproduz o caso com observações e advisory arquivados. A coleta Vunnel atual também é separada e não é injetada no replay C. O arquivo `pipeline-replay.json` preserva um ensaio integrado anterior, mas os comandos públicos não o regeneram.
+
+### O que cada script realmente lê e produz
+
+**[run_local.py](../poc/experiments/integrated-update-poc-20261108/run_local.py) — correlação C**
+
+| Ponto | O que acontece |
+|---|---|
+| Entradas | O [manifesto de entradas](../poc/experiments/integrated-update-poc-20261108/evidence/I0-H1/manifest.json) fixa por hash quatro fontes locais: observações históricas, registros de pacote/advisory, prova do conteúdo da imagem e ledger. |
+| Processamento | Confere presença e hash das quatro fontes; lê três observações arquivadas; estabelece o digest inicial, valida o evento de mudança, compara pacote com versão corrigida e ignora a repetição. Depois reavalia o mesmo digest diante do advisory sem inventar nova imagem. |
+| Saídas para conferir | `run.json` resume uma decisão e uma reavaliação; `receipt.json` registra `validate_candidate`; `advisory-receipt.json` registra a reavaliação; `state.sqlite` guarda o estado. Use `--recover` para conferir que o banco recompõe os recibos sem outra decisão. |
+| Falha e limite | Fonte sem hash correspondente, relação digest/evento incoerente ou estado divergente não pode virar aprovação. O script **não** chama A, Diun, Vunnel nem um registry vivo. |
+
+**[probe.py](../poc/experiments/operational-abc-comparison-20261108/scripts/A/probe.py) — observação direta A**
+
+| Ponto | O que acontece |
+|---|---|
+| Entradas | Índices e manifestos filhos pré e pós mudança da fixture histórica; um registry temporário em `127.0.0.1`. |
+| Processamento | Faz as consultas OCI, seleciona `linux/amd64`, confere digest, tamanho e tipo do manifesto filho, compara com o estado anterior e emite evento só na mudança. Repete três ciclos e exercita plataforma diferente, índice ambíguo, erros HTTP, autenticação, tentativas limitadas e retomada. |
+| Saídas para conferir | `summary.json` reúne 36 execuções; `hashes.json` sela as saídas; subpastas de cada caso guardam `result.json`, `metric.json` e manifestos recebidos em `raw/`. Compare `event` e `error` com o caso correspondente. |
+| Falha e limite | Manifesto da plataforma ausente, duplicado, incoerente ou resposta inválida deve produzir erro sem evento positivo. Este script **detecta mudança**; não examina pacote/advisory nem grava decisão C. |
+
+**[run_retained_b.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py) — observação com Diun B**
+
+| Ponto | O que acontece |
+|---|---|
+| Entradas | Os mesmos índices e manifestos históricos de A, seus blobs de configuração, o binário Diun e um registry temporário em `127.0.0.1`. |
+| Processamento | Confere que índice aponta para filho e filho aponta para configuração com bytes e tamanhos corretos; cria configuração local do Diun; executa três verificações sobre **o mesmo banco Diun**: início, troca e repetição após reinício. Captura o aviso emitido. |
+| Saídas para conferir | `results.json` mostra cada verificação e `notifications_delta`; `notifications.jsonl` guarda o aviso; `receipt.json` liga aviso, índices e filhos; `served/` guarda os corpos servidos. A sequência esperada de novos avisos é `[0, 1, 0]`. |
+| Falha e limite | Binário ausente, retorno não zero, conteúdo inconsistente ou aviso duplicado invalida o ensaio. Diun não valida pacote/advisory nem toma a decisão C. |
+
+**[measure_vunnel.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/measure_vunnel.py) — fonte de correção atual**
+
+| Ponto | O que acontece |
+|---|---|
+| Entradas | Rede, `uv`, Python 3.13 e os feeds públicos atuais do Debian. O script fixa Vunnel 0.66.0 e cria um workspace novo. |
+| Processamento | Coleta o provedor Debian completo, guarda entrada e base processada, consulta três vezes o registro da CVE do caso e mede tempos/recursos. |
+| Saídas para conferir | `vunnel.log` mostra a coleta; `workspace/` guarda os arquivos baixados e a base; `receipt.json` registra `exit_code`, hashes das entradas, versão corrigida encontrada e medições. |
+| Falha e limite | Sem rede, instalação, espaço ou registro esperado, o comando falha; não há decisão de imagem. É feed **atual**, portanto seus bytes podem diferir do advisory arquivado usado por C. |
 
 ## 1. Preparar o ambiente
 
