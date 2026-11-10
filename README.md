@@ -2,6 +2,10 @@
 
 Protótipo navegável para acompanhamento da operação de imagens base, com temática institucional vermelha, fundo claro e navegação por áreas.
 
+## Documentação do trabalho
+
+Comece pelo [mapa de leitura](docs/README.md). Ele separa o processo atual, a POC de atualização de imagens e o experimento de workflows com BMAD. Cada conclusão indica se foi observada, testada localmente ou apenas proposta. Esta documentação não transforma o protótipo em sistema operacional.
+
 ![Visão geral do Base Image Hub](preview.png)
 
 ## Abrir
