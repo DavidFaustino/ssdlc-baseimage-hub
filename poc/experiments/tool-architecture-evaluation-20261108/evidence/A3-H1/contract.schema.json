@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.base-image-hub/experiments/A3-H1/contract.schema.json",
+  "title": "Base Image Hub correlation evidence v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_id", "case_id", "kind", "captured_at", "sources", "data"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "minLength": 1},
+    "kind": {"enum": ["oci_observation", "debian_advisory", "image_package"]},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "sources": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["uri", "role"],
+        "properties": {
+          "uri": {"type": "string", "minLength": 1},
+          "role": {"enum": ["primary", "derived", "raw_response", "local_verification"]},
+          "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "data": {"type": "object"}
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "kind": {"const": "oci_observation"},
+        "data": {
+          "type": "object", "additionalProperties": false,
+          "required": ["image", "tag", "platform", "index_digest", "platform_digest", "state", "observed_at", "tag_retarget_at", "reason"],
+          "properties": {
+            "image": {"type": "string", "minLength": 1},
+            "tag": {"type": "string", "minLength": 1},
+            "platform": {"type": "string", "pattern": "^[a-z0-9]+/[a-z0-9]+(?:/[a-z0-9._-]+)?$"},
+            "index_digest": {"$ref": "#/$defs/nullable_digest"},
+            "platform_digest": {"$ref": "#/$defs/nullable_digest"},
+            "state": {"enum": ["baseline", "changed", "unchanged", "unknown"]},
+            "observed_at": {"type": "string", "format": "date-time"},
+            "tag_retarget_at": {"type": ["string", "null"], "format": "date-time"},
+            "reason": {"type": ["string", "null"]}
+          },
+          "allOf": [{
+            "if": {"properties": {"state": {"enum": ["baseline", "changed", "unchanged"]}}},
+            "then": {"properties": {
+              "index_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+              "platform_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+            }}
+          }]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {"const": "debian_advisory"},
+        "data": {
+          "type": "object", "additionalProperties": false,
+          "required": ["advisory_id", "cve_ids", "suite", "source_package", "fixed_source_version", "fix_state", "advisory_published_on", "advisory_published_at", "package_available_at", "reason"],
+          "properties": {
+            "advisory_id": {"type": "string", "minLength": 1},
+            "cve_ids": {"type": "array", "items": {"type": "string"}},
+            "suite": {"type": "string", "minLength": 1},
+            "source_package": {"type": "string", "minLength": 1},
+            "fixed_source_version": {"type": ["string", "null"]},
+            "fix_state": {"enum": ["fixed_version_known", "no_fix_reported", "unknown", "conflict"]},
+            "advisory_published_on": {"type": ["string", "null"], "format": "date"},
+            "advisory_published_at": {"type": ["string", "null"], "format": "date-time"},
+            "package_available_at": {"type": ["string", "null"], "format": "date-time"},
+            "reason": {"type": ["string", "null"]}
+          },
+          "allOf": [{
+            "if": {"properties": {"fix_state": {"const": "fixed_version_known"}}},
+            "then": {"properties": {"fixed_source_version": {"type": "string", "minLength": 1}}},
+            "else": {"properties": {"fixed_source_version": {"type": "null"}}}
+          }]
+        }
+      }
+    },
+    {
+      "properties": {
+        "kind": {"const": "image_package"},
+        "data": {
+          "type": "object", "additionalProperties": false,
+          "required": ["platform_digest", "suite", "architecture", "binary_package", "source_package", "binary_version", "source_version", "source_version_basis", "inspection_state", "inspected_at", "reason"],
+          "properties": {
+            "platform_digest": {"$ref": "#/$defs/nullable_digest"},
+            "suite": {"type": ["string", "null"]},
+            "architecture": {"type": ["string", "null"]},
+            "binary_package": {"type": ["string", "null"]},
+            "source_package": {"type": ["string", "null"]},
+            "binary_version": {"type": ["string", "null"]},
+            "source_version": {"type": ["string", "null"]},
+            "source_version_basis": {"enum": ["explicit_source_field", "debian_policy_same_as_binary", "unknown"]},
+            "inspection_state": {"enum": ["observed", "unknown"]},
+            "inspected_at": {"type": ["string", "null"], "format": "date-time"},
+            "reason": {"type": ["string", "null"]}
+          },
+          "allOf": [{
+            "if": {"properties": {"inspection_state": {"const": "observed"}}},
+            "then": {"properties": {
+              "platform_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+              "suite": {"type": "string", "minLength": 1},
+              "architecture": {"type": "string", "minLength": 1},
+              "binary_package": {"type": "string", "minLength": 1},
+              "source_package": {"type": "string", "minLength": 1},
+              "binary_version": {"type": "string", "minLength": 1},
+              "source_version": {"type": "string", "minLength": 1},
+              "source_version_basis": {"enum": ["explicit_source_field", "debian_policy_same_as_binary"]}
+            }}
+          }]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nullable_digest": {"type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$"}
+  }
+}

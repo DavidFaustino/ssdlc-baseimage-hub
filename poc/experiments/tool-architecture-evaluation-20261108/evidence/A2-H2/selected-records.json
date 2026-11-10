@@ -1,0 +1,196 @@
+{
+  "absent_control": "debian:13/cve-2030-000000",
+  "dsa_lines": [
+    "[30 Jul 2026] DSA-6404-1 expat - security update",
+    "\t{CVE-2025-59375 CVE-2026-24515 CVE-2026-25210 CVE-2026-32776 CVE-2026-32777 CVE-2026-32778 CVE-2026-41080 CVE-2026-45186 CVE-2026-50219 CVE-2026-56131 CVE-2026-56132 CVE-2026-56403 CVE-2026-56404 CVE-2026-56405 CVE-2026-56406 CVE-2026-56407 CVE-2026-56408 CVE-2026-56409 CVE-2026-56410 CVE-2026-56411 CVE-2026-56412}",
+    "\t[trixie] - expat 2.8.2-1~deb13u1"
+  ],
+  "full_source_files": {
+    "DSA": {
+      "bytes": 1239901,
+      "sha256": "sha256:dcd945de38ec914953e1b87d0c408727c79e523e44e1490cbe19a1d3c4e1b98d"
+    },
+    "debian.json": {
+      "bytes": 88338873,
+      "sha256": "sha256:26ca3e8638acc45f0fa8925eacdc04f47bc6989200b5d94a9fc7dfa78a1d14f3"
+    },
+    "results.db": {
+      "bytes": 383717376,
+      "sha256": "sha256:0e06f3421f2dd9c64352d4e325b7d3fe3b0126d4346f992e9fb83b8765a1ef88"
+    }
+  },
+  "provider_metadata": {
+    "distribution_version": 1,
+    "listing": {
+      "algorithm": "xxh64",
+      "digest": "161270c4fb4d79c4",
+      "path": "checksums"
+    },
+    "processor": "vunnel@0.66.0",
+    "provider": "debian",
+    "schema": {
+      "url": "https://raw.githubusercontent.com/anchore/vunnel/main/schema/provider-workspace-state/schema-1.0.3.json",
+      "version": "1.0.3"
+    },
+    "stale": false,
+    "store": "sqlite",
+    "timestamp": "2026-11-08T12:30:13.438416+00:00",
+    "urls": [
+      "https://security-tracker.debian.org/tracker/data/json",
+      "https://salsa.debian.org/security-tracker-team/security-tracker/raw/master/data/DSA/list"
+    ],
+    "version": 1
+  },
+  "selected_records": {
+    "CVE-2026-113351": {
+      "tracker": {
+        "debianbug": 1151840,
+        "description": "libexpat 2.7.2 through 2.9.0 contains a denial of service vulnerability because XML_ParserReset zeroes the direct byte count but never offsets tracked heap allocations. Attackers can submit a large XML document so later documents on the same reset parser fail with XML_ERROR_NO_MEMORY until it is recreated.",
+        "releases": {
+          "bookworm": {
+            "nodsa": "Minor issue; can be fixed in next update",
+            "nodsa_reason": "postponed",
+            "repositories": {
+              "bookworm": "2.5.0-1+deb12u2",
+              "bookworm-security": "2.5.0-1+deb12u5"
+            },
+            "status": "open",
+            "urgency": "not yet assigned"
+          },
+          "forky": {
+            "fixed_version": "2.10.0-1",
+            "repositories": {
+              "forky": "2.10.0-1"
+            },
+            "status": "resolved",
+            "urgency": "not yet assigned"
+          },
+          "sid": {
+            "fixed_version": "2.10.0-1",
+            "repositories": {
+              "sid": "2.10.0-1"
+            },
+            "status": "resolved",
+            "urgency": "not yet assigned"
+          },
+          "trixie": {
+            "nodsa": "Minor issue",
+            "nodsa_reason": "",
+            "repositories": {
+              "trixie": "2.8.3-1~deb13u1",
+              "trixie-security": "2.9.0-1~deb13u1"
+            },
+            "status": "open",
+            "urgency": "not yet assigned"
+          }
+        },
+        "scope": "local"
+      },
+      "vunnel": {
+        "identifier": "debian:13/cve-2026-113351",
+        "item": {
+          "Vulnerability": {
+            "CVSS": [],
+            "Description": "libexpat 2.7.2 through 2.9.0 contains a denial of service vulnerability because XML_ParserReset zeroes the direct byte count but never offsets tracked heap allocations. Attackers can submit a large XML document so later documents on the same reset parser fail with XML_ERROR_NO_MEMORY until it is recreated.",
+            "FixedIn": [
+              {
+                "Name": "expat",
+                "NamespaceName": "debian:13",
+                "VendorAdvisory": {
+                  "NoAdvisory": true
+                },
+                "Version": "None",
+                "VersionFormat": "dpkg"
+              }
+            ],
+            "Link": "https://security-tracker.debian.org/tracker/CVE-2026-113351",
+            "Metadata": {},
+            "Name": "CVE-2026-113351",
+            "NamespaceName": "debian:13",
+            "Severity": "Unknown"
+          }
+        },
+        "schema": "https://raw.githubusercontent.com/anchore/vunnel/main/schema/vulnerability/os/schema-1.1.0.json"
+      }
+    },
+    "CVE-2026-24515": {
+      "tracker": {
+        "debianbug": 1126277,
+        "description": "In libexpat before 2.7.4, XML_ExternalEntityParserCreate does not copy unknown encoding handler user data.",
+        "releases": {
+          "bookworm": {
+            "fixed_version": "2.5.0-1+deb12u4",
+            "repositories": {
+              "bookworm": "2.5.0-1+deb12u2",
+              "bookworm-security": "2.5.0-1+deb12u5"
+            },
+            "status": "resolved",
+            "urgency": "not yet assigned"
+          },
+          "forky": {
+            "fixed_version": "2.7.3-2",
+            "repositories": {
+              "forky": "2.10.0-1"
+            },
+            "status": "resolved",
+            "urgency": "not yet assigned"
+          },
+          "sid": {
+            "fixed_version": "2.7.3-2",
+            "repositories": {
+              "sid": "2.10.0-1"
+            },
+            "status": "resolved",
+            "urgency": "not yet assigned"
+          },
+          "trixie": {
+            "fixed_version": "2.8.2-1~deb13u1",
+            "repositories": {
+              "trixie": "2.8.3-1~deb13u1",
+              "trixie-security": "2.9.0-1~deb13u1"
+            },
+            "status": "resolved",
+            "urgency": "not yet assigned"
+          }
+        },
+        "scope": "local"
+      },
+      "vunnel": {
+        "identifier": "debian:13/cve-2026-24515",
+        "item": {
+          "Vulnerability": {
+            "CVSS": [],
+            "Description": "In libexpat before 2.7.4, XML_ExternalEntityParserCreate does not copy unknown encoding handler user data.",
+            "FixedIn": [
+              {
+                "Available": {
+                  "Date": "2026-07-30",
+                  "Kind": "advisory"
+                },
+                "Name": "expat",
+                "NamespaceName": "debian:13",
+                "VendorAdvisory": {
+                  "AdvisorySummary": [
+                    {
+                      "ID": "DSA-6404-1",
+                      "Link": "https://security-tracker.debian.org/tracker/DSA-6404-1"
+                    }
+                  ],
+                  "NoAdvisory": false
+                },
+                "Version": "2.8.2-1~deb13u1",
+                "VersionFormat": "dpkg"
+              }
+            ],
+            "Link": "https://security-tracker.debian.org/tracker/CVE-2026-24515",
+            "Metadata": {},
+            "Name": "CVE-2026-24515",
+            "NamespaceName": "debian:13",
+            "Severity": "Unknown"
+          }
+        },
+        "schema": "https://raw.githubusercontent.com/anchore/vunnel/main/schema/vulnerability/os/schema-1.1.0.json"
+      }
+    }
+  }
+}

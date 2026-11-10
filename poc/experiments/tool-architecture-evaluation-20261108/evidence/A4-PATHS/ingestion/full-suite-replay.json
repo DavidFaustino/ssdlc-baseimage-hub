@@ -1,0 +1,327 @@
+{
+  "cache": "transient-cache-not-included",
+  "cache_is_transient": true,
+  "downloads": [
+    {
+      "digest": "sha256:0f9eea95e3ffe85e1761361f9f58b5463f9269b5324f7c96adb265a1c475952c",
+      "http_status": 200,
+      "size": 383704,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:0f9eea95e3ffe85e1761361f9f58b5463f9269b5324f7c96adb265a1c475952c"
+    },
+    {
+      "digest": "sha256:129b9479d271ccf8432ec4a797b2f9911c272dd6518eb25b51d8739665b6f964",
+      "http_status": 200,
+      "size": 101888,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:129b9479d271ccf8432ec4a797b2f9911c272dd6518eb25b51d8739665b6f964"
+    },
+    {
+      "digest": "sha256:1a4be5562d92d659f95e0b44b245ea5208bf5317481b9a351b07fad7fe5265ec",
+      "http_status": 200,
+      "size": 51535,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:1a4be5562d92d659f95e0b44b245ea5208bf5317481b9a351b07fad7fe5265ec"
+    },
+    {
+      "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+      "size": 85857,
+      "source": "experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/source/base-files-layer.blob"
+    },
+    {
+      "digest": "sha256:2780920e5dbfbe103d03a583ed75345306e572ec5a48cb10361f046767d9f29a",
+      "http_status": 200,
+      "size": 67,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:2780920e5dbfbe103d03a583ed75345306e572ec5a48cb10361f046767d9f29a"
+    },
+    {
+      "digest": "sha256:2d4d7adf627254a81515173c3ba0fee593d821176ce30ea7d5eb2d956bdf8379",
+      "http_status": 200,
+      "size": 5077242,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:2d4d7adf627254a81515173c3ba0fee593d821176ce30ea7d5eb2d956bdf8379"
+    },
+    {
+      "digest": "sha256:3214acf345c0cc6bbdb56b698a41ccdefc624a09d6beb0d38b5de0b2303ecaf4",
+      "http_status": 200,
+      "size": 123,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:3214acf345c0cc6bbdb56b698a41ccdefc624a09d6beb0d38b5de0b2303ecaf4"
+    },
+    {
+      "digest": "sha256:3becd4e89ce7b1cb06bcad4e618b20c5dd9634157e62b0e91507e6d98f403fae",
+      "http_status": 200,
+      "size": 52327408,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:3becd4e89ce7b1cb06bcad4e618b20c5dd9634157e62b0e91507e6d98f403fae"
+    },
+    {
+      "digest": "sha256:40f0a9ec0299bc8d16b23811e4d56e490c710a9460510b3ec36f99337eb885d6",
+      "size": 170771,
+      "source": "experiments/historical-image-case-20261107/evidence/digests/pre-layer.blob"
+    },
+    {
+      "digest": "sha256:4d0c8f097af701e0359ffcf2b4870d79367f75a85bd386094a561e0a26ab44c4",
+      "http_status": 200,
+      "size": 120703,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:4d0c8f097af701e0359ffcf2b4870d79367f75a85bd386094a561e0a26ab44c4"
+    },
+    {
+      "digest": "sha256:52630fc75a18675c530ed9eba5f55eca09b03e91bd5bc15307918bbc1a7e7296",
+      "http_status": 200,
+      "size": 162,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:52630fc75a18675c530ed9eba5f55eca09b03e91bd5bc15307918bbc1a7e7296"
+    },
+    {
+      "digest": "sha256:5a380f5229b703f674a3c9c87ef6dd7672a3e3c05867880ea6a86a024b6ff460",
+      "http_status": 200,
+      "size": 1231078,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:5a380f5229b703f674a3c9c87ef6dd7672a3e3c05867880ea6a86a024b6ff460"
+    },
+    {
+      "digest": "sha256:6c955cb5824af7ddf148d958f0dd12ef04c54f656e0ccc656db2e75db7e31ba9",
+      "http_status": 200,
+      "size": 520680,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:6c955cb5824af7ddf148d958f0dd12ef04c54f656e0ccc656db2e75db7e31ba9"
+    },
+    {
+      "digest": "sha256:7c12895b777bcaa8ccae0605b4de635b68fc32d60fa08f421dc3818bf55ee212",
+      "http_status": 200,
+      "size": 188,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:7c12895b777bcaa8ccae0605b4de635b68fc32d60fa08f421dc3818bf55ee212"
+    },
+    {
+      "digest": "sha256:7cc70dfd88cf2327bb827123c9156f7cb95de95b2f98f3a7a931296aacec5786",
+      "http_status": 200,
+      "size": 901291,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:7cc70dfd88cf2327bb827123c9156f7cb95de95b2f98f3a7a931296aacec5786"
+    },
+    {
+      "digest": "sha256:8224d91da70b7992430d3b04040ea38ecdef4a7b719bee38397c89aaa886e198",
+      "http_status": 200,
+      "size": 84214,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:8224d91da70b7992430d3b04040ea38ecdef4a7b719bee38397c89aaa886e198"
+    },
+    {
+      "digest": "sha256:8b0390b1dccb0c039a06978ed730bfbd74aac52321bd21125be8db222e458983",
+      "http_status": 200,
+      "size": 413211,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:8b0390b1dccb0c039a06978ed730bfbd74aac52321bd21125be8db222e458983"
+    },
+    {
+      "digest": "sha256:93d46c07550c48c8e929c35514cd76991faaccded6ff1db9239e9656de2c40ed",
+      "http_status": 200,
+      "size": 191006,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:93d46c07550c48c8e929c35514cd76991faaccded6ff1db9239e9656de2c40ed"
+    },
+    {
+      "digest": "sha256:99515e7b4d35e0652d3b0fde571b6ec269222ecacc506f026e1758d6261e9109",
+      "http_status": 200,
+      "size": 288536,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:99515e7b4d35e0652d3b0fde571b6ec269222ecacc506f026e1758d6261e9109"
+    },
+    {
+      "digest": "sha256:99ba982a9142213c751a1709dcf088e63d8601f03b3f211bae037be698fef270",
+      "http_status": 200,
+      "size": 254453,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:99ba982a9142213c751a1709dcf088e63d8601f03b3f211bae037be698fef270"
+    },
+    {
+      "digest": "sha256:b27e7c69e40256136ce88296714c6e1674824c001f651a55336b4430460a7502",
+      "size": 186330,
+      "source": "experiments/historical-image-case-20261107/evidence/digests/post-layer.blob"
+    },
+    {
+      "digest": "sha256:b839dfae01f66e15c6a8b63520557ed315bdfe036342fa7a0c537259f10d7a9a",
+      "http_status": 200,
+      "size": 351,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:b839dfae01f66e15c6a8b63520557ed315bdfe036342fa7a0c537259f10d7a9a"
+    },
+    {
+      "digest": "sha256:bdfd7f7e5bf6fc27e70b59101db21c3d8284d283884419dd5fe7020583bb79ca",
+      "http_status": 200,
+      "size": 136993,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:bdfd7f7e5bf6fc27e70b59101db21c3d8284d283884419dd5fe7020583bb79ca"
+    },
+    {
+      "digest": "sha256:bf50b7dce21f6fe803ea488f463a5f664df7fe1be726606df42848718c432a86",
+      "http_status": 200,
+      "size": 70291,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:bf50b7dce21f6fe803ea488f463a5f664df7fe1be726606df42848718c432a86"
+    },
+    {
+      "digest": "sha256:c172f21841dff4c8cf45cde46589c1c2616cefe7e819965e92e6d3475c428aa0",
+      "http_status": 200,
+      "size": 12675,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:c172f21841dff4c8cf45cde46589c1c2616cefe7e819965e92e6d3475c428aa0"
+    },
+    {
+      "digest": "sha256:cac2ae0193cb073e7492050b05fc342a888651b4bbc966908c8793f889c299ba",
+      "http_status": 200,
+      "size": 96148,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:cac2ae0193cb073e7492050b05fc342a888651b4bbc966908c8793f889c299ba"
+    },
+    {
+      "digest": "sha256:cef3c9b30f2b55ddff34f93d3e9b18eae12ec87efd8fd74809e64d1aead64ae7",
+      "http_status": 200,
+      "size": 297892,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:cef3c9b30f2b55ddff34f93d3e9b18eae12ec87efd8fd74809e64d1aead64ae7"
+    },
+    {
+      "digest": "sha256:d406a2663c28cd30be263cee4c7dc6d6c557bb984971b42d89c76593da234d9e",
+      "http_status": 200,
+      "size": 304331,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:d406a2663c28cd30be263cee4c7dc6d6c557bb984971b42d89c76593da234d9e"
+    },
+    {
+      "digest": "sha256:d6b1b89eccacc15c2420b2776d72c1dae334a00805ed9af54bf2f71e4d536f28",
+      "http_status": 200,
+      "size": 32093,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:d6b1b89eccacc15c2420b2776d72c1dae334a00805ed9af54bf2f71e4d536f28"
+    },
+    {
+      "digest": "sha256:dd64bf2dd177757451a98fcdc999a339c35dee5d9872d8f4dc69c8f3c4dd0112",
+      "http_status": 200,
+      "size": 80,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:dd64bf2dd177757451a98fcdc999a339c35dee5d9872d8f4dc69c8f3c4dd0112"
+    },
+    {
+      "digest": "sha256:de1ef60959fdee269cb389193c68b30905bee758739ef284d4368d7b43aa6ed4",
+      "http_status": 200,
+      "size": 41026,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:de1ef60959fdee269cb389193c68b30905bee758739ef284d4368d7b43aa6ed4"
+    },
+    {
+      "digest": "sha256:eb67871efa33e87704117238d677edbb342661f9c8015b2d557665572460aa14",
+      "http_status": 200,
+      "size": 41973,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:eb67871efa33e87704117238d677edbb342661f9c8015b2d557665572460aa14"
+    },
+    {
+      "digest": "sha256:ebddc55facdc6b1f7e0f30816a5fc7cc62f38abdf76c0a8b0a0ce52085754795",
+      "http_status": 200,
+      "size": 311,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:ebddc55facdc6b1f7e0f30816a5fc7cc62f38abdf76c0a8b0a0ce52085754795"
+    },
+    {
+      "digest": "sha256:f114bb350e7968ae90fd418cf1b589c17ba63af1d66303328332dffc5e297576",
+      "http_status": 200,
+      "size": 196566,
+      "source": "https://gcr.io/v2/distroless/java21-debian13/blobs/sha256:f114bb350e7968ae90fd418cf1b589c17ba63af1d66303328332dffc5e297576"
+    }
+  ],
+  "failures": [],
+  "refresh_requested": true,
+  "replay": [
+    {
+      "etc_os_release_resolves_to": "usr/lib/os-release",
+      "label": "pre",
+      "layers_verified": 33,
+      "suite_checks": {
+        "base_files_amd64": true,
+        "base_files_package": true,
+        "os_release_id_debian": true,
+        "os_release_trixie": true,
+        "os_release_version_13": true
+      },
+      "targeted_replay_only": true,
+      "tracked_paths": {
+        "etc/os-release": {
+          "kind": "symlink",
+          "linkname": "../usr/lib/os-release"
+        },
+        "usr/lib/os-release": {
+          "bytes": 344,
+          "kind": "file",
+          "sha256": "sha256:b4d56a90bdd55b9d5b9b4acabfe748f559e505e340d2d93097937e11ee423cc1",
+          "text": "PRETTY_NAME=\"Distroless\"\nNAME=\"Debian GNU/Linux\"\nID=\"debian\"\nVERSION_ID=\"13\"\nVERSION=\"Debian GNU/Linux 13 (trixie)\"\nHOME_URL=\"https://github.com/GoogleContainerTools/distroless\"\nSUPPORT_URL=\"https://github.com/GoogleContainerTools/distroless/blob/master/README.md\"\nBUG_REPORT_URL=\"https://github.com/GoogleContainerTools/distroless/issues/new\"\n"
+        },
+        "var/lib/dpkg/status.d/base-files": {
+          "bytes": 734,
+          "kind": "file",
+          "sha256": "sha256:02e406d2c004a9a9229b285bdf2464b66e77e87a2bac4c405f232a3474e4a357",
+          "text": "Package: base-files\nVersion: 13.8+deb13u6\nArchitecture: amd64\nEssential: yes\nMaintainer: Santiago Vila <sanvila@debian.org>\nInstalled-Size: 350\nPre-Depends: awk\nBreaks: debian-security-support (<< 2019.04.25), initscripts (<< 2.88dsf-13.3), sendfile (<< 2.1b.20080616-5.2~)\nReplaces: base, dpkg (<= 1.15.0), miscutils\nProvides: base, usr-is-merged\nSection: admin\nPriority: required\nMulti-Arch: foreign\nDescription: Debian base system miscellaneous files\n This package contains the basic filesystem hierarchy of a Debian system, and\n several important miscellaneous files, such as /etc/debian_version,\n /etc/host.conf, /etc/issue, /etc/motd, /etc/profile, and others,\n and the text of several common licenses in use on Debian systems.\n"
+        }
+      },
+      "transitions": [
+        {
+          "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+          "layer": 0,
+          "operation": "symlink",
+          "path": "etc/os-release"
+        },
+        {
+          "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+          "layer": 0,
+          "operation": "file",
+          "path": "usr/lib/os-release"
+        },
+        {
+          "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+          "layer": 0,
+          "operation": "file",
+          "path": "var/lib/dpkg/status.d/base-files"
+        },
+        {
+          "digest": "sha256:ebddc55facdc6b1f7e0f30816a5fc7cc62f38abdf76c0a8b0a0ce52085754795",
+          "layer": 11,
+          "operation": "file",
+          "path": "usr/lib/os-release"
+        }
+      ]
+    },
+    {
+      "etc_os_release_resolves_to": "usr/lib/os-release",
+      "label": "post",
+      "layers_verified": 33,
+      "suite_checks": {
+        "base_files_amd64": true,
+        "base_files_package": true,
+        "os_release_id_debian": true,
+        "os_release_trixie": true,
+        "os_release_version_13": true
+      },
+      "targeted_replay_only": true,
+      "tracked_paths": {
+        "etc/os-release": {
+          "kind": "symlink",
+          "linkname": "../usr/lib/os-release"
+        },
+        "usr/lib/os-release": {
+          "bytes": 344,
+          "kind": "file",
+          "sha256": "sha256:b4d56a90bdd55b9d5b9b4acabfe748f559e505e340d2d93097937e11ee423cc1",
+          "text": "PRETTY_NAME=\"Distroless\"\nNAME=\"Debian GNU/Linux\"\nID=\"debian\"\nVERSION_ID=\"13\"\nVERSION=\"Debian GNU/Linux 13 (trixie)\"\nHOME_URL=\"https://github.com/GoogleContainerTools/distroless\"\nSUPPORT_URL=\"https://github.com/GoogleContainerTools/distroless/blob/master/README.md\"\nBUG_REPORT_URL=\"https://github.com/GoogleContainerTools/distroless/issues/new\"\n"
+        },
+        "var/lib/dpkg/status.d/base-files": {
+          "bytes": 734,
+          "kind": "file",
+          "sha256": "sha256:02e406d2c004a9a9229b285bdf2464b66e77e87a2bac4c405f232a3474e4a357",
+          "text": "Package: base-files\nVersion: 13.8+deb13u6\nArchitecture: amd64\nEssential: yes\nMaintainer: Santiago Vila <sanvila@debian.org>\nInstalled-Size: 350\nPre-Depends: awk\nBreaks: debian-security-support (<< 2019.04.25), initscripts (<< 2.88dsf-13.3), sendfile (<< 2.1b.20080616-5.2~)\nReplaces: base, dpkg (<= 1.15.0), miscutils\nProvides: base, usr-is-merged\nSection: admin\nPriority: required\nMulti-Arch: foreign\nDescription: Debian base system miscellaneous files\n This package contains the basic filesystem hierarchy of a Debian system, and\n several important miscellaneous files, such as /etc/debian_version,\n /etc/host.conf, /etc/issue, /etc/motd, /etc/profile, and others,\n and the text of several common licenses in use on Debian systems.\n"
+        }
+      },
+      "transitions": [
+        {
+          "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+          "layer": 0,
+          "operation": "symlink",
+          "path": "etc/os-release"
+        },
+        {
+          "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+          "layer": 0,
+          "operation": "file",
+          "path": "usr/lib/os-release"
+        },
+        {
+          "digest": "sha256:1eed391ea893e6015bf4ce4ed366909975d2acdbe907670919236a8d18ea6b07",
+          "layer": 0,
+          "operation": "file",
+          "path": "var/lib/dpkg/status.d/base-files"
+        },
+        {
+          "digest": "sha256:ebddc55facdc6b1f7e0f30816a5fc7cc62f38abdf76c0a8b0a0ce52085754795",
+          "layer": 11,
+          "operation": "file",
+          "path": "usr/lib/os-release"
+        }
+      ]
+    }
+  ],
+  "total_compressed_bytes": 63621177,
+  "unique_layers": 34
+}

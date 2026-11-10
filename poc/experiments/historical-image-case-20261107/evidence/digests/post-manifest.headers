@@ -1,0 +1,14 @@
+HTTP/2 200 
+content-length: 6734
+content-type: application/vnd.oci.image.manifest.v1+json
+docker-content-digest: sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2
+docker-distribution-api-version: registry/2.0
+server: Docker Registry
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-gcr-using-artifact-registry: true
+x-xss-protection: 0
+date: Sat, 07 Nov 2026 17:23:41 GMT
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+

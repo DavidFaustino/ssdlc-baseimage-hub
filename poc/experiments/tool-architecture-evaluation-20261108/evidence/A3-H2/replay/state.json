@@ -1,0 +1,15 @@
+{
+  "fix_status": "unknown",
+  "image": "fixture.local/distroless/java21-debian13",
+  "image_approved": false,
+  "index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+  "index_media_type": "application/vnd.oci.image.index.v1+json",
+  "observed_at_utc": "2026-11-08T12:58:53.528177+00:00",
+  "platform": "linux/amd64",
+  "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+  "platform_media_type": "application/vnd.oci.image.manifest.v1+json",
+  "registry_date_index": "Sun, 08 Nov 2026 12:58:53 GMT",
+  "registry_date_platform": "Sun, 08 Nov 2026 12:58:53 GMT",
+  "request_accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+  "tag": "local-replay"
+}

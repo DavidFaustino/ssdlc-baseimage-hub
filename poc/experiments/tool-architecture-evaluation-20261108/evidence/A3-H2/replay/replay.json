@@ -1,0 +1,91 @@
+{
+  "child_digests": {
+    "post": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+    "pre": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+  },
+  "fixture_kind": "local synthetic tag over archived real platform manifests",
+  "index_digests": {
+    "post": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+    "pre": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a"
+  },
+  "observations": [
+    {
+      "event": null,
+      "mode": "pre",
+      "observation": {
+        "fix_status": "unknown",
+        "image": "fixture.local/distroless/java21-debian13",
+        "image_approved": false,
+        "index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+        "index_media_type": "application/vnd.oci.image.index.v1+json",
+        "observed_at_utc": "2026-11-08T12:58:53.524573+00:00",
+        "platform": "linux/amd64",
+        "platform_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "platform_media_type": "application/vnd.oci.image.manifest.v1+json",
+        "registry_date_index": "Sun, 08 Nov 2026 12:58:53 GMT",
+        "registry_date_platform": "Sun, 08 Nov 2026 12:58:53 GMT",
+        "request_accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+        "tag": "local-replay"
+      }
+    },
+    {
+      "event": {
+        "candidate_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "candidate_observed_at_utc": "2026-11-08T12:58:53.526442+00:00",
+        "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+        "fix_status": "unknown",
+        "image": "fixture.local/distroless/java21-debian13",
+        "image_approved": false,
+        "platform": "linux/amd64",
+        "previous_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "previous_observed_at_utc": "2026-11-08T12:58:53.524573+00:00",
+        "tag": "local-replay"
+      },
+      "mode": "post",
+      "observation": {
+        "fix_status": "unknown",
+        "image": "fixture.local/distroless/java21-debian13",
+        "image_approved": false,
+        "index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+        "index_media_type": "application/vnd.oci.image.index.v1+json",
+        "observed_at_utc": "2026-11-08T12:58:53.526442+00:00",
+        "platform": "linux/amd64",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "platform_media_type": "application/vnd.oci.image.manifest.v1+json",
+        "registry_date_index": "Sun, 08 Nov 2026 12:58:53 GMT",
+        "registry_date_platform": "Sun, 08 Nov 2026 12:58:53 GMT",
+        "request_accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+        "tag": "local-replay"
+      }
+    },
+    {
+      "event": null,
+      "mode": "post",
+      "observation": {
+        "fix_status": "unknown",
+        "image": "fixture.local/distroless/java21-debian13",
+        "image_approved": false,
+        "index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+        "index_media_type": "application/vnd.oci.image.index.v1+json",
+        "observed_at_utc": "2026-11-08T12:58:53.528177+00:00",
+        "platform": "linux/amd64",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "platform_media_type": "application/vnd.oci.image.manifest.v1+json",
+        "registry_date_index": "Sun, 08 Nov 2026 12:58:53 GMT",
+        "registry_date_platform": "Sun, 08 Nov 2026 12:58:53 GMT",
+        "request_accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+        "tag": "local-replay"
+      }
+    }
+  ],
+  "rate_limit": {
+    "events_unchanged": true,
+    "retry_after": "3",
+    "state_unchanged": true,
+    "status": 429
+  },
+  "source_manifest_sha256": {
+    "post": "3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+    "pre": "7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+  }
+}

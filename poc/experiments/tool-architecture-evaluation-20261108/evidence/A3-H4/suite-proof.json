@@ -1,0 +1,33 @@
+{
+  "case_id": "distroless-java21-debian13-expat-2026",
+  "scope": "targeted final-path replay across every verified layer; not full materialized rootfs",
+  "source_ledger": "experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/full-suite-replay.json",
+  "source_ledger_sha256": "e5a5105b56e4fe8cf7ad5a8dfe03112f193d2f83989b4df0cb9ae4440af41146",
+  "unique_layer_digests_verified": 34,
+  "total_compressed_layer_bytes": 63621177,
+  "public_http_200_downloads": 31,
+  "transient_full_blob_cache": "transient-cache-not-included",
+  "historical_platform_manifests": [
+    "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+    "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+  ],
+  "per_manifest_layers_verified": 33,
+  "final_tracked_paths": {
+    "etc/os-release": "symlink to ../usr/lib/os-release",
+    "usr/lib/os-release": {
+      "ID": "debian",
+      "VERSION_ID": "13",
+      "VERSION": "Debian GNU/Linux 13 (trixie)",
+      "PRETTY_NAME": "Distroless"
+    },
+    "var/lib/dpkg/status.d/base-files": {
+      "Package": "base-files",
+      "Version": "13.8+deb13u6",
+      "Architecture": "amd64"
+    }
+  },
+  "observed_in_both_archived_platform_digests": true,
+  "public_nonroot_tag_transition_observed": false,
+  "full_package_inventory_performed": false,
+  "all_raw_blobs_persisted_in_project": false
+}

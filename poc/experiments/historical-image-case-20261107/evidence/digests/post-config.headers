@@ -1,0 +1,14 @@
+HTTP/2 200 
+accept-ranges: bytes
+content-length: 7291
+content-type: application/octet-stream
+docker-distribution-api-version: registry/2.0
+server: Docker Registry
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-gcr-using-artifact-registry: true
+x-xss-protection: 0
+date: Sat, 07 Nov 2026 17:24:18 GMT
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+

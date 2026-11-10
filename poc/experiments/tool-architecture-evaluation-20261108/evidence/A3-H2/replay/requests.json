@@ -1,0 +1,37 @@
+[
+  {
+    "mode": "pre",
+    "path": "/v2/distroless/java21-debian13/manifests/local-replay",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  },
+  {
+    "mode": "pre",
+    "path": "/v2/distroless/java21-debian13/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  },
+  {
+    "mode": "post",
+    "path": "/v2/distroless/java21-debian13/manifests/local-replay",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  },
+  {
+    "mode": "post",
+    "path": "/v2/distroless/java21-debian13/manifests/sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  },
+  {
+    "mode": "post",
+    "path": "/v2/distroless/java21-debian13/manifests/local-replay",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  },
+  {
+    "mode": "post",
+    "path": "/v2/distroless/java21-debian13/manifests/sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  },
+  {
+    "mode": "rate_limit",
+    "path": "/v2/distroless/java21-debian13/manifests/local-replay",
+    "accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json"
+  }
+]

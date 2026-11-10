@@ -1,0 +1,41 @@
+{
+  "pre": {
+    "manifest_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+    "manifest_url": "https://gcr.io/v2/distroless/java21-debian13/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+    "registry_uploaded_utc": "2026-07-27T22:33:00.550000+00:00",
+    "platform": "linux/amd64",
+    "matching_tags": [
+      "nonroot-amd64-319e1cc21d20b6fb47685eb50f1884f79cfef0ea",
+      "nonroot-amd64-7740f6da054fad247a9dee9952a161c55df91f10",
+      "nonroot-amd64-797d83d6cbe611e1fc9b0b2b5aca195fe7702d14"
+    ],
+    "layer_20_digest": "sha256:40f0a9ec0299bc8d16b23811e4d56e490c710a9460510b3ec36f99337eb885d6",
+    "status_file_sha256": "e632f9449d37a01afbb1bf73d7a13e5e2e2881043bc48dc01d57c0615f2a52ba",
+    "package_lines": [
+      "Package: libexpat1",
+      "Source: expat",
+      "Version: 2.7.1-2",
+      "Architecture: amd64"
+    ]
+  },
+  "post": {
+    "manifest_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+    "manifest_url": "https://gcr.io/v2/distroless/java21-debian13/manifests/sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+    "registry_uploaded_utc": "2026-07-31T23:00:00.907000+00:00",
+    "platform": "linux/amd64",
+    "matching_tags": [
+      "nonroot-amd64-165b5d63ce3528e18115acf8191122537154f238",
+      "nonroot-amd64-38b199940da833e75f38b4145291bf0ac95f9e20",
+      "nonroot-amd64-5cd4b174229a32952adbe7d580cd4dc9a9816389",
+      "nonroot-amd64-b5d2959ffe387b304f2c0a13f76f9fa0416b6b17"
+    ],
+    "layer_20_digest": "sha256:b27e7c69e40256136ce88296714c6e1674824c001f651a55336b4430460a7502",
+    "status_file_sha256": "bc49d4d71fb8ce0f23f32f39bf987f2b72929e533af6dd8a138da0761a37debd",
+    "package_lines": [
+      "Package: libexpat1",
+      "Source: expat",
+      "Version: 2.8.2-1~deb13u1",
+      "Architecture: amd64"
+    ]
+  }
+}
