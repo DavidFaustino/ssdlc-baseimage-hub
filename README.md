@@ -26,10 +26,10 @@ As provas sintéticas de BMAD/Loop também estão **relatadas, não empacotadas 
 
 ## Protótipo visual
 
-[`index.html`](index.html) é uma interface demonstrativa com dados fictícios e sem backend. A vista **Candidatas e evidências** mostra como digest, pacote, advisory, decisão e autoridade poderiam aparecer para uma pessoa; ela não recebe os recibos produzidos pelos scripts. Abra o arquivo no navegador ou sirva a pasta localmente:
+[`index.html`](index.html) é uma interface demonstrativa do **Hub operacional**, com dados fictícios e sem backend. A Visão geral apresenta três runs de exemplo (concluído, bloqueado e desconhecido). Eles usam a mesma identidade em Imagens, Automações e Adoção e cobertura, para mostrar o percurso run → digest → gate → publicação → consumo. Pedidos de avaliação, atualização e reexecução geram somente recibos DEMO no navegador; não chamam o CI. O Roadmap organiza pesquisa, validação e evolução proposta, sem alimentar o estado operacional. Abra o Hub no navegador ou sirva a pasta localmente:
 
 ```sh
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-O protótipo não executa os scripts da POC e não consulta registry, JFrog, ECR ou scanners. [Prévia](preview.png).
+O protótipo não executa os scripts da POC e não consulta GitHub Actions, registry, JFrog, ECR, EKS ou scanners. Digests e artefatos exibidos são sintéticos e não correspondem a bytes publicados. [Prévia](preview.png).

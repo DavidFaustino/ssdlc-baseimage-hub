@@ -13,7 +13,20 @@ A POC local mostrou que é possível vincular **digest da plataforma → pacote 
 | Imagem pública | **Captura pontual.** | O laboratório vinculou digest estável, manifesto da plataforma, 34 camadas, pacote e advisory. Os 34 blobs completos não estão publicados aqui; não houve mudança pública de tag nem certificação. [Resultados](POC.md). |
 | Entradas A/B e correlação C | **Provas locais, sem escolha de ferramenta.** | A e B detectaram a mesma troca histórica; C registrou decisão sem duplicação. Neste repositório, os scripts A/B e o núcleo C podem ser repetidos pelo [runbook](RUNBOOK.md). A matriz arquivada tem 44 casos (6 completos, 38 parciais), mas seus dados brutos integrais não estão aqui. |
 | BMAD e Loop | **Instalação, desenho e provas sintéticas no acervo original.** | Há relato de 13 testes da fixture e de uma história sintética `done` com retomada. Os comandos, fixtures, logs e recibos dessa frente **não estão neste repositório**; ela não pode ser repetida por este runbook. O ciclo completo com história real de imagem base não foi executado. [Workflows](WORKFLOWS.md) e [fontes](SOURCES.md). |
-| Protótipo visual | **Demonstrativo.** | A vista de candidatas e evidências é uma prévia de produto. `index.html` não tem backend nem integração com os scripts, CI, registry, proxy, scanners ou ECR. |
+| Protótipo visual | **Demonstrativo.** | `index.html` apresenta três runs DEMO coerentes em Visão geral, Imagens, Automações e Adoção: um concluído com gate e publicação ilustrativos, um build bloqueado e uma fonte indisponível. Pedidos geram apenas recibos locais no navegador. O Roadmap continua a separar descoberta, validação e evolução proposta. O [HTML independente da POC](../poc/overview.html) permanece artefato de consulta. Não há backend ou integração com scripts, CI, registry, proxy, scanners, ECR ou EKS; digests e artefatos exibidos são sintéticos. |
+
+## Validação da prévia operacional
+
+A revisão independente no Chrome percorreu as seis telas, oito fichas de imagem, três execuções DEMO, cinco tipos de artefato, confirmações e cancelamentos de pedidos, filtros, detalhes da Arquitetura e do Roadmap. Também verificou a navegação móvel em 390 × 844 px. A rodada inicial encontrou seis defeitos; eles foram corrigidos e os percursos afetados foram repetidos na prévia republicada.
+
+As correções conferidas foram: atualização imediata do histórico de pedidos; retorno do foco ou foco no recibo; contador singular de execução; plataforma desconhecida sem valor presumido; navegação entre base e derivada; e ausência de certificação positiva nas imagens sem execução/evidência vinculada. Não foram observados novos defeitos nesses percursos de regressão. Isso valida a interação do cenário demonstrativo, não a integração com os sistemas corporativos.
+
+Para conferir a interface por conta própria, abra [`index.html`](../index.html) no navegador e siga:
+
+1. Em **Visão geral**, abra a fase Segunda camada, a execução bloqueada e sua imagem. Confira motivo, gate não avaliado e ausência de publicação.
+2. Na ficha da derivada, abra a base de origem e volte à derivada. Os vínculos são sintéticos e devem permanecer identificados como DEMO.
+3. Na execução, simule um pedido: primeiro cancele, depois confirme. Confira o recibo, o retorno do foco e o histórico atualizado sem trocar de tela. Nenhum workflow externo é executado.
+4. Em **Imagens**, filtre certificadas e registros sem evidência. A imagem sem execução vinculada não pode apresentar certificação concluída; a fonte desconhecida não pode afirmar plataforma resolvida.
 
 ## O que esta entrega permite fazer
 

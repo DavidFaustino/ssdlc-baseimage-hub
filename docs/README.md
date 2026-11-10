@@ -1,10 +1,11 @@
 # Comece aqui
 
-Este repositório tem **duas partes diferentes**:
+Este repositório reúne o protótipo do Hub e o material técnico da pesquisa e POC:
 
 | Parte | O que é | Onde está |
 |---|---|---|
-| Protótipo visual | Páginas navegáveis com dados demonstrativos, incluindo uma prévia de candidatas e evidências. Não consultam registries, não recebem a saída dos scripts e não tomam decisões reais. | [`index.html`](../index.html) |
+| Protótipo visual | Hub operacional demonstrativo. Visão geral, Imagens, Automações e Adoção usam os mesmos três runs fictícios para ilustrar bloqueio, evidência, digest, gate, publicação e ausência de consumo confirmado. O Roadmap separa descoberta, validação e evolução proposta. Pedidos feitos na interface ficam apenas no navegador; não consultam sistemas nem tomam decisões reais. | [`index.html`](../index.html) |
+| Visualização independente da POC | Artefato HTML para consulta ou compartilhamento separado; não é uma rota da interface do Hub nem altera seus estados. | [`poc/overview.html`](../poc/overview.html) |
 | Pesquisa e POC | Documentos, scripts, testes e algumas evidências de uma solução para acompanhar correções em imagens base. | [Estado e arquitetura](STATUS.md) e [scripts da POC](../poc/README.md) |
 
 ## Para entender o trabalho

@@ -1,6 +1,6 @@
 # Arquitetura: processo atual e encaixe da POC
 
-**Estado em 10/11/2026.** O AS-IS abaixo vem da documentação do processo de imagens base e de esclarecimentos do responsável. Esta POC não inspecionou os jobs corporativos nem se conectou a JFrog, ECR ou EKS. O TO-BE é uma proposta de encaixe, sem ferramenta ou implantação aprovada.
+**Estado em 10/11/2026.** O AS-IS abaixo vem da documentação do processo de imagens base e de esclarecimentos do responsável. Esta POC não inspecionou os jobs corporativos nem se conectou a JFrog, ECR ou EKS. A evolução funcional do protótipo local descrita na seção 6 foi autorizada; ferramenta, integração corporativa e implantação continuam sem aprovação.
 
 ## 1. AS-IS: da imagem upstream à aplicação
 
@@ -108,7 +108,7 @@ Antes da integração, devem ser nomeados **job receptor, aprovador, política d
 | Estado, retomada e duplicação | Protótipo local de correlação testado; integração operacional ausente. | Exibir último estado válido, recibo, bloqueio e reavaliação. |
 | Publicação e consumo por ambiente | Cadeia descrita, sem conexão da POC com ECR/EKS. | Separar “certificado”, “publicado” e “consumido” por digest e evidência. |
 
-O [protótipo navegável](../index.html) hoje usa dados fixos e não implementa essas capacidades. Seus painéis de catálogo, jornada e automações são vistas demonstrativas; a próxima versão precisa ligar cada estado a uma identidade e evidência, sem apresentar decisão da POC como aprovação.
+O [protótipo navegável](../index.html) hoje usa dados fixos e não implementa essas capacidades. A vista **Imagens** reúne uma lista e a ficha de cada imagem, com jornada da base, gates e consumo ilustrativos; Automações continua demonstrativa. Uma versão operacional precisa ligar cada estado a uma identidade e evidência, sem apresentar decisão da POC como aprovação.
 
 ## 4. Alternativas de entrada ainda abertas
 
@@ -130,3 +130,53 @@ Outra decisão, independente da ferramenta de entrada, é **aguardar a imagem of
 5. Como registrar baseline, advisory novo, falha de fonte, decisão e retomada sem duplicação.
 
 O [status do marco](STATUS.md) separa as provas locais do que ainda falta integrar.
+
+## 6. Recorte funcional do Hub aprovado para protótipo local
+
+**Objetivo do produto:** permitir que quem opera imagens base próprias acompanhe uma execução, identifique o artefato exato, compreenda o resultado dos gates, encontre a evidência e encaminhe o próximo trabalho pelo processo existente. O Hub mostra e coordena o fluxo; GitHub Actions, JFrog, scanners, aprovadores, ECR e ferramentas de implantação conservam sua autoridade. A referência a Konflux inspira a visibilidade entre build, teste e liberação; **Konflux não foi adotado** nem substitui a arquitetura atual.
+
+### Identidades e relações que as quatro capacidades exigem
+
+```mermaid
+flowchart LR
+  I[Imagem: família e camada] --> V[Versão ou alias]
+  V --> D[Digest OCI e plataforma]
+  D --> R[Execução do CI]
+  R --> G[Gate e evidência]
+  G -->|aprovação registrada no sistema competente| P[Publicação no ECR]
+  P --> C[Aplicação e ambiente que usam o digest]
+  G -->|falha ou dado desconhecido| B[Bloqueio e encaminhamento]
+```
+
+| Objeto | Identidade mínima proposta | Regra de leitura |
+|---|---|---|
+| Imagem | Família, camada (`certificada` ou `arquitetura`), versão/alias. | Nome e alias ajudam a localizar; não identificam bytes imutáveis. |
+| Artefato | Digest do índice OCI, digest filho e plataforma. | Digest filho e plataforma vinculam inspeção, scans e decisão; digest do índice representa a referência multi-plataforma. |
+| Execução | Sistema de origem, ID da tentativa, início/fim, fase e resultado. | Repetição cria nova tentativa; não reescreve o resultado anterior. |
+| Gate | ID, tipo, resultado, autoridade e evidência. | Aprovação da primeira camada não implica aprovação da segunda. `unknown` ou sem evidência não é aprovação. |
+| Evidência | Tipo, origem, referência imutável/hash quando houver, horário e digest a que se aplica. | SBOM CycloneDX, scans, assinaturas e atestações SLSA foram informados como artefatos existentes; mecanismo de assinatura e vínculos exatos precisam ser conferidos nos sistemas de origem. |
+| Publicação | Repositório ECR, digest publicado, alias e referência ao gate que autorizou. | Certificado e publicado são estados diferentes. |
+| Consumo | Aplicação, versão/commit, digest da imagem da aplicação, ambiente e digest de base observado. | Publicação não comprova uso; sem vínculo observável, mostrar “não confirmado”. |
+
+Esses campos formam um **contrato de produto proposto**, não um esquema corporativo descoberto. No protótipo, os IDs e digests ilustrativos devem ser coerentes entre telas e explicitamente marcados como demonstração. Nenhum exemplo equivale a uma imagem real certificada.
+
+### Visões, decisões e ações
+
+| Visão | Pergunta que deve responder | Origem real futura; comportamento local |
+|---|---|---|
+| Visão geral | O que rodou, está atrasado, bloqueado ou desconhecido? Quem precisa agir? | Eventos do CI, estado dos gates e frescor das fontes; localmente, dados demonstrativos. |
+| Imagens | Qual versão/digest/plataforma foi construída, avaliada, aprovada, publicada e consumida? | CI, registry, ECR e implantação; localmente, ficha navegável ligada ao mesmo exemplo. |
+| Automações | Qual tentativa executou, onde parou e qual pedido de ação é permitido? | Histórico do CI e mecanismo autorizado de encaminhamento; localmente, pedido simulado sem chamada externa. |
+| Cobertura | Qual aplicação/ambiente usa qual base? | Evidência de build e deployment; sem prova, “consumo não confirmado”. |
+| Arquitetura e Roadmap | Como o processo funciona e como o produto evolui? | Descrição verificada do processo e registros de trabalho; não são substitutos do status diário. |
+
+**Encaminhar avaliação** pede análise ao responsável pelo gate, **solicitar atualização** comunica uma necessidade ao dono da imagem, e **repetir execução** pede nova tentativa à ferramenta já responsável. Em integração real, cada pedido precisa de identidade da tentativa e do artefato, motivo, destinatário, permissão, confirmação, trilha de auditoria e proteção contra duplicidade. O Hub não muda gate, digest publicado, alias ou deployment ao registrar um pedido. No protótipo, esses pedidos são **simulações locais** e precisam aparecer como tais.
+
+### Sequência de entrega e limites de autoridade
+
+1. **Protótipo local:** demonstrar um fluxo bem sucedido, um bloqueio e uma fonte desconhecida com as mesmas relações em Visão geral, Imagens, Automações e Cobertura. Validar navegação, razões, evidências e ações permitidas. Sem backend e sem chamadas externas.
+2. **Contrato de integração:** confirmar com os donos dos sistemas os IDs, endpoints ou eventos, frescor, artefatos existentes e quem decide em cada gate. O responsável informou que já há SBOM CycloneDX, assinaturas e atestações SLSA; a POC não verificou a geração, o mecanismo de assinatura ou o vínculo desses artefatos a cada digest.
+3. **Integração autorizada:** ler estados e evidências dos sistemas existentes, depois encaminhar pedidos com RBAC, auditoria, idempotência e confirmação. Não reconstruir os gates dentro do Hub.
+4. **Prova operacional:** em ambiente autorizado, mostrar que o mesmo digest e plataforma seguem da origem ao proxy, da tentativa ao gate, do ECR ao consumidor; exercitar falha e retomada antes de qualquer decisão de implantação.
+
+O plano de histórias, tarefas e aceites desta evolução está em [Próxima etapa](NEXT-STEPS.md). O protótipo aprovado para alteração não constitui backend nem certificação operacional.
