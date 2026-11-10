@@ -24,6 +24,8 @@ flowchart LR
 
 A primeira camada aplica hardening e políticas; a segunda cria bases por plataforma. Ambas têm rebuild diário. A matriz da primeira já tem aprovação; a segunda ainda precisa receber o mesmo fluxo. Foram informados scans com Trivy, Wiz, Checkov e Hadolint. A modalidade exata da aprovação, os thresholds e a implementação dos jobs **não foram verificados** nesta POC.
 
+**Como ler a lacuna no desenho:** a seta da segunda camada para o ECR representa o percurso informado hoje, não uma aprovação automática. O ramo pontilhado indica que o fluxo equivalente de aprovação ainda não está definido. O Hub não pode preencher essa lacuna por conta própria.
+
 `latest-stable` é um ponteiro para uma versão aprovada; digest é a identidade para evidência e rollback. Uma aplicação já construída não incorpora mudança posterior da base: seu CI precisa reconstruí-la e implantar novo digest.
 
 | Ponto | Responsável informado | Limite de autoridade da POC |
@@ -53,11 +55,22 @@ flowchart LR
   S -->|evidência suficiente| H[Revisão e entrada no CI existente]
   S -->|unknown ou divergência| B[Investigar; sem promoção]
   H --> J[JFrog: proxy da imagem escolhida]
-  J --> G[Build, scans e gates existentes]
+  J --> Q[Conferir digest e bytes recebidos]
+  Q -->|equivalente| G[Build, scans e gates existentes]
+  Q -->|divergente| B
   G -->|aprovada pelo processo atual| E[ECR e consumidores]
 ```
 
 O registro da POC pode indicar `validate_candidate`, `wait`, duplicata ou `unknown`. **Nenhum desses estados aprova uma imagem.** O gate de certificação continua no CI atual. O ponto exato de handoff e seu aprovador ainda precisam ser definidos com os donos dos workflows.
+
+| Resultado da correlação | Leitura operacional proposta | O que fica proibido |
+|---|---|---|
+| `validate_candidate` | Há evidência suficiente para pedir avaliação de uma candidata identificada por digest e plataforma. | Certificar, publicar ou mover alias sem os gates existentes. |
+| `wait` | Ainda não há correção aplicável confirmada, ou a imagem oficial necessária ainda não chegou; conservar o baseline e reavaliar quando a fonte mudar. | Declarar a imagem corrigida ou encerrar o acompanhamento sem motivo. |
+| `unknown` | Uma entrada obrigatória é ausente, ambígua, divergente ou velha; abrir bloqueio com a fonte e a última evidência válida. | Inferir resultado favorável, aprovar ou promover. |
+| Duplicata | Evento já processado para a mesma identidade e revisão; apontar ao recibo existente. | Criar segunda decisão ou repetir efeito externo. |
+
+Um advisory novo exige reavaliação mesmo com **digest estável**. Uma tag que aponta a outro digest exige nova inspeção de conteúdo. São gatilhos independentes e não devem ser contados como duas imagens candidatas quando se referem ao mesmo conteúdo.
 
 **Fronteira JFrog.** O proxy fornece a imagem solicitada e pode servir manifesto em cache. Agendar um script ou Diun não força atualização desse cache. Para descobrir uma mudança upstream sem depender do cache, o desenho propõe consultar o registry de origem; depois obter a candidata pelo proxy **por digest** e conferir o conteúdo recebido. Conectividade, autenticação, política de cache e equivalência dos digests precisam de validação no ambiente real. A POC não testou esse percurso via JFrog.
 
@@ -72,6 +85,30 @@ O registro da POC pode indicar `validate_candidate`, `wait`, duplicata ou `unkno
 | Handoff ao CI **proposto** | Digest candidato e recibo verificável. | Pedido de avaliação e, se aprovado nos gates, vínculo ao digest corporativo. | Falha de gate/autorização: não mover alias estável. |
 
 Digest novo e advisory novo são gatilhos diferentes: o mesmo digest pode precisar de reavaliação quando surge um fix. O protótipo local persiste estado e recibos em SQLite e retorna `unknown` em falhas relevantes; não implementa o handoff corporativo. Veja [correlação](../poc/experiments/integrated-update-poc-20261108/src/pipeline.py) e [adaptadores de replay](../poc/experiments/integrated-update-poc-20261108/src/adapters.py).
+
+### Handoff e autoridade — contrato proposto, ainda não implantado
+
+1. **Descoberta e inspeção upstream** registram origem, tag, horário, digest do índice, manifesto filho, plataforma e pacote observado; consulta ao proxy não substitui a prova do estado atual da origem.
+2. **Correlação provisória** junta conteúdo inspecionado, distribuição/suite, advisory e revisão da fonte; produz razão e recibo idempotente para uma candidata. O componente da POC não possui autoridade para certificar.
+3. **Revisão do pedido** decide se a candidata deve entrar no CI existente. Responsável e forma de autorização ainda precisam ser definidos; `validate_candidate` por si só não libera a imagem.
+4. **Aquisição pelo JFrog** solicita o digest escolhido e confere bytes, tipo de manifesto, plataforma e digest recebido contra a origem. Sem equivalência demonstrada, o handoff é bloqueado e o resultado fica `unknown`.
+5. **CI existente** recebe digest e recibo verificados. Os gates de build, scan, política e aprovação da primeira camada continuam no processo atual. A aprovação equivalente da segunda camada precisa ser desenhada e validada separadamente.
+6. **Publicação e consumo** só registram digest certificado, alias aprovado e, depois, digest efetivamente usado pela aplicação e ambiente. Publicação no ECR não prova adoção; o build da aplicação deve ser refeito para incorporar a nova base.
+
+Antes da integração, devem ser nomeados **job receptor, aprovador, política de exceção, limite de acesso, contrato de recibo e regra de rollback**. Não há esses detalhes corporativos confirmados na POC; a sequência acima é uma proposta para revisão com os donos do processo.
+
+### Capacidades do Hub e sua situação
+
+| Controle que o operador precisa | Situação conhecida | Papel proposto do Hub |
+|---|---|---|
+| Rebuild, scans e aprovação da base certificada | Existem no processo informado; jobs e regras não foram inspecionados. | Mostrar estado e prova do gate; não substituí-lo. |
+| Aprovação da imagem de arquitetura | Fluxo equivalente é lacuna informada. | Exibir pendência e bloqueio; não marcar como aprovada. |
+| Mudança upstream e correção aplicável | POC local provou partes com OCI, pacote e advisory Debian. | Exibir candidata, identidade, fonte, razão e ação segura. |
+| Frescor do proxy e digest efetivamente certificado | Fronteira JFrog não testada. | Tornar visível origem → proxy → certificado, com equivalência verificável. |
+| Estado, retomada e duplicação | Protótipo local de correlação testado; integração operacional ausente. | Exibir último estado válido, recibo, bloqueio e reavaliação. |
+| Publicação e consumo por ambiente | Cadeia descrita, sem conexão da POC com ECR/EKS. | Separar “certificado”, “publicado” e “consumido” por digest e evidência. |
+
+O [protótipo navegável](../index.html) hoje usa dados fixos e não implementa essas capacidades. Seus painéis de catálogo, jornada e automações são vistas demonstrativas; a próxima versão precisa ligar cada estado a uma identidade e evidência, sem apresentar decisão da POC como aprovação.
 
 ## 4. Alternativas de entrada ainda abertas
 

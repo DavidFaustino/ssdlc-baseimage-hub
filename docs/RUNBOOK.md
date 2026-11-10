@@ -48,11 +48,12 @@ O Vunnel fornece dados de correção Debian. Ele **não lê a imagem** nem resol
 
 ## Preparação e cadeia de custódia
 
-**Pré-condições:** checkout deste PR, Python 3, acesso aos pacotes para instalar [dependências fixadas](../poc/requirements.txt); `uv`, Diun e rede só nos cenários correspondentes. Use diretórios de saída **novos**. Os comandos partem de `poc/`.
+**Pré-condições:** checkout deste PR, Python **3.10 ou superior** e acesso aos pacotes para instalar [dependências fixadas](../poc/requirements.txt); `uv`, Diun e rede só nos cenários correspondentes. O cenário V também instala Python 3.13 pelo `uv`. Use diretórios de saída **novos**. Os comandos partem de `poc/`.
 
 ```sh
 git rev-parse HEAD
 git status --short
+python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else "Python 3.10+ necessário")'
 cd poc
 python3 -m venv .venv
 . .venv/bin/activate
@@ -90,23 +91,39 @@ PY
 
 ### Cenário C2 — recuperação após commit
 
-**Pré-condição:** C1 concluído e `state.sqlite` preservado. O comando lê o banco já confirmado, verifica a identidade da fixture e reexporta JSON; não chama o modelo nem decide de novo.
+**Pré-condição:** C1 concluído e `state.sqlite` preservado. Para reproduzir uma queda **depois do commit do SQLite e antes de publicar um JSON íntegro**, copie a saída C1 e danifique **somente a cópia**. O comando `--recover` lê o banco confirmado, verifica a identidade da fixture e reexporta o recibo; não recalcula a decisão. O diretório original de C1 continua intacto.
 
 ```sh
-python3 experiments/integrated-update-poc-20261108/run_local.py --recover --output /tmp/base-image-c-01
 python3 - <<'PY'
-import json, sqlite3
 from pathlib import Path
-p=Path('/tmp/base-image-c-01')
-db=sqlite3.connect(p/'state.sqlite')
-assert db.execute('select count(*) from decisions').fetchone()[0] == 1
-assert db.execute('select count(*) from reassessments').fetchone()[0] == 1
-assert json.loads((p/'receipt.json').read_text())['image_approved'] is False
-print('C: SQLite preservado, recibos recuperados')
+from shutil import copytree
+source = Path('/tmp/base-image-c-01')
+copy = Path('/tmp/base-image-c-recover-01')
+if not (source/'state.sqlite').is_file() or copy.exists():
+    raise SystemExit('C1 precisa existir e a cópia de recuperação precisa ser nova')
+copytree(source, copy)
+(copy/'receipt.json').write_text('{"status":')  # exportação interrompida
+print('Cópia criada; SQLite preservado e apenas receipt.json truncado')
+PY
+python3 experiments/integrated-update-poc-20261108/run_local.py --recover --output /tmp/base-image-c-recover-01
+python3 - <<'PY'
+import hashlib, json, sqlite3
+from pathlib import Path
+original = Path('/tmp/base-image-c-01')
+copy = Path('/tmp/base-image-c-recover-01')
+digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+assert digest(copy/'state.sqlite') == digest(original/'state.sqlite')
+with sqlite3.connect(copy/'state.sqlite') as db:
+    assert db.execute('select count(*) from decisions').fetchone()[0] == 1
+    assert db.execute('select count(*) from reassessments').fetchone()[0] == 1
+assert (copy/'receipt.json.corrupt').read_text() == '{"status":'
+assert json.loads((copy/'receipt.json').read_text()) == json.loads((original/'receipt.json').read_text())
+assert json.loads((copy/'receipt.json').read_text())['image_approved'] is False
+print('C: recibo recuperado; SQLite e decisão sem alteração')
 PY
 ```
 
-**Esperado:** `PASS recovered receipts from committed state; no new decision`. **Parada:** banco ausente, fixture diferente ou recibo conflitante são erro, não motivo para criar nova decisão. **Limpeza:** só após guardar o que precisar para auditoria.
+**Esperado:** `PASS recovered receipts from committed state; no new decision`. A exportação truncada fica em `receipt.json.corrupt`, o recibo recuperado coincide com o original e o banco conserva o mesmo hash e as mesmas contagens. **Parada:** banco ausente, fixture diferente ou recibo íntegro conflitante são erro, não motivo para criar nova decisão. **Limpeza:** preserve os recibos para auditoria; depois remova apenas `/tmp/base-image-c-recover-01`.
 
 ## Cenário A — observar a tag por OCI direto
 
@@ -138,16 +155,20 @@ PY
 
 **Pré-condições:** mesmas entradas históricas; binário Diun 4.33.1 conferido; saída nova. [B/run_retained_b.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py) confere bytes de índice→filho→configuração, cria `images.yml` e `diun.yml`, alterna pré/pós no registry local e inicia o **Diun real três vezes sobre o mesmo `diun.db`**. Guarda logs, aviso e corpos servidos. Não consulta pacote/advisory nem chama C.
 
-No **macOS ARM**, baixe a [release oficial](https://github.com/crazy-max/diun/releases/tag/v4.33.1) e confira o arquivo antes de executá-lo:
+No **macOS ARM**, baixe a [release oficial](https://github.com/crazy-max/diun/releases/tag/v4.33.1). O bloco confere que o hash fixado neste roteiro coincide com a linha do artefato no manifesto baixado **e** com o arquivo recebido; se qualquer comparação falhar, não executa o binário:
 
 ```sh
-mkdir -p /tmp/base-image-diun-4.33.1
-curl -fL -o /tmp/base-image-diun-4.33.1/diun.tar.gz https://github.com/crazy-max/diun/releases/download/v4.33.1/diun_4.33.1_darwin_arm64.tar.gz
-curl -fL -o /tmp/base-image-diun-4.33.1/checksums.txt https://github.com/crazy-max/diun/releases/download/v4.33.1/checksums.txt
-grep -F 'diun_4.33.1_darwin_arm64.tar.gz' /tmp/base-image-diun-4.33.1/checksums.txt
-printf '%s  %s\n' '9c78a81179801866ee704db9a3bd0b2454472f60ab8a224755dfe07f13ae979a' '/tmp/base-image-diun-4.33.1/diun.tar.gz' | shasum -a 256 -c -
-tar -xzf /tmp/base-image-diun-4.33.1/diun.tar.gz -C /tmp/base-image-diun-4.33.1
-DIUN_BIN=/tmp/base-image-diun-4.33.1/diun python3 experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py --output-dir /tmp/base-image-b-01
+(
+  set -eu
+  mkdir -p /tmp/base-image-diun-4.33.1
+  curl -fL -o /tmp/base-image-diun-4.33.1/diun.tar.gz https://github.com/crazy-max/diun/releases/download/v4.33.1/diun_4.33.1_darwin_arm64.tar.gz
+  curl -fL -o /tmp/base-image-diun-4.33.1/checksums.txt https://github.com/crazy-max/diun/releases/download/v4.33.1/checksums.txt
+  expected=$(awk '{name=$2; sub(/^\*/, "", name); if (name == "diun_4.33.1_darwin_arm64.tar.gz") print $1}' /tmp/base-image-diun-4.33.1/checksums.txt)
+  test "$expected" = '9c78a81179801866ee704db9a3bd0b2454472f60ab8a224755dfe07f13ae979a'
+  printf '%s  %s\n' "$expected" '/tmp/base-image-diun-4.33.1/diun.tar.gz' | shasum -a 256 -c -
+  tar -xzf /tmp/base-image-diun-4.33.1/diun.tar.gz -C /tmp/base-image-diun-4.33.1
+  DIUN_BIN=/tmp/base-image-diun-4.33.1/diun python3 experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py --output-dir /tmp/base-image-b-01
+)
 python3 - <<'PY'
 import json
 from pathlib import Path
@@ -177,11 +198,13 @@ p=Path('/tmp/base-image-vunnel-01')
 r=json.loads((p/'receipt.json').read_text())
 assert r['exit_code'] == 0 and len(r['lookup']) == 3
 assert all(x['record_sha256'].startswith('sha256:') for x in r['lookup'])
+assert len({x['record_sha256'] for x in r['lookup']}) == 1
+assert len({x['fixed_source_version'] for x in r['lookup']}) == 1
 print([x['fixed_source_version'] for x in r['lookup']])
 PY
 ```
 
-Instale `uv` conforme a [documentação oficial](https://docs.astral.sh/uv/getting-started/installation/) se necessário. **Esperado:** `receipt.json`, `vunnel.log`, `workspace/debian/input/debian.json`, `workspace/debian/input/DSA` e `workspace/debian/results/results.db`. O recibo registra `exit_code`, hashes, tempos, tamanho e as três `lookup[].fixed_source_version`. **Parada:** ausência da linha, coleta incompleta, falta de rede/espaço ou código de saída não zero; consulte `vunnel.log`. O pacote Vunnel está fixado em 0.66.0, mas `uv` e dependências transitivas não têm lockfile aqui; o feed vivo, caches e custo variam. **Limpeza:** preserve `receipt.json` e hashes necessários; depois remova a saída, que pode ser grande.
+Instale `uv` conforme a [documentação oficial](https://docs.astral.sh/uv/getting-started/installation/) se necessário. **Esperado:** `receipt.json`, `vunnel.log`, `workspace/debian/input/debian.json`, `workspace/debian/input/DSA` e `workspace/debian/results/results.db`. O recibo registra `exit_code`, hashes, tempos, tamanho e as três `lookup[].fixed_source_version`. As três consultas devem ler o **mesmo registro da mesma coleta**. Anote a versão retornada e os hashes; compare com a captura antiga somente como mudança de fonte, nunca como prova automática de que o digest histórico mudou. Se o registro da CVE faltar, o script falha: trate a coleta como **inconclusiva**, não como “sem vulnerabilidade” nem `wait`. **Parada:** ausência da linha, coleta incompleta, falta de rede/espaço, timeout de 180 s ou código de saída não zero; consulte `vunnel.log`. O pacote Vunnel está fixado em 0.66.0, mas `uv` e dependências transitivas não têm lockfile aqui; o feed vivo, caches e custo variam. **Limpeza:** preserve `receipt.json` e hashes necessários; depois remova a saída, que pode ser grande.
 
 ## Como ler os resultados e o que ainda falta
 

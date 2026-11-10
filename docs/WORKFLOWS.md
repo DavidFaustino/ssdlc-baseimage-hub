@@ -15,6 +15,8 @@ flowchart LR
 
 A revisão antecipada de arquitetura ocorre **quando uma escolha impedir o fechamento do plano**. O pacote completo passa por revisão humana antes do Loop. Durante a execução, falta de acesso ou mudança fora do escopo aprovado bloqueia apenas a parte dependente e pede direção. O resultado consolidado volta para revisão humana ao final.
 
+**Fronteira de autoridade:** G0 autoriza a *execução da história de desenvolvimento* e G1 aceita ou pede ajuste no *resultado do trabalho*. Esses gates não certificam imagem base, não aprovam risco residual e não movem alias. Uma história que implemente a correlação ainda precisa respeitar o [handoff proposto ao CI e os gates da imagem](ARCHITECTURE.md#handoff-e-autoridade--contrato-proposto-ainda-não-implantado).
+
 ## Estado e retomada
 
 | Estado | O que já precisa existir | Próximo passo permitido |
@@ -43,6 +45,8 @@ Um arquivo de história marcado `done` isoladamente **não** basta: o controlado
 | Verificação → fechamento | Evidências observadas, custo e limitações. | `RESULTS.md` e decisão G1 sobre aceitar, ajustar ou encerrar. |
 
 Os outputs intermediários do BMAD ficam em `_bmad-output/`; o desenho local prevê copiar e vincular por hash somente o que sustenta a rodada. `.memlog.md` ajuda a retomar uma skill, mas **não** substitui o estado global, a decisão humana nem o recibo.
+
+Para uma história real do Hub, o pacote de G0 deve declarar também **qual capacidade de negócio altera** (observação, inspeção, correlação, handoff ou visualização), entradas e saídas do contrato, caminhos de erro (`wait`, `unknown`, duplicata), dados de teste e arquivos permitidos. A verificação deve confrontar código, testes, diff e recibo com esses invariantes; um teste sintético de função não cobre esse contrato de domínio. A saída de G1 registra o que foi implementado e o que ainda depende do CI corporativo, do JFrog ou dos responsáveis pelos gates.
 
 ## O que foi realmente testado
 

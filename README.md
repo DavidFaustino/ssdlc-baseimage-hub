@@ -22,9 +22,11 @@ Na pasta [`poc/`](poc/README.md) estão os scripts, fixtures selecionadas, teste
 
 A comparação original de **44 casos** está resumida em linhas e recibos selecionados. Suas capturas completas e os 34 blobs da inspeção pública não foram incluídos; portanto, ela **não pode ser integralmente recalculada** a partir deste repositório. O [runbook](docs/RUNBOOK.md) explicita essa fronteira antes dos comandos.
 
+As provas sintéticas de BMAD/Loop também estão **relatadas, não empacotadas para reexecução** neste PR. O [status](docs/STATUS.md) separa essas provas históricas dos quatro cenários A/B/V/C que você consegue executar a partir desta cópia.
+
 ## Protótipo visual
 
-[`index.html`](index.html) é uma interface demonstrativa com dados fictícios e sem backend. Abra o arquivo no navegador ou sirva a pasta localmente:
+[`index.html`](index.html) é uma interface demonstrativa com dados fictícios e sem backend. A vista **Candidatas e evidências** mostra como digest, pacote, advisory, decisão e autoridade poderiam aparecer para uma pessoa; ela não recebe os recibos produzidos pelos scripts. Abra o arquivo no navegador ou sirva a pasta localmente:
 
 ```sh
 python3 -m http.server 8765 --bind 127.0.0.1

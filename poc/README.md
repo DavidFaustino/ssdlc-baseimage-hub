@@ -11,6 +11,8 @@ Este diretório contém scripts e capturas selecionados da prova local. Para exe
 
 Os scripts de A, B e Vunnel geram saídas novas fora deste repositório. As capturas locais preservadas em `experiments/` sustentam o replay da correlação. Um ledger teve caminhos locais removidos e seus hashes de vínculo foram recalculados; por isso esta é uma fixture pública derivada, não cópia byte a byte daquele ledger privado.
 
+Para demonstrar **recuperação** de C, o runbook copia a saída do primeiro replay, trunca um recibo somente nessa cópia e reexporta os JSON a partir do SQLite confirmado. Isso é diferente de executar `--recover` sobre arquivos ainda íntegros.
+
 ## O que não pode ser repetido daqui
 
 Este pacote não contém as capturas completas da comparação operacional de 44 casos nem o dump completo de camadas da leitura pública. Portanto, ele **não** reproduz aquela matriz inteira só com um comando. Para reconstruí-la, é preciso coletar ou importar essas evidências, verificar seus hashes e revisar a portabilidade dos scripts restantes antes de declarar a mesma contagem.

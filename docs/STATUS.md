@@ -12,14 +12,16 @@ A POC local mostrou que é possível vincular **digest da plataforma → pacote 
 | Caso histórico de pacote | **Comprovado localmente.** | Dois digests da mesma variante contêm `libexpat1` antes/depois da correção. Manifestos e arquivos selecionados estão em [`poc/`](../poc/EVIDENCE.md); isso não é uma troca observada hoje na tag pública. |
 | Imagem pública | **Captura pontual.** | O laboratório vinculou digest estável, manifesto da plataforma, 34 camadas, pacote e advisory. Os 34 blobs completos não estão publicados aqui; não houve mudança pública de tag nem certificação. [Resultados](POC.md). |
 | Entradas A/B e correlação C | **Provas locais, sem escolha de ferramenta.** | A e B detectaram a mesma troca histórica; C registrou decisão sem duplicação. Neste repositório, os scripts A/B e o núcleo C podem ser repetidos pelo [runbook](RUNBOOK.md). A matriz arquivada tem 44 casos (6 completos, 38 parciais), mas seus dados brutos integrais não estão aqui. |
-| BMAD e Loop | **Instalação, desenho e provas sintéticas.** | A fixture de estado passou em 13 testes; uma história sintética chegou a `done` com recibo e retomada em duas invocações. O ciclo completo com história real de imagem base não foi executado. [Workflows](WORKFLOWS.md). |
-| Protótipo visual | **Demonstrativo.** | `index.html` não tem backend nem integração com CI, registry, proxy, scanners ou ECR. |
+| BMAD e Loop | **Instalação, desenho e provas sintéticas no acervo original.** | Há relato de 13 testes da fixture e de uma história sintética `done` com retomada. Os comandos, fixtures, logs e recibos dessa frente **não estão neste repositório**; ela não pode ser repetida por este runbook. O ciclo completo com história real de imagem base não foi executado. [Workflows](WORKFLOWS.md) e [fontes](SOURCES.md). |
+| Protótipo visual | **Demonstrativo.** | A vista de candidatas e evidências é uma prévia de produto. `index.html` não tem backend nem integração com os scripts, CI, registry, proxy, scanners ou ECR. |
 
 ## O que esta entrega permite fazer
 
 - Entender [o processo informado e o encaixe proposto](ARCHITECTURE.md).
 - Ler [resultados e limites da POC](POC.md), conferir [as evidências incluídas](../poc/EVIDENCE.md) e repetir as partes executáveis pelo [runbook](RUNBOOK.md).
 - Revisar [o contrato dos workflows](WORKFLOWS.md) e seguir uma [próxima etapa ordenada](NEXT-STEPS.md).
+
+**Para reproduzir agora:** siga os cenários separados A, B, V e C do [runbook](RUNBOOK.md). **Para apenas auditar registros anteriores:** leia a matriz de 44 casos, o recibo integrado histórico e o resumo BMAD, sabendo que suas capturas ou executores completos não foram publicados. O leitor não deve somar essas duas classes como se formassem uma única execução portátil.
 
 ## Decisões que **não** foram tomadas
 

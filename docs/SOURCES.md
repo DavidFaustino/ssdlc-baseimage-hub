@@ -1,18 +1,18 @@
 # Procedência e migração dos materiais
 
-Este índice evita duas confusões: documento antigo com status desatualizado e arquivo de prova confundido com decisão aprovada. Parte dos scripts, fixtures e recibos foi migrada para [`poc/`](../poc/EVIDENCE.md). O acervo operacional bruto de 44 casos ainda não foi copiado. Os dois primeiros materiais são identificados somente pelo título, pois pertencem a um acervo privado.
+Este índice evita duas confusões: documento antigo com status desatualizado e arquivo de prova confundido com decisão aprovada. Parte dos scripts, fixtures e recibos foi migrada para [`poc/`](../poc/EVIDENCE.md). O acervo operacional bruto de 44 casos ainda não foi copiado. Os títulos abaixo identificam materiais que permanecem no acervo privado; **eles não são caminhos nem arquivos disponíveis neste repositório**.
 
 | Material local | Uso nesta síntese | Estado de importação |
 |---|---|---|
 | Acervo privado: `Gerenciamento end-to-end de imagens-base.md` | Cadeia AS-IS informada, rebuild diário, gates e consumidores. | Resumido sem nomes de organização. Original permanece no acervo local. |
 | Acervo privado: `Visões de processo e decisão.md` | Separação AS-IS/TO-BE e papel proposto da inteligência. | Resumido em `ARCHITECTURE.md`; não tratado como implantação aprovada. |
-| `2_pocs/base_image_hub/experiments/historical-image-case-20261107/RESULTS.md` | Par de digests e pacote corrigido no caso histórico. | Relatório original permanece local; [seleção dos digests e capturas](../poc/experiments/historical-image-case-20261107/evidence/digests/selection.json) foi publicada em `poc/`. |
-| `2_pocs/base_image_hub/experiments/operational-abc-comparison-20261108/COMPARISON.md` | Comparação final das rotas direta e com ferramentas, com 44 casos e limites. | Relatório original e capturas completas permanecem locais; [44 linhas classificadas](../poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json), recibos selecionados e scripts A/B foram publicados. Não é replay integral. |
-| `2_pocs/base_image_hub/experiments/operational-abc-comparison-20261108/PUBLIC-PIPELINE-REVIEW.md` | Revisão independente da extensão pública. | Relatório original local; limites incorporados em `STATUS.md` e `POC.md`, com [recibo selecionado](../poc/experiments/operational-abc-comparison-20261108/evidence/C/public-pipeline-20261108-verified/receipt.json) publicado. |
-| `2_pocs/base_image_hub/experiments/bmad-toolchain-20261107/RESULTS.md` | Instalação e inventário BMAD/CIS/TEA/Loop. | Resumido em `WORKFLOWS.md`. |
-| `2_pocs/base_image_hub/experiments/workflow-design-20261107/RESULTS-v0.2.md` | Desenho e revisão dos fluxos SSDLC. | Resumido como proposta, não execução. |
-| `2_pocs/base_image_hub/experiments/bmad-loop-context-options-20261107/PLAN.md` | Checkpoint, escopo e execução sintética; limites semânticos. | Resumido em `WORKFLOWS.md`. |
-| `2_pocs/base_image_hub/workflows/ssdlc-local/WORKFLOW.md` | Contrato detalhado de arquivos, gates e handoffs. | Referência de desenho; não copiado como workflow funcional. |
+| Relatório do caso histórico de imagem | Par de digests e pacote corrigido. | Relatório privado; [seleção dos digests e capturas](../poc/experiments/historical-image-case-20261107/evidence/digests/selection.json) publicada em `poc/`. |
+| Comparação operacional A/B/C | Rotas direta e com ferramentas, 44 casos e limites. | Relatório e capturas completas privados; [44 linhas classificadas](../poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json), recibos selecionados e scripts A/B publicados. Não é replay integral. |
+| Revisão do caso de digest público | Contestação da extensão pública. | Relatório privado; limites incorporados em [Status](STATUS.md) e [Resultados](POC.md), com [recibo selecionado](../poc/experiments/operational-abc-comparison-20261108/evidence/C/public-pipeline-20261108-verified/receipt.json) publicado. |
+| Relatório da toolchain BMAD | Instalação e inventário BMAD/CIS/TEA/Loop. | Resumido em [Workflows](WORKFLOWS.md); comandos, logs e recibos não publicados. |
+| Revisão do desenho de workflows | Desenho e contestação dos fluxos. | Resumida como proposta em [Workflows](WORKFLOWS.md), não como execução. |
+| Plano de contexto e Loop sintético | Checkpoint, escopo, tentativa e limites. | Resumido em [Workflows](WORKFLOWS.md); provas de execução não incluídas neste pacote. |
+| Contrato de workflow SSDLC | Arquivos, gates e handoffs propostos. | Referência de desenho em [Workflows](WORKFLOWS.md); não é workflow funcional publicado. |
 
 ## Regra de atualização
 

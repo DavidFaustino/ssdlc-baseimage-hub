@@ -19,6 +19,8 @@ O [manifesto SHA-256](evidence/SHA256SUMS) lista **55 arquivos selecionados** de
 | Digest público estável, sem decisão de troca. | Captura pública e duas revisões arquivadas de feed. | [Pipeline público](experiments/integrated-update-poc-20261108/src/pipeline.py) no laboratório. | [Recibo selecionado](experiments/operational-abc-comparison-20261108/evidence/C/public-pipeline-20261108-verified/receipt.json): 1 observação, 2 reavaliações, 0 decisões de imagem. | Não houve troca da tag pública nem inspeção de todas as CVEs/pacotes. |
 | Comparação de 44 casos e custo local. | Capturas do laboratório original. | Executor integral **não publicado**; scripts A/B acima repetem só percursos selecionados. | [`rows.json`](experiments/operational-abc-comparison-20261108/evidence/C/rows.json): 6 completas, 38 parciais. [`cost-pairs.json`](experiments/operational-abc-comparison-20261108/evidence/C/cost-pairs.json): 3 pares quentes, A 7 e B 16 requisições por par. | Linha parcial não é prova completa; custos não representam implantação ou manutenção. |
 
+As provas BMAD/Loop pertencem a outra frente: seus resultados estão **descritos** em [Workflows](../docs/WORKFLOWS.md), mas não há aqui scripts, fixture, journal ou recibos para repeti-las. Este inventário cobre somente a POC de imagem base publicada.
+
 ## Saneamento e procedência
 
 Para publicar o ledger de camadas, caminhos absolutos do computador original e uma referência de cache temporário foram substituídos por caminhos relativos. Os hashes dependentes no `suite-proof.json`, `inputs.json` e `I0-H1/manifest.json` foram recalculados. Os digests OCI, versões de pacote e a conclusão técnica do caso não foram alterados, mas **a fixture pública é derivada, não cópia byte a byte do acervo privado**.

@@ -4,6 +4,8 @@
 
 A POC mostrou que é possível **detectar uma troca controlada de digest**, relacionar o manifesto `linux/amd64` ao pacote `libexpat1` e à correção Debian, persistir uma decisão de **validar candidata** e retomá-la sem duplicação. Ela **não** implantou um monitor, certificou uma imagem ou decidiu adotar Diun/Vunnel. As execuções reproduzíveis deste repositório são separadas; o ensaio integrado anterior e a matriz de 44 casos são registros auditáveis, não uma execução integral portátil.
 
+**Como ler as provas:** “reexecutável” abaixo significa que o comando e os insumos necessários estão publicados; “registro histórico” significa que há recibo ou resumo, mas não todos os insumos/executores para recalcular o resultado. O sucesso separado de A, B, Vunnel e C não demonstra que suas saídas já percorrem uma pipeline única.
+
 O [runbook](RUNBOOK.md) explica as entradas, comandos, asserções e falhas. O [inventário](../poc/EVIDENCE.md) diz exatamente o que foi publicado e o que falta para repetir cada afirmação.
 
 ## Qual problema foi exercitado
