@@ -1,0 +1,23 @@
+{
+  "scope": "local synthetic tag over archived real platform manifests",
+  "platform": "linux/amd64",
+  "tag": "local-replay",
+  "sources": [
+    {
+      "path": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/replay.json",
+      "sha256": "8ff9cef67ff9f2da74ae5d82ec53fb74f4de386ff27af986abc9f812b559be2b"
+    },
+    {
+      "path": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/inputs.json",
+      "sha256": "f155da205254143191051e27505682d5b06460585f86576bfe8ec922c35b8811"
+    },
+    {
+      "path": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H4/suite-proof.json",
+      "sha256": "b840426d8c08d1003b54fd34059747bcdfc180af04cf1700ca17071575d4be10"
+    },
+    {
+      "path": "experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/full-suite-replay.json",
+      "sha256": "e5a5105b56e4fe8cf7ad5a8dfe03112f193d2f83989b4df0cb9ae4440af41146"
+    }
+  ]
+}

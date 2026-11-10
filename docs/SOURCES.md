@@ -1,6 +1,6 @@
 # Procedência e migração dos materiais
 
-Este índice evita duas confusões: documento antigo com status desatualizado e arquivo de prova confundido com decisão aprovada. Os relatórios brutos não foram copiados para este repositório público. Os dois primeiros materiais são identificados somente pelo título, pois pertencem a um acervo privado.
+Este índice evita duas confusões: documento antigo com status desatualizado e arquivo de prova confundido com decisão aprovada. Parte dos scripts, fixtures e recibos foi migrada para [`poc/`](../poc/EVIDENCE.md). O acervo operacional bruto de 44 casos ainda não foi copiado. Os dois primeiros materiais são identificados somente pelo título, pois pertencem a um acervo privado.
 
 | Material local | Uso nesta síntese | Estado de importação |
 |---|---|---|

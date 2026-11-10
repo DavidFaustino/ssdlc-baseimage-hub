@@ -1,0 +1,4 @@
+pre sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a linux amd64 libexpat1 Version: 2.7.1-2 hashes and status OK
+post sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2 linux amd64 libexpat1 Version: 2.8.2-1~deb13u1 hashes and status OK
+Only changed layer index: 20
+Distinct digests and registry upload order OK

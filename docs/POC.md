@@ -32,3 +32,5 @@ Foram **6 completos, 38 parciais, nenhum falho e nenhum bloqueado** na classific
 - Os horários, digests e custos da captura são evidência daquele experimento, não parâmetros transferíveis ao trabalho.
 
 **Resultado utilizável:** os contratos de identidade e de evidência, os casos negativos e a regra de não afirmar correção sem pacote/fix vinculados ao mesmo digest. **Resultado ainda em discussão:** qual componente deve produzir cada entrada na arquitetura existente.
+
+**Para conferir com as próprias mãos:** [runbook dos scripts incluídos](RUNBOOK.md) e [inventário dos recibos e limites](../poc/EVIDENCE.md). O pacote público repete o núcleo, a detecção A, o aviso Diun B e uma coleta nova do Vunnel; ele ainda não recalcula todos os 44 casos arquivados.

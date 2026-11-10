@@ -9,9 +9,9 @@ A POC local provou partes da identificação de digest, inspeção de pacote e c
 | Frente | Estado confirmado | O que falta |
 |---|---|---|
 | Processo de imagens base | A cadeia atual já possui execução diária em GitHub Actions, ingestão/certificação, imagens de arquitetura, publicação no ECR e consumo por aplicações em EKS. | Definir **onde** uma observação de patch/digest acrescenta informação e **qual evento** entra nos gates existentes. |
-| Caso histórico | Dois digests da mesma variante e a versão de `libexpat1` antes/depois de uma correção Debian foram comprovados. | Não confundir esses digests com uma mudança observada hoje na tag pública. |
+| Caso histórico | Dois digests da mesma variante e a versão de `libexpat1` antes/depois de uma correção Debian foram comprovados. A fixture selecionada está em `poc/`. | Não confundir esses digests com uma mudança observada hoje na tag pública. |
 | Imagem pública | Uma captura do digest estável foi vinculada ao índice, manifesto filho, 34 camadas, pacote e um advisory selecionado. | Não houve mudança pública de tag nem certificação da imagem. |
-| Comparação de entradas | Consulta direta OCI/Debian e Diun/Vunnel chegaram ao mesmo resultado nos casos principais; o validador comum preservou uma decisão e rejeitou entradas incoerentes. | A comparação **não** decide, por si só, se Diun/Vunnel agregam valor ao processo atual. |
+| Comparação de entradas | Consulta direta OCI/Debian e Diun/Vunnel chegaram ao mesmo resultado nos casos principais; o validador comum preservou uma decisão e rejeitou entradas incoerentes. Há um resumo dos 44 casos em `poc/`. | O pacote público ainda não reproduz os 44 casos a partir de todas as capturas brutas. A comparação **não** decide, por si só, se Diun/Vunnel agregam valor ao processo atual. |
 | BMAD Method/CIS/TEA | Instalação e inventário de skills concluídos; há especificações de handoff, gates e arquivos de saída. | O workflow SSDLC completo continua um desenho; seus artefatos de negócio não foram produzidos por uma execução integral. |
 | BMad Loop e modelo local | Uma história sintética chegou a `done` com recibo; controle local de estado e escopo teve testes. | A variante de revisão/contexto segue experimental; não há história real do domínio concluída pelo Loop com esse contrato. |
 | Protótipo de painel deste repositório | Navegação com dados demonstrativos. | Não há backend nem integração com GitHub, JFrog, ECR ou scanners. |
@@ -30,3 +30,5 @@ A POC local provou partes da identificação de digest, inspeção de pacote e c
 - O protótipo visual não representa integrações funcionais.
 
 **Próxima conversa arquitetural:** mapear a informação nova sobre digest e patch contra a matrix diária e os gates existentes. [Veja o encaixe proposto](ARCHITECTURE.md).
+
+**Para executar o que já é reproduzível neste repositório:** [runbook](RUNBOOK.md). Para saber exatamente o que está incluído e o que falta: [evidências](../poc/EVIDENCE.md).

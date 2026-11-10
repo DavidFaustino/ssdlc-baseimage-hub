@@ -8,10 +8,11 @@ Leia nesta ordem:
 2. [Processo atual e encaixe da POC](ARCHITECTURE.md) — onde a capacidade nova entraria, sem substituir a cadeia existente.
 3. [Resultados técnicos](POC.md) — provas reproduzidas e limites de cada uma.
 4. [Workflows e BMAD](WORKFLOWS.md) — trabalho paralelo de orquestração e sua maturidade real.
-5. [Roteiro de conferência e execução](EXECUCAO.md) — passos para conferir a entrega e repetir as provas quando o acervo local estiver disponível.
-6. [Próxima etapa](NEXT-STEPS.md) — ordem para encaixar a capacidade no processo atual.
+5. [Runbook reproduzível](RUNBOOK.md) — ambiente, hashes, testes, decisão e recuperação com os scripts incluídos.
+6. [Roteiro de conferência](EXECUCAO.md) — checagem humana da entrega e da comparação histórica.
+7. [Próxima etapa](NEXT-STEPS.md) — ordem para encaixar a capacidade no processo atual.
 
-**Limite prático:** este repositório ainda não contém os scripts e recibos brutos do laboratório. O roteiro distingue o que você consegue conferir aqui do que exige o acervo local. Não trate esta síntese como pacote executável completo.
+**Limite prático:** a pasta `poc/` contém o núcleo executável, fixtures selecionadas e recibos. Ela permite repetir a decisão principal. A comparação completa de 44 casos e a inspeção integral dos blobs públicos ainda dependem de arquivos grandes do acervo local; [veja exatamente o que foi migrado](../poc/EVIDENCE.md).
 
 ## Como ler os estados
 

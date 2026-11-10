@@ -1,0 +1,1136 @@
+{
+  "case_count": 36,
+  "cases": [
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:2964046d5f36d52fe38712dca9e4f0c5ee98aed067a97934d4ec3b99ef263ab1"
+      },
+      "baseline_before": {
+        "diun_db_sha256": null
+      },
+      "case_id": "cycle-1-baseline",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-full-boundary-b1-20261108/results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "event",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:a8c7c47183d5c2ec0ca3d39d79258f95da4e42239dabe62850b7921baa3fe68e"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:2964046d5f36d52fe38712dca9e4f0c5ee98aed067a97934d4ec3b99ef263ab1"
+      },
+      "case_id": "cycle-1-changed",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_path": "operational-b-full-boundary-b1-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 1,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:750f68c35a20d427b72f826fa29c6ca8b4948ed5929c6f4878d570cacd9aa102"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:a8c7c47183d5c2ec0ca3d39d79258f95da4e42239dabe62850b7921baa3fe68e"
+      },
+      "case_id": "cycle-1-repeat",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-full-boundary-b1-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 0,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:210c2aa0039a47075dcac14119f4f4c17e1702f61dc3312e48961e73c580c13a"
+      },
+      "baseline_before": {
+        "diun_db_sha256": null
+      },
+      "case_id": "cycle-2-baseline",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-full-boundary-b2-20261108/results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "event",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:7c748e47d27386d8659a444d4c1e54bdc75eb6c99d7f6baed0e6eb96f10b7100"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:210c2aa0039a47075dcac14119f4f4c17e1702f61dc3312e48961e73c580c13a"
+      },
+      "case_id": "cycle-2-changed",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_path": "operational-b-full-boundary-b2-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 1,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:b1b5df2098935225c6b7854c461352ebaeeb329dd4327c29d3c7c7861099ce90"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:7c748e47d27386d8659a444d4c1e54bdc75eb6c99d7f6baed0e6eb96f10b7100"
+      },
+      "case_id": "cycle-2-repeat",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-full-boundary-b2-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 0,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:6ab17c1eb017a0300495cfc118dce1f5d5cb2826191922cb9815fd692d0f4f4e"
+      },
+      "baseline_before": {
+        "diun_db_sha256": null
+      },
+      "case_id": "cycle-3-baseline",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-full-boundary-b3-20261108/results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "event",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:8ed74ec068ef08c6218ea539e59a3fce397ee2e93e86e31d539accd67b22af8d"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:6ab17c1eb017a0300495cfc118dce1f5d5cb2826191922cb9815fd692d0f4f4e"
+      },
+      "case_id": "cycle-3-changed",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_path": "operational-b-full-boundary-b3-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 1,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:4557a51cdfdf1f59030db95447bed912da0904e6c58ceca15a87146312b5055e"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:8ed74ec068ef08c6218ea539e59a3fce397ee2e93e86e31d539accd67b22af8d"
+      },
+      "case_id": "cycle-3-repeat",
+      "equivalence": "exact_historical_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-full-boundary-b3-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 0,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:7594f118e15172d8bed8a84fe28ff8edf698353bced879e88111a84c3204396a"
+      },
+      "baseline_before": {
+        "diun_db_sha256": null
+      },
+      "case_id": "aux-baseline",
+      "equivalence": "exact_arm_index_and_child_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-arm-20261108/results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": "Separate arm-control Diun database; no expat package claim.",
+      "tag": "arm-control"
+    },
+    {
+      "action": "event",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:894304401a2b86276d4a617833b41c4e590fa9b8a0961c0a359dff26a740e9ce"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:7594f118e15172d8bed8a84fe28ff8edf698353bced879e88111a84c3204396a"
+      },
+      "case_id": "aux-changed",
+      "equivalence": "exact_arm_index_and_child_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-arm-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:4ab797337474266ca1c9d78a0ad7b20fd83e09ba6c7856a46939bdc75c5973a4",
+      "notice_count_delta": 1,
+      "phase": "post",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": "Separate arm-control Diun database; no expat package claim.",
+      "tag": "arm-control"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:1537dbf1d9fa6716256910a93bdcec94664f3dcb817d7b8d653c622b915df918"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:894304401a2b86276d4a617833b41c4e590fa9b8a0961c0a359dff26a740e9ce"
+      },
+      "case_id": "aux-repeat",
+      "equivalence": "exact_arm_index_and_child_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-arm-20261108/results.json",
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:4ab797337474266ca1c9d78a0ad7b20fd83e09ba6c7856a46939bdc75c5973a4",
+      "notice_count_delta": 0,
+      "phase": "post",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": "Separate arm-control Diun database; no expat package claim.",
+      "tag": "arm-control"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "case_id": "identity-missing",
+      "decision_count": 0,
+      "equivalence": "exact_invalid_index_bytes_with_pre_baseline",
+      "error": {
+        "message": "expected exactly one platform manifest",
+        "type": "ValueError"
+      },
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": null,
+      "input_index_digest": "sha256:93e16ab8fb1bfb08f051a420835b414851eaeedb9f7105d26dacb84f26d810b5",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "missing"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "case_id": "identity-duplicate",
+      "decision_count": 0,
+      "equivalence": "exact_invalid_index_bytes_with_pre_baseline",
+      "error": {
+        "message": "expected exactly one platform manifest",
+        "type": "ValueError"
+      },
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": null,
+      "input_index_digest": "sha256:7c0acdc70f2779e2bd19cc5d9f4a1db6dfc7fb5cf784e3643630e07e1d18bf15",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "duplicate"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:143418a81bee65dcc66d5d3c5c0b9d7fd99b9a431a6e7b36fb7657cc479c0c95"
+      },
+      "baseline_before": {
+        "diun_db_sha256": null
+      },
+      "case_id": "index-only-baseline",
+      "equivalence": "exact_index_and_child_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-index-only-v3-20261108/results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:cc1ee65860aa1e763b38e5a18255b2a27c1e9986c3f913e5a4eb794a97c72691"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:143418a81bee65dcc66d5d3c5c0b9d7fd99b9a431a6e7b36fb7657cc479c0c95"
+      },
+      "case_id": "index-only-index-change",
+      "equivalence": "exact_index_and_child_input",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-index-only-v3-20261108/results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:81e9943d4f668005bb7a5af884ed5c998db8ff6bb1ee8c0da42b7e653558fada",
+      "notice_count_delta": 0,
+      "phase": "index-only",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": null
+      },
+      "case_id": "cross-tag-baseline",
+      "decision_count": 0,
+      "equivalence": "exact_index_child_bytes_adapter_semantics",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": "Diun and keyed common State track refs separately; A single-reference observer errors on cross-tag in one state. Native B does not promise A error.",
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "case_id": "cross-tag-cross-tag",
+      "decision_count": 0,
+      "equivalence": "exact_index_child_bytes_adapter_semantics",
+      "error": {
+        "message": "native notice platform differs from requested arm64",
+        "type": "DiunNoticeScopeMismatch"
+      },
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+      "notice_count_delta": 1,
+      "phase": "pre",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": "Diun and keyed common State track refs separately; A single-reference observer errors on cross-tag in one state. Native B does not promise A error.",
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "arm-control"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "selected_child_digest": null
+      },
+      "baseline_before": {
+        "selected_child_digest": null
+      },
+      "case_id": "identity-cross-platform",
+      "decision_count": 0,
+      "equivalence": "exact_historical_index_bytes",
+      "error": {
+        "message": "expected exactly one platform manifest",
+        "type": "ValueError"
+      },
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": null,
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/arm64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:394f9776c81fd7ed38c01f82885d9fa3ccc445558144e39bf80e351ef7b0644c"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:40b3d6014e62f6c16e087222cf1c1538284693d8a826844614ca1deaa6ae1300"
+      },
+      "case_id": "faults-401",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "auth",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:8adaac31dd83b72e743c5580f98002c9259056fa0410100e482e82f25e38a2c5"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:7123bd0564a96ca23eba7aac23c3cd0420a8aef89a852461b432415af407cd82"
+      },
+      "case_id": "faults-403",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "forbidden",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:73cb402f025ca43faea2ccc6453d4c9356a45190ae5e0276c4519343c453eda0"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:44b21844f4df8ec0f470ee590dd5f5016ed7661110bbc9fef17c8bf39e92ec2d"
+      },
+      "case_id": "faults-429",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "rate_limited",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:bc2ac3151a6e768c0bed203592717a7f78216a951f81c1504008863b63511a01"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:ad8312ee225ea68b9478a98328e367a7c6d2a15c54b32534d3363e4f05e2cefd"
+      },
+      "case_id": "faults-503",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "unavailable",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:0deed614c2a5406ec1649427a5de06f8a8204fd574ee7a7c6845c1fb175667f9"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:ebffd3632f590dabde1d484a4795bd80bb8ecf59fc3472aa211cea09b1dc8f1a"
+      },
+      "case_id": "faults-timeout",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "timeout",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:394f9776c81fd7ed38c01f82885d9fa3ccc445558144e39bf80e351ef7b0644c"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:40b3d6014e62f6c16e087222cf1c1538284693d8a826844614ca1deaa6ae1300"
+      },
+      "case_id": "faults-truncated",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "truncated",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific. Truncated uses fresh Diun DB to force GET.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:394f9776c81fd7ed38c01f82885d9fa3ccc445558144e39bf80e351ef7b0644c"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:40b3d6014e62f6c16e087222cf1c1538284693d8a826844614ca1deaa6ae1300"
+      },
+      "case_id": "auth-auth-denied",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "auth",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "auth",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:50e8501c6367524467484d50eb9b975801de8bdd3857d5e480af0807ca5542e0"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:bb5052ab56d6a27f49eb9e67b5a168044c03d2b11e5d79f4591a0e346a2cecf2"
+      },
+      "case_id": "auth-auth-invalid",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "auth",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "auth",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:f23d5c79ed7d7631d4d2c34f4cd3aab8f0b4e9e3758ebde01dcf3f39171d0292"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:cfa072e72acaf51c7c24fb696ab2bd46f126df0cf2ef458d35b95be151d79d4d"
+      },
+      "case_id": "auth-auth-granted",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "auth",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "diun_db_sha256": "sha256:8adaac31dd83b72e743c5580f98002c9259056fa0410100e482e82f25e38a2c5"
+      },
+      "baseline_before": {
+        "diun_db_sha256": "sha256:7123bd0564a96ca23eba7aac23c3cd0420a8aef89a852461b432415af407cd82"
+      },
+      "case_id": "auth-403-valid-token",
+      "equivalence": "exact_historical_pre_input_with_fault_adaptation",
+      "error": "forbidden",
+      "event_id": null,
+      "evidence_path": "operational-b-faults-v6-20261108/fault-results.json",
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "native_state_inspection": "operational-b-faults-v6-20261108/semantic-retention-proof.json",
+      "notice_count_delta": 0,
+      "phase": "auth",
+      "platform": "linux/amd64",
+      "post_fault_check": {
+        "exit_code": 0,
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "notifications_delta": 0,
+        "requests": [
+          {
+            "body_bytes": 0,
+            "method": "GET",
+            "mode": "pre",
+            "path": "/v2/",
+            "status": 200
+          },
+          {
+            "body_bytes": 0,
+            "method": "HEAD",
+            "mode": "pre",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200
+          }
+        ]
+      },
+      "producer": "diun_vunnel",
+      "reason": "Diun PRE baseline and registry fault correspond; retry/cadence and observer state are product-specific.",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-429-retry",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_native_diun_retry",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-503-retry",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_adapter_retry",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-429-exhaust",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_native_diun_retry",
+      "error": {
+        "status": 429,
+        "type": "RegistryRetryExhausted"
+      },
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "error",
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-503-exhaust",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_adapter_retry",
+      "error": {
+        "status": 503,
+        "type": "RegistryRetryExhausted"
+      },
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "recovery-before-stop",
+      "decision_count": 0,
+      "equivalence": "exact_historical_bytes_with_common_state_recovery_adapter",
+      "error": null,
+      "event_id": null,
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "pre",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-recovery-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "event",
+      "baseline_after": {
+        "decision_count": 1,
+        "selected_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "case_id": "recovery-after-restart",
+      "decision_count": 1,
+      "equivalence": "exact_historical_bytes_with_common_state_recovery_adapter",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 1,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-recovery-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "baseline_after": {
+        "decision_count": 1,
+        "selected_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+      },
+      "baseline_before": {
+        "decision_count": 1,
+        "selected_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+      },
+      "case_id": "recovery-repeat-after-commit",
+      "decision_count": 1,
+      "equivalence": "exact_historical_bytes_with_common_state_recovery_adapter",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_path": "targeted-case-receipts.json",
+      "image_approved": false,
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "notice_count_delta": 0,
+      "phase": "post",
+      "platform": "linux/amd64",
+      "producer": "diun_vunnel",
+      "reason": null,
+      "source_receipt": "operational-b-targeted-recovery-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    }
+  ],
+  "source_a": "experiments/operational-abc-comparison-20261108/evidence/A/run-20261108-07/summary.json"
+}

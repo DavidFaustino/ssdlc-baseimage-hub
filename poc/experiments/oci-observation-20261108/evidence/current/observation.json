@@ -1,0 +1,15 @@
+{
+  "fix_status": "unknown",
+  "image": "gcr.io/distroless/java21-debian13",
+  "image_approved": false,
+  "index_digest": "sha256:b22857e939bd95abd69d9d747f0421a274f9f70855ecfc335f7d97f6eeef578d",
+  "index_media_type": "application/vnd.oci.image.index.v1+json",
+  "observed_at_utc": "2026-11-08T11:49:43.494756+00:00",
+  "platform": "linux/amd64",
+  "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+  "platform_media_type": "application/vnd.oci.image.manifest.v1+json",
+  "registry_date_index": "Sun, 08 Nov 2026 11:49:42 GMT",
+  "registry_date_platform": "Sun, 08 Nov 2026 11:49:43 GMT",
+  "request_accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json",
+  "tag": "nonroot"
+}

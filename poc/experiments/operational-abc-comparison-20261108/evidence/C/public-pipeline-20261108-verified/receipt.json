@@ -1,0 +1,151 @@
+{
+  "child_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+  "counts": {
+    "failures": 5,
+    "image_decisions": 0,
+    "observations": 1,
+    "reassessments": 2
+  },
+  "feed_revisions": [
+    "sha256:96b3a207fb07548e4cff08c5d7cbdd600a1c1818a42dba933f8fd2e0459400b1",
+    "sha256:c1ef0b8d711362e6a1bf2da00b6de36546e5dfaf68028bd4f5a22ebf82f44775"
+  ],
+  "image": "gcr.io/distroless/java21-debian13",
+  "image_approved": false,
+  "negative_cases": {
+    "digest_mismatch": {
+      "action": "unknown",
+      "image_approved": false,
+      "reason": "invalid public reassessment: public case differs from verified evidence",
+      "status": "unknown"
+    },
+    "fix_missing": {
+      "action": "unknown",
+      "image_approved": false,
+      "reason": "invalid public reassessment: public case differs from verified evidence",
+      "status": "unknown"
+    },
+    "source_mismatch": {
+      "action": "unknown",
+      "image_approved": false,
+      "reason": "invalid public reassessment: public case differs from verified evidence",
+      "status": "unknown"
+    },
+    "suite_mismatch": {
+      "action": "unknown",
+      "image_approved": false,
+      "reason": "invalid public reassessment: public case differs from verified evidence",
+      "status": "unknown"
+    }
+  },
+  "platform": "linux/amd64",
+  "reopen": {
+    "action": "none",
+    "diun_receipt_sha256": "sha256:c755d69ac3f5b6bbfee9cbfc05560b669101dd6ffd765dafadb303d4cccc1578",
+    "feed_sha256": "sha256:c1ef0b8d711362e6a1bf2da00b6de36546e5dfaf68028bd4f5a22ebf82f44775",
+    "image_approved": false,
+    "package_result_sha256": "sha256:2b51f9bde6b365d952b5f8a3cb0d124c93a9c8b7012bd255b73f64e744444ea7",
+    "package_status_sha256": "sha256:1a332bef6dc36bea908193809c1c63164fb4c307cf26bcc9c280db9a608b86b8",
+    "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+    "revision_key": "c8b0d53e6290b2e30327e57777cb037c741a0394b897dbc065552ca70a4ffb7b",
+    "route": "B",
+    "status": "duplicate",
+    "vunnel_row_sha256": "sha256:f06fbbb7f7237937d0027f2e2e8960b9f5f3880a72d76d61235a41c9ee07dd8e"
+  },
+  "routes": [
+    "A_direct_DSA",
+    "B_Diun_Vunnel",
+    "A_direct_DSA_duplicate"
+  ],
+  "scope": "captured public digest, stable tag, same Pipeline/State",
+  "selected_dsa_content_changed": false,
+  "sequence": [
+    {
+      "action": "none",
+      "diun_receipt_sha256": null,
+      "feed_sha256": "sha256:96b3a207fb07548e4cff08c5d7cbdd600a1c1818a42dba933f8fd2e0459400b1",
+      "image_approved": false,
+      "package_result_sha256": "sha256:471c7c66a5243dc4dd73aca4299a3b27487db95ddd3c29a860ab242acbe4dce4",
+      "package_status_sha256": "sha256:1a332bef6dc36bea908193809c1c63164fb4c307cf26bcc9c280db9a608b86b8",
+      "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+      "route": "A",
+      "status": "baseline",
+      "vunnel_row_sha256": null
+    },
+    {
+      "action": "none",
+      "diun_receipt_sha256": "sha256:c755d69ac3f5b6bbfee9cbfc05560b669101dd6ffd765dafadb303d4cccc1578",
+      "feed_sha256": "sha256:c1ef0b8d711362e6a1bf2da00b6de36546e5dfaf68028bd4f5a22ebf82f44775",
+      "image_approved": false,
+      "package_result_sha256": "sha256:2b51f9bde6b365d952b5f8a3cb0d124c93a9c8b7012bd255b73f64e744444ea7",
+      "package_status_sha256": "sha256:1a332bef6dc36bea908193809c1c63164fb4c307cf26bcc9c280db9a608b86b8",
+      "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+      "route": "B",
+      "status": "unchanged",
+      "vunnel_row_sha256": "sha256:f06fbbb7f7237937d0027f2e2e8960b9f5f3880a72d76d61235a41c9ee07dd8e"
+    },
+    {
+      "action": "already_satisfies_fix",
+      "comparison": "at_or_above_fix",
+      "cve": "CVE-2026-24515",
+      "diun_receipt_sha256": null,
+      "dsa": "DSA-6404-1",
+      "feed_sha256": "sha256:96b3a207fb07548e4cff08c5d7cbdd600a1c1818a42dba933f8fd2e0459400b1",
+      "fixed_source_version": "2.8.2-1~deb13u1",
+      "image_approved": false,
+      "installed_source_version": "2.9.0-1~deb13u1",
+      "package_result_sha256": "sha256:471c7c66a5243dc4dd73aca4299a3b27487db95ddd3c29a860ab242acbe4dce4",
+      "package_status_sha256": "sha256:1a332bef6dc36bea908193809c1c63164fb4c307cf26bcc9c280db9a608b86b8",
+      "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+      "revision": "prior-I4-H1",
+      "revision_key": "85e8799e76c16c46c9bac2ac3e7235d0ba3e0cc8521c0c158fe362b0c75ecca9",
+      "route": "A",
+      "source_package": "expat",
+      "status": "reassessed",
+      "suite": "trixie",
+      "vunnel_row_sha256": null
+    },
+    {
+      "action": "already_satisfies_fix",
+      "comparison": "at_or_above_fix",
+      "cve": "CVE-2026-24515",
+      "diun_receipt_sha256": "sha256:c755d69ac3f5b6bbfee9cbfc05560b669101dd6ffd765dafadb303d4cccc1578",
+      "dsa": "DSA-6404-1",
+      "feed_sha256": "sha256:c1ef0b8d711362e6a1bf2da00b6de36546e5dfaf68028bd4f5a22ebf82f44775",
+      "fixed_source_version": "2.8.2-1~deb13u1",
+      "image_approved": false,
+      "installed_source_version": "2.9.0-1~deb13u1",
+      "package_result_sha256": "sha256:2b51f9bde6b365d952b5f8a3cb0d124c93a9c8b7012bd255b73f64e744444ea7",
+      "package_status_sha256": "sha256:1a332bef6dc36bea908193809c1c63164fb4c307cf26bcc9c280db9a608b86b8",
+      "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+      "revision": "current-A",
+      "revision_key": "c8b0d53e6290b2e30327e57777cb037c741a0394b897dbc065552ca70a4ffb7b",
+      "route": "B",
+      "source_package": "expat",
+      "status": "reassessed",
+      "suite": "trixie",
+      "vunnel_row_sha256": "sha256:f06fbbb7f7237937d0027f2e2e8960b9f5f3880a72d76d61235a41c9ee07dd8e"
+    },
+    {
+      "action": "none",
+      "diun_receipt_sha256": null,
+      "feed_sha256": "sha256:c1ef0b8d711362e6a1bf2da00b6de36546e5dfaf68028bd4f5a22ebf82f44775",
+      "image_approved": false,
+      "package_result_sha256": "sha256:471c7c66a5243dc4dd73aca4299a3b27487db95ddd3c29a860ab242acbe4dce4",
+      "package_status_sha256": "sha256:1a332bef6dc36bea908193809c1c63164fb4c307cf26bcc9c280db9a608b86b8",
+      "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+      "revision_key": "c8b0d53e6290b2e30327e57777cb037c741a0394b897dbc065552ca70a4ffb7b",
+      "route": "A",
+      "status": "duplicate",
+      "vunnel_row_sha256": null
+    }
+  ],
+  "state_sha256": "sha256:fa0c56e1bcaa4539570af549ee5ffcd9ad41832c7c13be06051313c69ae61e0a",
+  "tag": "nonroot",
+  "unverified_event": {
+    "action": "unknown",
+    "image_approved": false,
+    "reason": "public stable digest has no verified image event",
+    "status": "unknown"
+  }
+}

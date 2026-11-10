@@ -1,0 +1,1137 @@
+{
+  "case_count": 12,
+  "cases": [
+    {
+      "action": "unknown",
+      "actual": "error",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+        "job": {
+          "added": 1,
+          "failed": 0,
+          "unchanged": 0,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-missing-baseline"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/missing",
+            "status": 200,
+            "step": "identity-missing-baseline"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-missing-baseline"
+          },
+          {
+            "body_bytes": 290,
+            "body_path": "served/identity-missing-baseline/003.bin",
+            "body_sha256": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/missing",
+            "status": 200,
+            "step": "identity-missing-baseline"
+          },
+          {
+            "body_bytes": 6734,
+            "body_path": "served/identity-missing-baseline/004.bin",
+            "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "status": 200,
+            "step": "identity-missing-baseline"
+          },
+          {
+            "body_bytes": 7291,
+            "body_path": "served/identity-missing-baseline/005.bin",
+            "body_sha256": "sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "method": "GET",
+            "path": "/v2/test/image/blobs/sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "status": 200,
+            "step": "identity-missing-baseline"
+          }
+        ],
+        "notice_count_delta": 0,
+        "phase": "baseline",
+        "platform": "linux/arm64",
+        "tag": "missing"
+      },
+      "case_id": "identity-missing",
+      "common_sqlite_final_sha256": "sha256:c1cb74f4e0be1e91415a78b159e760fe411f5e059837e484bf768af45f0f0e82",
+      "decision_count": 0,
+      "equivalence": "exact_invalid_index_bytes_with_pre_baseline",
+      "error": {
+        "message": "expected exactly one platform manifest",
+        "type": "ValueError"
+      },
+      "event_id": null,
+      "image_approved": false,
+      "input_child_digest": null,
+      "input_child_path": null,
+      "input_index_digest": "sha256:93e16ab8fb1bfb08f051a420835b414851eaeedb9f7105d26dacb84f26d810b5",
+      "input_index_path": "identity-missing/changed-index.raw",
+      "native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:93e16ab8fb1bfb08f051a420835b414851eaeedb9f7105d26dacb84f26d810b5",
+        "job": {
+          "added": 0,
+          "failed": 1,
+          "unchanged": 0,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-missing-changed"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/missing",
+            "status": 200,
+            "step": "identity-missing-changed"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-missing-changed"
+          },
+          {
+            "body_bytes": 88,
+            "body_path": "served/identity-missing-changed/011.bin",
+            "body_sha256": "sha256:93e16ab8fb1bfb08f051a420835b414851eaeedb9f7105d26dacb84f26d810b5",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/missing",
+            "status": 200,
+            "step": "identity-missing-changed"
+          }
+        ],
+        "notice_count_delta": 0,
+        "phase": "changed",
+        "platform": "linux/arm64",
+        "tag": "missing"
+      },
+      "notice_count_delta": 0,
+      "phase": "changed",
+      "platform": "linux/arm64",
+      "resolver_requests": [
+        {
+          "body_bytes": 88,
+          "body_path": "served/identity-missing-changed-resolver/012.bin",
+          "body_sha256": "sha256:93e16ab8fb1bfb08f051a420835b414851eaeedb9f7105d26dacb84f26d810b5",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/missing",
+          "status": 200,
+          "step": "identity-missing-changed-resolver"
+        }
+      ],
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "missing"
+    },
+    {
+      "action": "unknown",
+      "actual": "error",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+        "job": {
+          "added": 1,
+          "failed": 0,
+          "unchanged": 0,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-duplicate-baseline"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/duplicate",
+            "status": 200,
+            "step": "identity-duplicate-baseline"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-duplicate-baseline"
+          },
+          {
+            "body_bytes": 290,
+            "body_path": "served/identity-duplicate-baseline/016.bin",
+            "body_sha256": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/duplicate",
+            "status": 200,
+            "step": "identity-duplicate-baseline"
+          },
+          {
+            "body_bytes": 6734,
+            "body_path": "served/identity-duplicate-baseline/017.bin",
+            "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "status": 200,
+            "step": "identity-duplicate-baseline"
+          },
+          {
+            "body_bytes": 7291,
+            "body_path": "served/identity-duplicate-baseline/018.bin",
+            "body_sha256": "sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "method": "GET",
+            "path": "/v2/test/image/blobs/sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "status": 200,
+            "step": "identity-duplicate-baseline"
+          }
+        ],
+        "notice_count_delta": 0,
+        "phase": "baseline",
+        "platform": "linux/arm64",
+        "tag": "duplicate"
+      },
+      "case_id": "identity-duplicate",
+      "common_sqlite_final_sha256": "sha256:46203937e39364141266c8e499812b05f662d835c5798279db8f81d316d0185e",
+      "decision_count": 0,
+      "equivalence": "exact_invalid_index_bytes_with_pre_baseline",
+      "error": {
+        "message": "expected exactly one platform manifest",
+        "type": "ValueError"
+      },
+      "event_id": null,
+      "image_approved": false,
+      "input_child_digest": null,
+      "input_child_path": null,
+      "input_index_digest": "sha256:7c0acdc70f2779e2bd19cc5d9f4a1db6dfc7fb5cf784e3643630e07e1d18bf15",
+      "input_index_path": "identity-duplicate/changed-index.raw",
+      "native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:7c0acdc70f2779e2bd19cc5d9f4a1db6dfc7fb5cf784e3643630e07e1d18bf15",
+        "job": {
+          "added": 0,
+          "failed": 0,
+          "unchanged": 1,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-duplicate-changed"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/duplicate",
+            "status": 200,
+            "step": "identity-duplicate-changed"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-duplicate-changed"
+          },
+          {
+            "body_bytes": 493,
+            "body_path": "served/identity-duplicate-changed/024.bin",
+            "body_sha256": "sha256:7c0acdc70f2779e2bd19cc5d9f4a1db6dfc7fb5cf784e3643630e07e1d18bf15",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/duplicate",
+            "status": 200,
+            "step": "identity-duplicate-changed"
+          },
+          {
+            "body_bytes": 6734,
+            "body_path": "served/identity-duplicate-changed/025.bin",
+            "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "status": 200,
+            "step": "identity-duplicate-changed"
+          },
+          {
+            "body_bytes": 7291,
+            "body_path": "served/identity-duplicate-changed/026.bin",
+            "body_sha256": "sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "method": "GET",
+            "path": "/v2/test/image/blobs/sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "status": 200,
+            "step": "identity-duplicate-changed"
+          }
+        ],
+        "notice_count_delta": 0,
+        "phase": "changed",
+        "platform": "linux/arm64",
+        "tag": "duplicate"
+      },
+      "notice_count_delta": 0,
+      "phase": "changed",
+      "platform": "linux/arm64",
+      "resolver_requests": [
+        {
+          "body_bytes": 493,
+          "body_path": "served/identity-duplicate-changed-resolver/027.bin",
+          "body_sha256": "sha256:7c0acdc70f2779e2bd19cc5d9f4a1db6dfc7fb5cf784e3643630e07e1d18bf15",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/duplicate",
+          "status": 200,
+          "step": "identity-duplicate-changed-resolver"
+        }
+      ],
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "duplicate"
+    },
+    {
+      "action": "unknown",
+      "actual": "error",
+      "baseline_after": {
+        "selected_child_digest": null
+      },
+      "baseline_before": {
+        "selected_child_digest": null
+      },
+      "case_id": "identity-cross-platform",
+      "decision_count": 0,
+      "equivalence": "exact_historical_index_bytes",
+      "error": {
+        "message": "expected exactly one platform manifest",
+        "type": "ValueError"
+      },
+      "event_id": null,
+      "image_approved": false,
+      "input_child_digest": null,
+      "input_child_path": null,
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "input_index_path": "identity-cross-platform/check-index.raw",
+      "native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+        "job": {
+          "added": 0,
+          "failed": 1,
+          "unchanged": 0,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-cross-platform-check"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200,
+            "step": "identity-cross-platform-check"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "identity-cross-platform-check"
+          },
+          {
+            "body_bytes": 290,
+            "body_path": "served/identity-cross-platform-check/031.bin",
+            "body_sha256": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200,
+            "step": "identity-cross-platform-check"
+          }
+        ],
+        "notice_count_delta": 0,
+        "phase": "check",
+        "platform": "linux/arm64",
+        "tag": "local-replay"
+      },
+      "notice_count_delta": 0,
+      "phase": "check",
+      "platform": "linux/arm64",
+      "resolver_requests": [
+        {
+          "body_bytes": 290,
+          "body_path": "served/identity-cross-platform-check-resolver/032.bin",
+          "body_sha256": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "status": 200,
+          "step": "identity-cross-platform-check-resolver"
+        }
+      ],
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "actual": "no_change",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": null
+      },
+      "case_id": "cross-tag-baseline",
+      "common_sqlite_final_sha256": "sha256:67f59b2b1397194f12ca7e0bfd229bdfecb1956ceec73c2fca7f75948ea685b3",
+      "decision_count": 0,
+      "equivalence": "exact_index_child_bytes_adapter_semantics",
+      "error": null,
+      "event_id": null,
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_child_path": "cross-tag/baseline-child.raw",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "input_index_path": "cross-tag/baseline-index.raw",
+      "native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+        "job": {
+          "added": 1,
+          "failed": 0,
+          "unchanged": 0,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "cross-tag-baseline"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200,
+            "step": "cross-tag-baseline"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "cross-tag-baseline"
+          },
+          {
+            "body_bytes": 290,
+            "body_path": "served/cross-tag-baseline/036.bin",
+            "body_sha256": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/local-replay",
+            "status": 200,
+            "step": "cross-tag-baseline"
+          },
+          {
+            "body_bytes": 6734,
+            "body_path": "served/cross-tag-baseline/037.bin",
+            "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "status": 200,
+            "step": "cross-tag-baseline"
+          },
+          {
+            "body_bytes": 7291,
+            "body_path": "served/cross-tag-baseline/038.bin",
+            "body_sha256": "sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "method": "GET",
+            "path": "/v2/test/image/blobs/sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "status": 200,
+            "step": "cross-tag-baseline"
+          }
+        ],
+        "notice_count_delta": 0,
+        "phase": "baseline",
+        "platform": "linux/amd64",
+        "tag": "local-replay"
+      },
+      "native_notice": null,
+      "notice_count_delta": 0,
+      "phase": "baseline",
+      "platform": "linux/amd64",
+      "reason": "Diun and keyed common State track refs separately; A single-reference observer errors on cross-tag in one state. Native B does not promise A error.",
+      "resolver_requests": [
+        {
+          "body_bytes": 290,
+          "body_path": "served/cross-tag-baseline-resolver/039.bin",
+          "body_sha256": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "status": 200,
+          "step": "cross-tag-baseline-resolver"
+        },
+        {
+          "body_bytes": 6734,
+          "body_path": "served/cross-tag-baseline-resolver/040.bin",
+          "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "status": 200,
+          "step": "cross-tag-baseline-resolver"
+        }
+      ],
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "unknown",
+      "actual": "error",
+      "baseline_after": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "case_id": "cross-tag-cross-tag",
+      "common_sqlite_final_sha256": "sha256:67f59b2b1397194f12ca7e0bfd229bdfecb1956ceec73c2fca7f75948ea685b3",
+      "decision_count": 0,
+      "equivalence": "exact_index_child_bytes_adapter_semantics",
+      "error": {
+        "message": "native notice platform differs from requested arm64",
+        "type": "DiunNoticeScopeMismatch"
+      },
+      "event_id": null,
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_child_path": "cross-tag/cross-tag-child.raw",
+      "input_index_digest": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+      "input_index_path": "cross-tag/cross-tag-index.raw",
+      "native": {
+        "exit_code": 0,
+        "input_index_digest": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+        "job": {
+          "added": 1,
+          "failed": 0,
+          "unchanged": 0,
+          "updated": 0
+        },
+        "native_requests": [
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "cross-tag-cross-tag"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": null,
+            "method": "HEAD",
+            "path": "/v2/test/image/manifests/arm-control",
+            "status": 200,
+            "step": "cross-tag-cross-tag"
+          },
+          {
+            "body_bytes": 0,
+            "body_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "method": "GET",
+            "path": "/v2/",
+            "status": 200,
+            "step": "cross-tag-cross-tag"
+          },
+          {
+            "body_bytes": 290,
+            "body_path": "served/cross-tag-cross-tag/044.bin",
+            "body_sha256": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/arm-control",
+            "status": 200,
+            "step": "cross-tag-cross-tag"
+          },
+          {
+            "body_bytes": 6734,
+            "body_path": "served/cross-tag-cross-tag/045.bin",
+            "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "method": "GET",
+            "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+            "status": 200,
+            "step": "cross-tag-cross-tag"
+          },
+          {
+            "body_bytes": 7291,
+            "body_path": "served/cross-tag-cross-tag/046.bin",
+            "body_sha256": "sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "method": "GET",
+            "path": "/v2/test/image/blobs/sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+            "status": 200,
+            "step": "cross-tag-cross-tag"
+          }
+        ],
+        "notice_count_delta": 1,
+        "phase": "cross-tag",
+        "platform": "linux/arm64",
+        "tag": "arm-control"
+      },
+      "native_notice": {
+        "DIUN_ENTRY_CREATED": "1970-01-01 00:00:00 +0000 UTC",
+        "DIUN_ENTRY_DIGEST": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+        "DIUN_ENTRY_IMAGE": "127.0.0.1:59335/test/image:arm-control",
+        "DIUN_ENTRY_MIMETYPE": "application/vnd.oci.image.index.v1+json",
+        "DIUN_ENTRY_PLATFORM": "linux/amd64",
+        "DIUN_ENTRY_PROVIDER": "file",
+        "DIUN_ENTRY_STATUS": "new",
+        "DIUN_VERSION": "v4.33.1"
+      },
+      "notice_count_delta": 1,
+      "phase": "cross-tag",
+      "platform": "linux/arm64",
+      "reason": "Diun and keyed common State track refs separately; A single-reference observer errors on cross-tag in one state. Native B does not promise A error.",
+      "resolver_requests": [
+        {
+          "body_bytes": 290,
+          "body_path": "served/cross-tag-cross-tag-resolver/047.bin",
+          "body_sha256": "sha256:e0943c911718d2f5a256f66ace71c7d1c3b793b53849d1ab67f4d229fdecc694",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/arm-control",
+          "status": 200,
+          "step": "cross-tag-cross-tag-resolver"
+        },
+        {
+          "body_bytes": 6734,
+          "body_path": "served/cross-tag-cross-tag-resolver/048.bin",
+          "body_sha256": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "method": "GET",
+          "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "status": 200,
+          "step": "cross-tag-cross-tag-resolver"
+        }
+      ],
+      "source_receipt": "operational-b-targeted-identity-v3-20261108/targeted-case-receipts.json",
+      "tag": "arm-control"
+    },
+    {
+      "action": "no_change",
+      "actual": "no_change",
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "recovery-before-stop",
+      "common_sqlite_final_sha256": "sha256:c2f8a499a527fc528f0c511d2c57e4b6b4d1b5f8cfbd54e263ad5aa477cbaa79",
+      "decision_count": 0,
+      "equivalence": "exact_historical_bytes_with_common_state_recovery_adapter",
+      "error": null,
+      "event_id": null,
+      "evidence_paths": [
+        "results.json",
+        "notifications.jsonl"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "notice_count_delta": 0,
+      "phase": "before-stop",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-recovery-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "validate_candidate",
+      "actual": "event",
+      "baseline_after": {
+        "decision_count": 1,
+        "selected_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "case_id": "recovery-after-restart",
+      "common_sqlite_final_sha256": "sha256:c2f8a499a527fc528f0c511d2c57e4b6b4d1b5f8cfbd54e263ad5aa477cbaa79",
+      "decision_count": 1,
+      "decision_receipt": {
+        "action": "validate_candidate",
+        "candidate_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "comparison": "at_or_above_fix",
+        "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+        "fixture_manifest_sha256": "973ac9067ac5a9c1698034da996c6861c799963ae0710b8a276956a57c8e236d",
+        "image": "fixture.local/distroless/java21-debian13",
+        "image_approved": false,
+        "observed_at_utc": "2026-11-08T21:29:05.205427+00:00",
+        "platform": "linux/amd64",
+        "previous_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "scope": "local_fixture",
+        "source_ledger_sha256": "cbbbab9e3b849d522ce338113b1288273232cb8a883b1cd31b03294e0075b157",
+        "status": "decided",
+        "tag": "local-replay"
+      },
+      "equivalence": "exact_historical_bytes_with_common_state_recovery_adapter",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_paths": [
+        "notifications.jsonl",
+        "poll-index.raw",
+        "poll-child.raw",
+        "common-state.sqlite"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_child_path": "poll-child.raw",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "input_index_path": "poll-index.raw",
+      "notice_count_delta": 1,
+      "phase": "after-restart",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-recovery-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "duplicate",
+      "actual": "no_change",
+      "baseline_after": {
+        "decision_count": 1,
+        "selected_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+      },
+      "baseline_before": {
+        "decision_count": 1,
+        "selected_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+      },
+      "case_id": "recovery-repeat-after-commit",
+      "common_sqlite_final_sha256": "sha256:c2f8a499a527fc528f0c511d2c57e4b6b4d1b5f8cfbd54e263ad5aa477cbaa79",
+      "decision_count": 1,
+      "duplicate_receipt": {
+        "action": "validate_candidate",
+        "candidate_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "comparison": "at_or_above_fix",
+        "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+        "fixture_manifest_sha256": "973ac9067ac5a9c1698034da996c6861c799963ae0710b8a276956a57c8e236d",
+        "image": "fixture.local/distroless/java21-debian13",
+        "image_approved": false,
+        "observed_at_utc": "2026-11-08T21:29:05.205427+00:00",
+        "platform": "linux/amd64",
+        "previous_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "scope": "local_fixture",
+        "source_ledger_sha256": "cbbbab9e3b849d522ce338113b1288273232cb8a883b1cd31b03294e0075b157",
+        "status": "decided",
+        "tag": "local-replay"
+      },
+      "equivalence": "exact_historical_bytes_with_common_state_recovery_adapter",
+      "error": null,
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "evidence_paths": [
+        "common-state.sqlite",
+        "recovery.json"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "input_child_path": "poll-child.raw",
+      "input_index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "input_index_path": "poll-index.raw",
+      "notice_count_delta": 0,
+      "phase": "repeat-after-commit",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-recovery-20261108/targeted-case-receipts.json",
+      "tag": "local-replay"
+    },
+    {
+      "action": "no_change",
+      "actual": "no_change",
+      "adapter_requests": [],
+      "adapter_success": false,
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-429-retry",
+      "common_sqlite_final_sha256": "sha256:d6bb9cee0790092201d7e3374076fd72780c99efee2f26472c4f67098a279627",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_native_diun_retry",
+      "error": null,
+      "event_id": null,
+      "evidence_paths": [
+        "retry-429-retry/diun.jsonl",
+        "retry-429-retry/index.raw",
+        "retry-429-retry/child.raw",
+        "retry-429-retry/common-state.sqlite"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_child_path": "retry-429-retry/child.raw",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "input_index_path": "retry-429-retry/index.raw",
+      "intervals_s": [
+        0.000239084,
+        0.000218833,
+        0.000657125,
+        0.000187083,
+        0.000870959,
+        0.0004475
+      ],
+      "native_job": {
+        "added": 1,
+        "failed": 0,
+        "unchanged": 0,
+        "updated": 0
+      },
+      "native_requests": [
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281511674166,
+          "status": 429
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281511913250,
+          "status": 200
+        },
+        {
+          "body_bytes": 0,
+          "method": "HEAD",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281512132083,
+          "status": 200
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281512789208,
+          "status": 200
+        },
+        {
+          "body_bytes": 290,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281512976291,
+          "status": 200
+        },
+        {
+          "body_bytes": 6734,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "received_perf_ns": 2109281513847250,
+          "status": 200
+        },
+        {
+          "body_bytes": 7291,
+          "method": "GET",
+          "path": "/v2/test/image/blobs/sha256:9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+          "received_perf_ns": 2109281514294750,
+          "status": 200
+        }
+      ],
+      "notice_count_delta": 0,
+      "phase": "retry",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay",
+      "wall_ns": 169705334
+    },
+    {
+      "action": "no_change",
+      "actual": "no_change",
+      "adapter_requests": [
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281596794916,
+          "status": 503
+        },
+        {
+          "body_bytes": 290,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281597164000,
+          "status": 200
+        },
+        {
+          "body_bytes": 6734,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "received_perf_ns": 2109281597424208,
+          "status": 200
+        }
+      ],
+      "adapter_success": true,
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-503-retry",
+      "common_sqlite_final_sha256": "sha256:d6bb9cee0790092201d7e3374076fd72780c99efee2f26472c4f67098a279627",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_adapter_retry",
+      "error": null,
+      "event_id": null,
+      "evidence_paths": [
+        "retry-503-retry/diun.jsonl",
+        "retry-503-retry/index.raw",
+        "retry-503-retry/child.raw",
+        "retry-503-retry/common-state.sqlite"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_child_path": "retry-503-retry/child.raw",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "input_index_path": "retry-503-retry/index.raw",
+      "intervals_s": [],
+      "native_job": {
+        "added": 0,
+        "failed": 1,
+        "unchanged": 0,
+        "updated": 0
+      },
+      "native_requests": [
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281581733291,
+          "status": 503
+        }
+      ],
+      "notice_count_delta": 0,
+      "phase": "retry",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay",
+      "wall_ns": 55754083
+    },
+    {
+      "action": "error",
+      "actual": "error",
+      "adapter_requests": [],
+      "adapter_success": false,
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-429-exhaust",
+      "common_sqlite_final_sha256": "sha256:9dc2acf12cea7545a14239b82d3ba54ba59a410a39c529a46b0f2c2bba5a506d",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_native_diun_retry",
+      "error": {
+        "status": 429,
+        "type": "RegistryRetryExhausted"
+      },
+      "event_id": null,
+      "evidence_paths": [
+        "retry-429-exhaust/diun.jsonl",
+        "retry-429-exhaust/index.raw",
+        "retry-429-exhaust/child.raw",
+        "retry-429-exhaust/common-state.sqlite"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_child_path": "retry-429-exhaust/child.raw",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "input_index_path": "retry-429-exhaust/index.raw",
+      "intervals_s": [
+        0.000373875,
+        0.000267042,
+        0.00022725,
+        0.000173541
+      ],
+      "native_job": {
+        "added": 0,
+        "failed": 1,
+        "unchanged": 0,
+        "updated": 0
+      },
+      "native_requests": [
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281657057208,
+          "status": 429
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281657431083,
+          "status": 429
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281657698125,
+          "status": 429
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281657925375,
+          "status": 429
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281658098916,
+          "status": 429
+        }
+      ],
+      "notice_count_delta": 0,
+      "phase": "exhaust",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay",
+      "wall_ns": 60047750
+    },
+    {
+      "action": "error",
+      "actual": "error",
+      "adapter_requests": [
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281720776125,
+          "status": 503
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281721141250,
+          "status": 503
+        },
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/test/image/manifests/local-replay",
+          "received_perf_ns": 2109281721464916,
+          "status": 503
+        }
+      ],
+      "adapter_success": false,
+      "baseline_after": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "baseline_before": {
+        "decision_count": 0,
+        "selected_child_digest": null
+      },
+      "case_id": "retry-503-exhaust",
+      "common_sqlite_final_sha256": "sha256:9dc2acf12cea7545a14239b82d3ba54ba59a410a39c529a46b0f2c2bba5a506d",
+      "decision_count": 0,
+      "equivalence": "exact_historical_pre_bytes_with_adapter_retry",
+      "error": {
+        "status": 503,
+        "type": "RegistryRetryExhausted"
+      },
+      "event_id": null,
+      "evidence_paths": [
+        "retry-503-exhaust/diun.jsonl",
+        "retry-503-exhaust/index.raw",
+        "retry-503-exhaust/child.raw",
+        "retry-503-exhaust/common-state.sqlite"
+      ],
+      "image_approved": false,
+      "input_child_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "input_child_path": "retry-503-exhaust/child.raw",
+      "input_index_digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a",
+      "input_index_path": "retry-503-exhaust/index.raw",
+      "intervals_s": [],
+      "native_job": {
+        "added": 0,
+        "failed": 1,
+        "unchanged": 0,
+        "updated": 0
+      },
+      "native_requests": [
+        {
+          "body_bytes": 0,
+          "method": "GET",
+          "path": "/v2/",
+          "received_perf_ns": 2109281718978208,
+          "status": 503
+        }
+      ],
+      "notice_count_delta": 0,
+      "phase": "exhaust",
+      "platform": "linux/amd64",
+      "source_receipt": "operational-b-targeted-retry-v2-20261108/targeted-case-receipts.json",
+      "tag": "local-replay",
+      "wall_ns": 58998125
+    }
+  ]
+}

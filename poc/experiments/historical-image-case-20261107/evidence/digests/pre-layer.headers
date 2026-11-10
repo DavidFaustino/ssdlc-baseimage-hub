@@ -1,0 +1,26 @@
+HTTP/2 302 
+content-type: text/html; charset=utf-8
+docker-distribution-api-version: registry/2.0
+location: /artifacts-downloads/namespaces/distroless/repositories/gcr.io/downloads/AYMC5RpbaSWbhVFV
+server: Docker Registry
+vary: Accept-Encoding
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-gcr-using-artifact-registry: true
+x-xss-protection: 0
+date: Sat, 07 Nov 2026 17:24:18 GMT
+content-length: 112
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+HTTP/2 200 
+content-type: application/octet-stream
+x-guploader-uploadid: AFy3sg1A9w7tjLCPSH8zDcIpeLaXLDfWw7ScjPAELdPcM3USifzcBcKvHVyyVtxPMhO56zY-goQ2p4s
+accept-ranges: bytes
+content-length: 170771
+date: Sat, 07 Nov 2026 17:24:19 GMT
+expires: Sat, 07 Nov 2026 17:24:19 GMT
+cache-control: private, max-age=0
+x-goog-hash: crc32c=uf2nrw==
+server: UploadServer
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+

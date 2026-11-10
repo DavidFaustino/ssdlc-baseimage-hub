@@ -1,0 +1,16 @@
+{
+  "case": "CVE-2026-24515",
+  "source_package": "expat",
+  "suite": "trixie",
+  "fixed_source_version": "2.8.2-1~deb13u1",
+  "advisory_id": "DSA-6404-1",
+  "advisory_date": "2026-07-30",
+  "package_available_at": null,
+  "image_fix_present_at": null,
+  "binary_package_from_image_evidence": "libexpat1",
+  "sources": [
+    "https://security-tracker.debian.org/tracker/CVE-2026-24515",
+    "https://salsa.debian.org/security-tracker-team/security-tracker/-/raw/master/data/DSA/list",
+    "../../../historical-image-case-20261107/RESULTS.md"
+  ]
+}

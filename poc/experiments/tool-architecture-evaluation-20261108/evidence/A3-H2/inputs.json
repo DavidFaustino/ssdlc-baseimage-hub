@@ -1,0 +1,461 @@
+{
+  "cases": [
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-pre",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.7.1-2",
+        "package_arch": "amd64",
+        "package_source": "expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "source_version": "2.7.1-2",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "wait",
+      "expected_comparison": "below_fix",
+      "id": "historical_pre_same_digest",
+      "oci_event_record_id": null,
+      "synthetic_override": {}
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-post",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.8.2-1~deb13u1",
+        "package_arch": "amd64",
+        "package_source": "expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "validate_candidate",
+      "expected_comparison": "at_or_above_fix",
+      "id": "historical_pre_to_post",
+      "oci_event_record_id": null,
+      "synthetic_override": {}
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-post",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.8.2-1~deb13u1",
+        "package_arch": "amd64",
+        "package_source": "expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "validate_candidate",
+      "expected_comparison": "at_or_above_fix",
+      "id": "local_replay_event_pre_to_post",
+      "oci_event_record_id": "oci-local-replay-change",
+      "synthetic_override": {}
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-post",
+      "candidate_record_id": "pkg-pre",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.7.1-2",
+        "package_arch": "amd64",
+        "package_source": "expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "source_version": "2.7.1-2",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "wait",
+      "expected_comparison": "below_fix",
+      "id": "hypothetical_changed_to_vulnerable",
+      "oci_event_record_id": null,
+      "synthetic_override": {}
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": null,
+      "candidate_record_id": "pkg-current-uninspected",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": null,
+        "package_arch": null,
+        "package_source": null,
+        "package_suite": null,
+        "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+        "source_version": null,
+        "source_version_basis": "unknown",
+        "target_arch": "amd64"
+      },
+      "expected_action": "unknown",
+      "expected_comparison": "unknown",
+      "id": "current_tag_uninspected",
+      "oci_event_record_id": null,
+      "synthetic_override": {}
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-post",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "no_fix_reported",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.8.2-1~deb13u1",
+        "package_arch": "amd64",
+        "package_source": "expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "unknown",
+      "expected_comparison": "unknown",
+      "id": "advisory_without_fix_control",
+      "oci_event_record_id": null,
+      "synthetic_override": {
+        "fix_state": "no_fix_reported"
+      }
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-post",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.8.2-1~deb13u1",
+        "package_arch": "amd64",
+        "package_source": "not-expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "unknown",
+      "expected_comparison": "unknown",
+      "id": "source_mismatch_control",
+      "oci_event_record_id": null,
+      "synthetic_override": {
+        "package_source": "not-expat"
+      }
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-post",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.8.2-1~deb13u1",
+        "package_arch": "arm64",
+        "package_source": "expat",
+        "package_suite": "trixie",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "unknown",
+      "expected_comparison": "unknown",
+      "id": "arch_mismatch_control",
+      "oci_event_record_id": null,
+      "synthetic_override": {
+        "package_arch": "arm64"
+      }
+    },
+    {
+      "advisory_record_id": "advisory-expat",
+      "before_record_id": "pkg-pre",
+      "candidate_record_id": "pkg-post",
+      "comparator_input": {
+        "advisory_source": "expat",
+        "advisory_suite": "trixie",
+        "fix_state": "fixed_version_known",
+        "fixed": "2.8.2-1~deb13u1",
+        "installed": "2.8.2-1~deb13u1",
+        "package_arch": "amd64",
+        "package_source": "expat",
+        "package_suite": "bookworm",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "target_arch": "amd64"
+      },
+      "expected_action": "unknown",
+      "expected_comparison": "unknown",
+      "id": "suite_mismatch_control",
+      "oci_event_record_id": null,
+      "synthetic_override": {
+        "package_suite": "bookworm"
+      }
+    }
+  ],
+  "records": [
+    {
+      "captured_at": "2026-11-08T13:19:49.125229+00:00",
+      "case_id": "distroless-java21-debian13-expat-2026",
+      "data": {
+        "advisory_id": "DSA-6404-1",
+        "advisory_published_at": null,
+        "advisory_published_on": "2026-07-30",
+        "cve_ids": [
+          "CVE-2026-24515"
+        ],
+        "fix_state": "fixed_version_known",
+        "fixed_source_version": "2.8.2-1~deb13u1",
+        "package_available_at": null,
+        "reason": "A2-H1 and Vunnel 0.66.0 agree on source package and fixed version",
+        "source_package": "expat",
+        "suite": "trixie"
+      },
+      "kind": "debian_advisory",
+      "record_id": "advisory-expat",
+      "schema_version": "0.1",
+      "sources": [
+        {
+          "role": "derived",
+          "sha256": "df6c88294ccd0179cf472a2ad66063b4bb80a4276238b177b12c36dd0f3838e7",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A2-H1/normalized-case.json"
+        },
+        {
+          "role": "derived",
+          "sha256": "73ee6e5969b89f0a15ee97cba7b0953c7cde59dc3265983eb0466b39802e8443",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A2-H2/selected-records.json"
+        }
+      ]
+    },
+    {
+      "captured_at": "2026-11-08T13:19:49.125229+00:00",
+      "case_id": "distroless-java21-debian13-expat-2026",
+      "data": {
+        "architecture": "amd64",
+        "binary_package": "libexpat1",
+        "binary_version": "2.7.1-2",
+        "inspected_at": null,
+        "inspection_state": "observed",
+        "platform_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+        "reason": "suite observed in targeted final os-release path after verified 33-layer replay; Source has no explicit version",
+        "source_package": "expat",
+        "source_version": "2.7.1-2",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "suite": "trixie"
+      },
+      "kind": "image_package",
+      "record_id": "pkg-pre",
+      "schema_version": "0.1",
+      "sources": [
+        {
+          "role": "raw_response",
+          "sha256": "7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/pre-manifest.json"
+        },
+        {
+          "role": "raw_response",
+          "sha256": "9937eabc002c08c1bbb8c31f2f09e76df3f95f3b383ff80d5f221d3d711729b6",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/pre-config.blob"
+        },
+        {
+          "role": "raw_response",
+          "sha256": "40f0a9ec0299bc8d16b23811e4d56e490c710a9460510b3ec36f99337eb885d6",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/pre-layer.blob"
+        },
+        {
+          "role": "local_verification",
+          "sha256": "e632f9449d37a01afbb1bf73d7a13e5e2e2881043bc48dc01d57c0615f2a52ba",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/pre-libexpat1.status"
+        },
+        {
+          "role": "derived",
+          "sha256": "16218ad39ff2105e9e14ac5cfd924025d838e6ae7b932f402c812ec9ba6922b6",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/selection.json"
+        },
+        {
+          "role": "local_verification",
+          "sha256": "e5a5105b56e4fe8cf7ad5a8dfe03112f193d2f83989b4df0cb9ae4440af41146",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/full-suite-replay.json"
+        }
+      ]
+    },
+    {
+      "captured_at": "2026-11-08T13:19:49.125229+00:00",
+      "case_id": "distroless-java21-debian13-expat-2026",
+      "data": {
+        "architecture": "amd64",
+        "binary_package": "libexpat1",
+        "binary_version": "2.8.2-1~deb13u1",
+        "inspected_at": null,
+        "inspection_state": "observed",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "reason": "suite observed in targeted final os-release path after verified 33-layer replay; Source has no explicit version",
+        "source_package": "expat",
+        "source_version": "2.8.2-1~deb13u1",
+        "source_version_basis": "debian_policy_same_as_binary",
+        "suite": "trixie"
+      },
+      "kind": "image_package",
+      "record_id": "pkg-post",
+      "schema_version": "0.1",
+      "sources": [
+        {
+          "role": "raw_response",
+          "sha256": "3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/post-manifest.json"
+        },
+        {
+          "role": "raw_response",
+          "sha256": "33d7ae67b6d805642e06f2e7602e7d2cb6f7f9fa5171aac892cf81eb9f251f74",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/post-config.blob"
+        },
+        {
+          "role": "raw_response",
+          "sha256": "b27e7c69e40256136ce88296714c6e1674824c001f651a55336b4430460a7502",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/post-layer.blob"
+        },
+        {
+          "role": "local_verification",
+          "sha256": "bc49d4d71fb8ce0f23f32f39bf987f2b72929e533af6dd8a138da0761a37debd",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/post-libexpat1.status"
+        },
+        {
+          "role": "derived",
+          "sha256": "16218ad39ff2105e9e14ac5cfd924025d838e6ae7b932f402c812ec9ba6922b6",
+          "uri": "experiments/historical-image-case-20261107/evidence/digests/selection.json"
+        },
+        {
+          "role": "local_verification",
+          "sha256": "e5a5105b56e4fe8cf7ad5a8dfe03112f193d2f83989b4df0cb9ae4440af41146",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/full-suite-replay.json"
+        }
+      ]
+    },
+    {
+      "captured_at": "2026-11-08T13:19:49.125229+00:00",
+      "case_id": "distroless-java21-debian13-expat-2026",
+      "data": {
+        "image": "gcr.io/distroless/java21-debian13",
+        "index_digest": "sha256:b22857e939bd95abd69d9d747f0421a274f9f70855ecfc335f7d97f6eeef578d",
+        "observed_at": "2026-11-08T11:49:43.494756+00:00",
+        "platform": "linux/amd64",
+        "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+        "reason": "current tag baseline; package not inspected",
+        "state": "baseline",
+        "tag": "nonroot",
+        "tag_retarget_at": null
+      },
+      "kind": "oci_observation",
+      "record_id": "oci-current-nonroot",
+      "schema_version": "0.1",
+      "sources": [
+        {
+          "role": "local_verification",
+          "sha256": "d806374e9a503972bc94a88b82579b42c1937f0001d5dd31d8647f40658a9c0a",
+          "uri": "experiments/oci-observation-20261108/evidence/current/observation.json"
+        }
+      ]
+    },
+    {
+      "captured_at": "2026-11-08T13:19:49.125229+00:00",
+      "case_id": "distroless-java21-debian13-expat-2026",
+      "data": {
+        "architecture": null,
+        "binary_package": null,
+        "binary_version": null,
+        "inspected_at": null,
+        "inspection_state": "unknown",
+        "platform_digest": "sha256:0749f5f7461a573740f1fefe4775b6419467e986e7b36929888295f7205c6849",
+        "reason": "no package inspection for current nonroot digest",
+        "source_package": null,
+        "source_version": null,
+        "source_version_basis": "unknown",
+        "suite": null
+      },
+      "kind": "image_package",
+      "record_id": "pkg-current-uninspected",
+      "schema_version": "0.1",
+      "sources": [
+        {
+          "role": "local_verification",
+          "sha256": "d806374e9a503972bc94a88b82579b42c1937f0001d5dd31d8647f40658a9c0a",
+          "uri": "experiments/oci-observation-20261108/evidence/current/observation.json"
+        }
+      ]
+    },
+    {
+      "captured_at": "2026-11-08T13:19:49.125229+00:00",
+      "case_id": "distroless-java21-debian13-expat-2026",
+      "data": {
+        "image": "fixture.local/distroless/java21-debian13",
+        "index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+        "observed_at": "2026-11-08T12:58:53.526442+00:00",
+        "platform": "linux/amd64",
+        "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+        "reason": "synthetic local tag retarget; platform manifests are archived GCR bytes",
+        "state": "changed",
+        "tag": "local-replay",
+        "tag_retarget_at": null
+      },
+      "kind": "oci_observation",
+      "record_id": "oci-local-replay-change",
+      "schema_version": "0.1",
+      "sources": [
+        {
+          "role": "derived",
+          "sha256": "8ff9cef67ff9f2da74ae5d82ec53fb74f4de386ff27af986abc9f812b559be2b",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/replay.json"
+        },
+        {
+          "role": "local_verification",
+          "sha256": "f4f09e387dcc434892c47d040090d612ebd1fecaa4d94f578c54b28a5dc9b13d",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/events.jsonl"
+        },
+        {
+          "role": "raw_response",
+          "sha256": "538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/02-post/tag-index.json"
+        },
+        {
+          "role": "raw_response",
+          "sha256": "3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+          "uri": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/02-post/platform-manifest.json"
+        }
+      ]
+    }
+  ],
+  "schema_path": "experiments/tool-architecture-evaluation-20261108/evidence/A3-H1/contract.schema.json",
+  "schema_sha256": "e86b4555048a480ac8452b4d42b8a8a72f5091015ec2adbcf3b104dae9f63f3c"
+}

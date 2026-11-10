@@ -1,0 +1,14 @@
+{
+  "platform": {
+    "Content-Length": 6734,
+    "Content-Type": "application/vnd.oci.image.manifest.v1+json",
+    "Date": "Sun, 08 Nov 2026 12:58:53 GMT",
+    "Docker-Content-Digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a"
+  },
+  "tag": {
+    "Content-Length": 290,
+    "Content-Type": "application/vnd.oci.image.index.v1+json",
+    "Date": "Sun, 08 Nov 2026 12:58:53 GMT",
+    "Docker-Content-Digest": "sha256:150b02b58851e50135eab325aab98a3394741ab8cc56f4296f33e4578d147f4a"
+  }
+}

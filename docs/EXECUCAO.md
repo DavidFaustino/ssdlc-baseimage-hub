@@ -1,6 +1,6 @@
 # Roteiro de conferência e execução
 
-Use este roteiro como pessoa revisora. Cada passo diz o que observar e quando parar. Há **dois ambientes diferentes**: este repositório público contém o resumo; o acervo local de pesquisa contém scripts, capturas e recibos. Os comandos da segunda parte só funcionam com esse acervo. Isso é uma pendência de portabilidade, não um teste aprovado no GitHub.
+Use este roteiro como pessoa revisora. Cada passo diz o que observar e quando parar. Há **dois níveis de reprodução**: o [núcleo incluído neste repositório](RUNBOOK.md) e a comparação integral de 44 casos, que ainda exige o acervo bruto local. Não confunda um com o outro.
 
 ## Parte 1 — conferir o que está entregue aqui
 
@@ -10,7 +10,11 @@ Use este roteiro como pessoa revisora. Cada passo diz o que observar e quando pa
 4. Abra [Workflows](WORKFLOWS.md). **Saída esperada:** distinguir a história sintética concluída do fluxo completo de desenvolvimento ainda proposto.
 5. Anote correções no [marco](STATUS.md) e na página temática. Para mudar um estado para “provado”, exija entrada, saída, teste e recibo correspondentes.
 
-## Parte 2 — repetir a prova no acervo local
+## Parte 2 — repetir a prova incluída neste repositório
+
+Siga o [runbook reproduzível](RUNBOOK.md): conferir os hashes, instalar dependências numa venv, rodar os 18 testes incluídos, repetir a decisão e conferir a recuperação do recibo. **Esperado:** uma candidata para validação, uma reavaliação do mesmo digest, nenhuma aprovação automática. **Pare** em qualquer falha de hash ou teste.
+
+## Parte 3 — auditar a comparação integral no acervo local
 
 **Pré-requisito:** acesso à pasta `Engineer/2_pocs/base_image_hub`, Python 3 e às dependências e binários descritos no runbook local `experiments/operational-abc-comparison-20261108/RUNBOOK.md`. Faça a execução em diretório de saída novo. O registry do caso histórico é local; estes comandos não mudam uma tag pública. Não cole credenciais nos comandos ou recibos.
 
@@ -41,6 +45,6 @@ Use este roteiro como pessoa revisora. Cada passo diz o que observar e quando pa
 
 4. **Repetir detecção A e B, se necessário.** Siga os pré-requisitos específicos dos relatórios locais `A.md` e `B.md`; eles usam, respectivamente, consulta direta e Diun real sobre o mesmo registry controlado. Compare recibos e estado, não só o número de requisições. A fonte Debian e Vunnel devem se referir à **mesma CVE e advisory**.
 
-## Parte 3 — antes de levar ao trabalho
+## Parte 4 — antes de levar ao trabalho
 
 Use [Próxima etapa](NEXT-STEPS.md) para validar a cadeia existente, o papel do proxy e o ponto de entrada do resultado. Os scripts acima **não** devem ser copiados para um CI corporativo sem adaptar acesso, fonte de segurança, plataforma, armazenamento dos recibos e gates já existentes. O primeiro piloto nesse ambiente deve registrar uma candidata sem certificá-la automaticamente.

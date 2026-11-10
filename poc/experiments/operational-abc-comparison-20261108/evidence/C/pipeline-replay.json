@@ -1,0 +1,109 @@
+{
+  "A": {
+    "baseline": {
+      "action": "none",
+      "image_approved": false,
+      "status": "baseline"
+    },
+    "baseline_after": {
+      "index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "observed_at": "2026-11-08T12:58:53.526442+00:00",
+      "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+    },
+    "decision_count": 1,
+    "decision_receipt": {
+      "action": "validate_candidate",
+      "candidate_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "comparison": "at_or_above_fix",
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "fixture_manifest_sha256": "973ac9067ac5a9c1698034da996c6861c799963ae0710b8a276956a57c8e236d",
+      "image": "fixture.local/distroless/java21-debian13",
+      "image_approved": false,
+      "observed_at_utc": "2026-11-08T12:58:53.526442+00:00",
+      "platform": "linux/amd64",
+      "previous_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "scope": "local_fixture",
+      "source_ledger_sha256": "56b330084c8dab3d9ba0208e46ff2c90108b4734d32db9d05f8c243714c8f88b",
+      "status": "decided",
+      "tag": "local-replay"
+    },
+    "failure_count": 0,
+    "post_commit_before_receipt_crash": true,
+    "repeat": {
+      "action": "none",
+      "image_approved": false,
+      "status": "unchanged"
+    },
+    "replayed": {
+      "action": "none",
+      "image_approved": false,
+      "status": "duplicate"
+    },
+    "state_sqlite": "pipeline-A.sqlite"
+  },
+  "B": {
+    "baseline": {
+      "action": "none",
+      "image_approved": false,
+      "status": "baseline"
+    },
+    "baseline_after": {
+      "index_digest": "sha256:538cfa72cbe6a72d8aed5dd2ca934d667819011093b4a87fb6b4d7c763cd0e96",
+      "observed_at": "2026-11-08T12:58:53.526442+00:00",
+      "platform_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2"
+    },
+    "decision_count": 1,
+    "decision_receipt": {
+      "action": "validate_candidate",
+      "candidate_digest": "sha256:3d28ee74ec48fc689fc0049fcae8376956f14b6a4d4f992a8b5e66780125bfb2",
+      "comparison": "at_or_above_fix",
+      "event_id": "71222839664cab3fa27ff3cfa90a206c6b836797be8fbfc19d209d54cb404c9b",
+      "fixture_manifest_sha256": "973ac9067ac5a9c1698034da996c6861c799963ae0710b8a276956a57c8e236d",
+      "image": "fixture.local/distroless/java21-debian13",
+      "image_approved": false,
+      "observed_at_utc": "2026-11-08T12:58:53.526442+00:00",
+      "platform": "linux/amd64",
+      "previous_digest": "sha256:7986a90179e1baee5630b9fa8962038d368be42eb77b03b5639747874ca2bf5a",
+      "scope": "local_fixture",
+      "source_ledger_sha256": "56b330084c8dab3d9ba0208e46ff2c90108b4734d32db9d05f8c243714c8f88b",
+      "status": "decided",
+      "tag": "local-replay"
+    },
+    "failure_count": 0,
+    "post_commit_before_receipt_crash": true,
+    "repeat": {
+      "action": "none",
+      "image_approved": false,
+      "status": "unchanged"
+    },
+    "replayed": {
+      "action": "none",
+      "image_approved": false,
+      "status": "duplicate"
+    },
+    "state_sqlite": "pipeline-B.sqlite"
+  },
+  "B_notice_raw_sha256": "sha256:98eb078527e5df363c13b9554b4af643a27915bb2cea6c59ba930ccd8ebf2769",
+  "B_notice_reference_mapping": {
+    "canonical": "fixture.local/distroless/java21-debian13:local-replay",
+    "observed": "127.0.0.1:56014/test/image:local-replay"
+  },
+  "limitations": [
+    "B loopback registry reference normalized only after configured watcher and retained bytes match",
+    "Pipeline decision uses archived DSA/ledger; selected Vunnel fix is checked for parity but is not injected into Pipeline policy",
+    "Crash is injected immediately after State.commit_decision returns inside Pipeline; process kill timing and external receipt transport not exercised"
+  ],
+  "same_decision_receipt": true,
+  "scope": "sealed local fixture; real Pipeline validation and SQLite reopen",
+  "vunnel_fix": {
+    "advisory": "DSA-6404-1",
+    "cve": "CVE-2026-24515",
+    "fixed_source_version": "2.8.2-1~deb13u1",
+    "provider_timestamp": "2026-11-08T20:50:29.646450+00:00",
+    "scope": "archived_fixture",
+    "source": "vunnel_debian_snapshot",
+    "source_package": "expat",
+    "suite": "trixie",
+    "version_format": "dpkg"
+  }
+}

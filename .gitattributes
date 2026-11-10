@@ -1,0 +1,2 @@
+# HTTP response captures retain their original CRLF bytes and are checked by SHA-256.
+poc/**/*.headers -diff
