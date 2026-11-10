@@ -16,6 +16,8 @@ Leia nesta ordem:
 3. [Resultados da POC](POC.md): o que os testes demonstraram e seus limites.
 4. [Próxima etapa](NEXT-STEPS.md): decisões e provas necessárias para continuar.
 
+Para confrontar a documentação e a interface com o processo completo, leia a [revisão BMAD do Hub](reviews/README.md), com pareceres independentes de documentação, UX e arquitetura.
+
 Se quiser conferir cada afirmação, use o [checklist de revisão](EXECUCAO.md) e a [lista das fontes](SOURCES.md).
 
 ## Para executar
