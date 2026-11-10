@@ -1,6 +1,6 @@
 # Evidências incluídas no pacote público
 
-Este diretório contém **capturas reais selecionadas** da POC local. Não contém a cópia integral do laboratório. Para conferir os bytes publicados antes de interpretar os resultados, execute a partir de `poc/`:
+Este diretório contém **capturas selecionadas** da POC local; alguns metadados de caminhos foram sanitizados para publicação. Não contém a cópia integral do laboratório. Para conferir os bytes publicados antes de interpretar os resultados, execute a partir de `poc/`:
 
 ```sh
 shasum -a 256 -c evidence/SHA256SUMS

@@ -13,7 +13,7 @@ flowchart LR
   P --> K[Argo CD e EKS]
 ```
 
-As duas camadas de imagem têm rebuild diário no GitHub Actions. A primeira já tem matrix e aprovação; a segunda ainda precisa receber o mesmo fluxo de aprovação. Scans e gates já fazem parte da cadeia. A aplicação só incorpora uma nova base quando seu próprio CI reconstrói a imagem. Esses fatos vêm do mapa do processo atual; detalhes de implementação e a natureza exata da aprovação não foram verificados nesta POC.
+As duas camadas de imagem têm reconstrução diária no GitHub Actions. A primeira já tem matriz e aprovação; a segunda ainda precisa receber o mesmo fluxo de aprovação. Scans e gates já fazem parte da cadeia. A aplicação só incorpora uma nova base quando seu próprio CI reconstrói a imagem. Esses fatos vêm do mapa do processo atual; detalhes de implementação e a natureza exata da aprovação não foram verificados nesta POC.
 
 ## 2. A pergunta que a POC tentou responder
 
@@ -28,7 +28,7 @@ flowchart LR
   D -->|evidência insuficiente| X[Aguardar ou investigar]
 ```
 
-**Este segundo diagrama é TO-BE.** Ainda não foi conectado à matrix diária, ao proxy corporativo ou aos gates de certificação. Não cria um segundo processo de aprovação.
+**Este segundo diagrama é TO-BE.** Ainda não foi conectado à matriz diária, ao proxy corporativo ou aos gates de certificação. Não cria um segundo processo de aprovação.
 
 ## 3. Papel de cada peça
 
@@ -44,7 +44,7 @@ flowchart LR
 
 ## 4. Onde a decisão arquitetural realmente está
 
-A primeira decisão é **se a matrix diária existente deve fazer também a observação de digests/advisories**, ou se vale um monitor independente para antecipar eventos. Só depois faz sentido escolher implementação direta ou Diun. A comparação local mostrou comportamento de ambas as rotas, mas não demonstrou que um monitor novo seja necessário nesta cadeia.
+A primeira decisão é **se a matriz diária existente deve fazer também a observação de digests/advisories**, ou se vale um monitor independente para antecipar eventos. Só depois faz sentido escolher implementação direta ou Diun. A comparação local mostrou comportamento de ambas as rotas, mas não demonstrou que um monitor novo seja necessário nesta cadeia.
 
 O cache do JFrog é uma regra separada: consultar uma tag pelo proxy pode retornar o manifesto ainda válido no cache. A política de frescor deve ser especificada no repositório remoto; instalar Diun não altera isso. O digest recebido precisa ser vinculado à plataforma e ao conteúdo verificado antes de qualquer avaliação positiva.
 

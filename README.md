@@ -1,14 +1,14 @@
 # Base Image Hub
 
-Protótipo navegável para acompanhamento da operação de imagens base, com temática institucional vermelha, fundo claro e navegação por áreas.
+## Comece aqui
 
-## Documentação do trabalho
+Abra o [guia do projeto](docs/README.md). Ele mostra o que foi feito, onde encontrar as provas e o que ainda falta. Para repetir os testes incluídos neste repositório, siga o [runbook](docs/RUNBOOK.md).
 
-Comece pelo [mapa de leitura](docs/README.md). Ele separa o processo atual, a POC de atualização de imagens e o experimento de workflows com BMAD. Cada conclusão indica se foi observada, testada localmente ou apenas proposta. Esta documentação não transforma o protótipo em sistema operacional.
+Este repositório também contém um **protótipo visual** com dados demonstrativos. Ele não executa a POC nem se conecta ao processo real.
 
 ![Visão geral do Base Image Hub](preview.png)
 
-## Abrir
+## Abrir o protótipo visual
 
 Abra `index.html` diretamente no navegador. O HTML contém os estilos, os ícones e o JavaScript; não requer instalação nem acesso à internet.
 

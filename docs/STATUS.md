@@ -29,6 +29,6 @@ A POC local provou partes da identificação de digest, inspeção de pacote e c
 - O BMad Loop sintético não demonstra que ele desenvolverá autonomamente toda a POC.
 - O protótipo visual não representa integrações funcionais.
 
-**Próxima conversa arquitetural:** mapear a informação nova sobre digest e patch contra a matrix diária e os gates existentes. [Veja o encaixe proposto](ARCHITECTURE.md).
+**Próxima conversa arquitetural:** mapear a informação nova sobre digest e patch contra a matriz diária e os gates existentes. [Veja o encaixe proposto](ARCHITECTURE.md).
 
 **Para executar o que já é reproduzível neste repositório:** [runbook](RUNBOOK.md). Para saber exatamente o que está incluído e o que falta: [evidências](../poc/EVIDENCE.md).

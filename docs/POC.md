@@ -17,11 +17,11 @@ Esta página relata provas, não opções de implantação. O caso principal foi
 | **Direta:** OCI + fonte Debian | Consulta do digest e versão corrigida da CVE. | Agenda, estado durável, erros, vínculo da plataforma e recibo. |
 | **Com ferramentas:** Diun + Vunnel | Aviso da troca de digest e dados Debian processados. | Resolver e verificar o manifesto filho da plataforma, lidar com aviso perdido e aplicar a mesma regra de correlação. |
 
-Na fixture histórica, as duas rotas chegaram à mesma avaliação. Em três pares locais, a rota direta fez menos requisições. A medição não inclui a operação corporativa e **não é justificativa suficiente para escolher uma ferramenta**. Diun oferece agenda, estado e notificações próprios; a pergunta sobre seu valor deve considerar a matrix diária que já existe.
+Na fixture histórica, as duas rotas chegaram à mesma avaliação. Em três pares locais, a rota direta fez menos requisições. A medição não inclui a operação corporativa e **não é justificativa suficiente para escolher uma ferramenta**. Diun oferece agenda, estado e notificações próprios; a pergunta sobre seu valor deve considerar a matriz diária que já existe.
 
 ## O que significa a matriz de 44 casos
 
-Foram **6 completos, 38 parciais, nenhum falho e nenhum bloqueado** na classificação final. “Parcial” quer dizer que houve observação útil, mas aquele cenário não atravessou todas as mesmas etapas nas duas rotas. Portanto, **44 não significa 44 provas completas**. A linha pública que antes estava bloqueada foi fechada somente para o digest e as duas capturas de feed preservadas.
+Foram **6 completos, 38 parciais, nenhum falho e nenhum bloqueado** na classificação final. “Parcial” quer dizer que houve observação útil, mas faltou um campo do contrato comum ou uma decisão da correlação naquele cenário. Portanto, **44 não significa 44 provas completas**. A linha pública que antes estava bloqueada foi fechada somente para o digest e as duas capturas de feed preservadas.
 
 ## Limites que importam para replicar
 
