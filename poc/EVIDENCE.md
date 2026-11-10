@@ -1,34 +1,34 @@
-# Evidências incluídas no pacote público
+# Inventário de evidências da POC
 
-Este diretório contém **capturas selecionadas** da POC local; alguns metadados de caminhos foram sanitizados para publicação. Não contém a cópia integral do laboratório. Para conferir os bytes publicados antes de interpretar os resultados, execute a partir de `poc/`:
+Este arquivo responde **qual prova sustenta cada conclusão e o que pode ser reexecutado a partir deste repositório**. Para interpretação, veja o [relatório técnico](../docs/POC.md); para comandos, entradas, asserções e diagnóstico, siga o [runbook](../docs/RUNBOOK.md).
 
-```sh
-shasum -a 256 -c evidence/SHA256SUMS
-```
+## Verificação inicial
 
-## O que está aqui
+O [manifesto SHA-256](evidence/SHA256SUMS) lista **55 arquivos selecionados** desta cópia pública. Na pasta `poc/`, execute `shasum -a 256 -c evidence/SHA256SUMS` (Linux: `sha256sum -c evidence/SHA256SUMS`). Registre também `git rev-parse HEAD` e `git status --short`. **Os 55 hashes cobrem evidências listadas, não scripts, testes ou dependências.** Um hash válido não substitui revisão do código nem demonstra que o experimento histórico foi repetido.
 
-| Conjunto | Conteúdo | O que permite conferir |
-|---|---|---|
-| Caso histórico | Manifestos, configurações, camadas do pacote, status do `libexpat1` antes/depois e seleção dos digests. | Que os dois digests históricos da mesma variante continham versões diferentes do pacote. |
-| Replay OCI local | Índices, manifestos filhos, observações, eventos e requisições do registry controlado. | Que a troca de digest gerou um evento e a repetição não gerou outro. |
-| Contrato e entradas de correlação | Schema, entradas do caso, prova de suite e manifesto de fontes. | Que a decisão foi baseada em fontes vinculadas por hash, plataforma, pacote e advisory. |
-| Resumo A/B/C | Linhas classificadas da comparação, pares de custo, recibo de replay e recibo da leitura pública arquivada. | O resultado publicado da comparação; **não** é suficiente para refazer todos os 44 casos a partir do zero. |
+## Cadeia de evidência por cenário
 
-## O que pode ser executado agora
+| Cenário e conclusão | Entrada publicada | Script/versão para repetir | Saída publicada ou saída nova | Limite |
+|---|---|---|---|---|
+| Caso histórico: pacote antes/depois. | [Seleção de digests](experiments/historical-image-case-20261107/evidence/digests/selection.json), [manifestos e status](experiments/historical-image-case-20261107/evidence/digests/). | [Consumidor](experiments/tool-architecture-evaluation-20261108/evidence/A3-H4/consumer-contract.py) confere os campos contra as fontes; [prova de suite](experiments/tool-architecture-evaluation-20261108/evidence/A3-H4/suite-proof.json) vincula camadas. | Arquivos da fixture e ledger [`full-suite-replay.json`](experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/full-suite-replay.json). | Inspeção dirigida do pacote e caminhos finais; não inventário integral de pacotes nem blobs completos aqui. |
+| A: mudança por OCI direto. | [Índices/filhos do replay](experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/). | [`probe.py`](experiments/operational-abc-comparison-20261108/scripts/A/probe.py) + [`observe.py`](experiments/oci-observation-20261108/observe.py). | Nova execução produz `summary.json`, `hashes.json`, `result.json`, `metric.json`, `raw/` e `events.jsonl` no diretório escolhido. | 36 execuções locais; o script afirma os 3 ciclos principais, e o runbook acrescenta controles negativos selecionados. Não observa mudança pública. |
+| B: aviso Diun na mesma fixture. | Índices/filhos acima e [config blobs](experiments/historical-image-case-20261107/evidence/digests/). | [`run_retained_b.py`](experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py) + **Diun 4.33.1** oficial conferido por checksum. | Nova execução produz `results.json`, `receipt.json`, `notifications.jsonl`, `diun.db`, logs e `served/`; avisos novos `[0,1,0]`. | Registry em loopback; aviso não é decisão e não prova pacote. |
+| Fonte de correção atual. | Feed Debian baixado no momento da execução. | [`measure_vunnel.py`](experiments/operational-abc-comparison-20261108/scripts/B/measure_vunnel.py) chama **Vunnel 0.66.0** via `uv`/Python 3.13. | Nova execução produz `receipt.json`, `vunnel.log` e `workspace/`, com `exit_code`, hashes e 3 consultas da CVE. | O feed e caches mudam; dependências transitivas de `uv` não estão travadas por lockfile. Não alimenta C automaticamente. |
+| C: decisão e retomada. | [Manifesto de quatro fontes por hash](experiments/integrated-update-poc-20261108/evidence/I0-H1/manifest.json). | [`run_local.py`](experiments/integrated-update-poc-20261108/run_local.py), [pipeline](experiments/integrated-update-poc-20261108/src/pipeline.py), [18 testes](experiments/integrated-update-poc-20261108/tests/). | Nova execução produz `state.sqlite`, `run.json`, `receipt.json`, `advisory-receipt.json`; `--recover` reexporta sem nova decisão. | Lê três observações arquivadas; **não** consome a saída nova de A, B ou Vunnel. |
+| Ensaio integrado A/B → mesma decisão. | Fixture do laboratório anterior, incluindo hashes originais. | Executor completo anterior **não publicado**. | [`pipeline-replay.json`](experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json): A e B com `decision_count=1`, `action=validate_candidate`, `image_approved=false`. | Registro auditável; não regenerável a partir dos comandos publicados nem validável por hash contra a fixture saneada. |
+| Digest público estável, sem decisão de troca. | Captura pública e duas revisões arquivadas de feed. | [Pipeline público](experiments/integrated-update-poc-20261108/src/pipeline.py) no laboratório. | [Recibo selecionado](experiments/operational-abc-comparison-20261108/evidence/C/public-pipeline-20261108-verified/receipt.json): 1 observação, 2 reavaliações, 0 decisões de imagem. | Não houve troca da tag pública nem inspeção de todas as CVEs/pacotes. |
+| Comparação de 44 casos e custo local. | Capturas do laboratório original. | Executor integral **não publicado**; scripts A/B acima repetem só percursos selecionados. | [`rows.json`](experiments/operational-abc-comparison-20261108/evidence/C/rows.json): 6 completas, 38 parciais. [`cost-pairs.json`](experiments/operational-abc-comparison-20261108/evidence/C/cost-pairs.json): 3 pares quentes, A 7 e B 16 requisições por par. | Linha parcial não é prova completa; custos não representam implantação ou manutenção. |
 
-O [runbook](../docs/RUNBOOK.md) reproduz o núcleo de correlação com estado e recuperação usando a fixture pública deste pacote. Os scripts originais adaptados em `experiments/operational-abc-comparison-20261108/scripts/A/probe.py` e `scripts/B/run_retained_b.py` também permitem **nova execução local** de A (consulta OCI direta) e B (Diun real) sobre o registry controlado. O script `scripts/B/measure_vunnel.py` exercita a coleta do feed com Vunnel quando a ferramenta e a rede estão disponíveis. Esses ensaios geram **recibos novos no diretório temporário escolhido pelo executor**; eles não substituem os recibos arquivados neste diretório.
+## Saneamento e procedência
 
-Assim, há três coisas distintas para conferir: (1) a fixture e seus hashes publicados, (2) os resultados de uma execução nova, e (3) o registro histórico dos 44 casos. Compare o resultado novo com o histórico apenas quando entradas, versões e escopo coincidirem.
+Para publicar o ledger de camadas, caminhos absolutos do computador original e uma referência de cache temporário foram substituídos por caminhos relativos. Os hashes dependentes no `suite-proof.json`, `inputs.json` e `I0-H1/manifest.json` foram recalculados. Os digests OCI, versões de pacote e a conclusão técnica do caso não foram alterados, mas **a fixture pública é derivada, não cópia byte a byte do acervo privado**.
 
-## O que foi adaptado para publicação
+Isso importa na auditoria: o [recibo integrado antigo](experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json) traz `fixture_manifest_sha256=973ac9…` e `source_ledger_sha256=56b330…`; o manifesto/ledger públicos usam `78218d…` e `e5a510…`. O resultado `validate_candidate` coincide, mas não há cadeia de hashes entre o recibo antigo e os bytes saneados. **Use o recibo novo de C para validar a fixture pública; use o recibo antigo somente como registro histórico.**
 
-O ledger de camadas continha caminhos absolutos do computador de origem. Nesta cópia, **somente esses caminhos e a referência a um cache temporário foram trocados por caminhos relativos**. Os hashes encadeados no `suite-proof.json`, `inputs.json` e `I0-H1/manifest.json` foram recalculados para os bytes da cópia pública. Portanto, estes quatro arquivos são **derivados sanitizados**; não afirmamos que são idênticos aos originais arquivados. Os digests OCI, versões de pacote e resultados técnicos não foram alterados. O manifesto `SHA256SUMS` identifica exatamente a cópia publicada.
+## Material ausente e condição para repetir tudo
 
-## Limites explícitos
+- As capturas brutas que deram origem às 44 linhas somam aproximadamente **211 MB** e não estão neste repositório. `rows.json` conserva a classificação e o motivo de cada parcial, mas não permite reconstruir todas as linhas do zero.
+- Os **34 blobs brutos de camadas** da leitura pública não foram importados. O ledger e a prova de suite documentam a inspeção dirigida feita no laboratório; uma nova inspeção integral requer baixar os blobs por digest e conferir os bytes.
+- Não há comando publicado que ligue **novas** saídas A/B/Vunnel ao consumidor C em uma única execução. Também não há prova de operação corporativa, certificação, publicação ou consumo em produção.
 
-- A matriz de 44 casos está em `rows.json` como resultado arquivado. As capturas completas que a geraram somam cerca de 211 MB, incluindo camadas públicas repetidas e o banco Vunnel. Elas **não estão neste repositório**; portanto os scripts A/B incluídos reproduzem seus respectivos percursos locais, mas **não** o comparador integral de 44 casos.
-- Os 34 blobs brutos da imagem pública não foram importados. O ledger e o recibo mostram o que foi verificado no laboratório, mas uma nova inspeção integral exige baixar os blobs por digest e conferir os hashes.
-- Os recibos incluídos não comprovam implantação, certificação ou operação contínua.
-
-Para repetir somente o caminho principal com os scripts incluídos, siga o [runbook](../docs/RUNBOOK.md). Para auditar a matriz completa, use o acervo original do experimento e seu runbook local até que seja publicada uma forma portátil de obter e verificar os arquivos grandes.
+Uma nova execução deve guardar commit, versões, entrada, hashes, comando, saída e limite observado. Revise saídas novas antes de publicá-las: algumas carregam caminhos absolutos da máquina executora.

@@ -1,39 +1,33 @@
-# Base Image Hub
+# Base Image Hub — POC e arquitetura
 
-## Comece aqui
+Este repositório reúne a documentação e um pacote reproduzível da POC que relaciona **mudança de imagem**, **pacote instalado** e **correção de segurança**. Também contém um protótipo visual independente. O objetivo é avaliar onde essa informação acrescentaria valor ao processo de imagens base já existente.
 
-Abra o [guia do projeto](docs/README.md). Ele mostra o que foi feito, onde encontrar as provas e o que ainda falta. Para repetir os testes incluídos neste repositório, siga o [runbook](docs/RUNBOOK.md).
+**Estado:** pesquisa e provas locais. Nenhuma imagem, ferramenta ou arquitetura foi aprovada para produção. Os scripts publicados permitem repetir testes específicos; eles ainda não formam uma execução operacional única de A/B/Vunnel até a decisão C.
 
-Este repositório também contém um **protótipo visual** com dados demonstrativos. Ele não executa a POC nem se conecta ao processo real.
+## Por onde começar
 
-![Visão geral do Base Image Hub](preview.png)
+| Se você precisa... | Leia |
+|---|---|
+| Entender o que foi feito, o que falta e o alcance das conclusões | [Marco atual](docs/STATUS.md) |
+| Relacionar a POC ao processo de imagens base existente | [Arquitetura](docs/ARCHITECTURE.md) |
+| Conferir resultados e procedência das provas | [Resultados da POC](docs/POC.md) e [inventário de evidências](poc/EVIDENCE.md) |
+| Reexecutar os testes publicados | [Runbook técnico](docs/RUNBOOK.md) |
+| Entender o trabalho paralelo com BMAD e os próximos passos | [Workflows](docs/WORKFLOWS.md) e [plano de retomada](docs/NEXT-STEPS.md) |
 
-## Abrir o protótipo visual
+O [índice de documentação](docs/README.md) explica a ordem de leitura e os termos principais. A [lista de fontes](docs/SOURCES.md) distingue arquivos publicados de material que permanece no acervo local.
 
-Abra `index.html` diretamente no navegador. O HTML contém os estilos, os ícones e o JavaScript; não requer instalação nem acesso à internet.
+## O que o pacote executável cobre
 
-Para uma prévia por HTTP:
+Na pasta [`poc/`](poc/README.md) estão os scripts, fixtures selecionadas, testes e recibos para: observar uma troca de digest por consulta OCI direta; observar a mesma troca com Diun; consultar um feed Debian atual com Vunnel; e repetir uma decisão de correlação C sobre entradas históricas arquivadas. Os **55 arquivos de evidência incluídos** têm hashes conferíveis. A suíte pública tem **18 testes**.
+
+A comparação original de **44 casos** está resumida em linhas e recibos selecionados. Suas capturas completas e os 34 blobs da inspeção pública não foram incluídos; portanto, ela **não pode ser integralmente recalculada** a partir deste repositório. O [runbook](docs/RUNBOOK.md) explicita essa fronteira antes dos comandos.
+
+## Protótipo visual
+
+[`index.html`](index.html) é uma interface demonstrativa com dados fictícios e sem backend. Abra o arquivo no navegador ou sirva a pasta localmente:
 
 ```sh
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Acesse http://127.0.0.1:8765.
-
-## Áreas disponíveis
-
-- Visão geral da operação e prioridades.
-- Jornada das imagens, com busca e filtro por estado.
-- Automações, agenda e histórico demonstrativo.
-- Catálogo de imagens e detalhes de certificação.
-- Adoção e cobertura por ambiente.
-- Arquitetura conceitual com componentes clicáveis.
-- Roadmap com entregas e dependências.
-
-O botão **Baixar HTML** exporta uma cópia independente do protótipo.
-
-## Estado do projeto
-
-Esta versão usa dados demonstrativos. A arquitetura está apresentada para validação com o processo real. Não há integração com GitHub, ECR, S3, JFrog, scanners ou backend de automações.
-
-Verificações realizadas: sintaxe JavaScript, navegação nas sete áreas, busca sem resultados, limpeza e filtro por estado, detalhes das imagens, fechamento por Escape e detalhes da arquitetura.
+O protótipo não executa os scripts da POC e não consulta registry, JFrog, ECR ou scanners. [Prévia](preview.png).

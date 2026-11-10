@@ -1,40 +1,61 @@
-# Workflows, BMAD e servidor de IA
+# Workflow de desenvolvimento: desenho e provas
 
-Este é um **trabalho de engenharia do processo de desenvolvimento**. Ele apoia o Base Image Hub, mas não deve ser confundido com a lógica que decide sobre imagens base.
+Esta frente organiza **como desenvolver e retomar trabalho** com BMAD Method, CIS, TEA e BMad Loop. Ela é diferente da lógica que avalia imagens base. O fluxo completo abaixo é um **contrato proposto**; só algumas partes foram executadas em testes isolados.
 
-## O fluxo pretendido
+## Fluxo proposto
 
 ```mermaid
 flowchart LR
-  D[Discovery e fontes] --> S[Especificação e arquitetura]
-  S --> G[Pacote revisado por pessoa]
-  G --> I[Histórias delimitadas no Loop]
-  I --> V[Testes e verificação]
-  V --> R[Resultado consolidado e revisão]
+  D["Abrir rodada e pesquisar"] --> S["Especificar e decompor"]
+  S --> G0["Revisão humana do pacote"]
+  G0 --> P["Preflight e história no Loop"]
+  P --> V["Testar e verificar"]
+  V --> G1["Revisão humana do resultado"]
 ```
 
-A revisão humana foi prevista **no pacote antes do Loop** e **no resultado consolidado**, com intervenção intermediária quando uma decisão sair do escopo autorizado ou depender de acesso. O agente não deve declarar uma história concluída só porque seus testes locais passaram: estado, revisão, escopo e recibo precisam concordar.
+A revisão antecipada de arquitetura ocorre **quando uma escolha impedir o fechamento do plano**. O pacote completo passa por revisão humana antes do Loop. Durante a execução, falta de acesso ou mudança fora do escopo aprovado bloqueia apenas a parte dependente e pede direção. O resultado consolidado volta para revisão humana ao final.
 
-## O que foi feito
+## Estado e retomada
 
-| Parte | Evidência observada | Leitura correta |
+| Estado | O que já precisa existir | Próximo passo permitido |
 |---|---|---|
-| BMAD Method, CIS, TEA e BMad Loop | Ferramentas e skills instaladas e inventariadas localmente; foram mapeadas saídas declaradas e pontos interativos. | Instalação não é execução do workflow completo. |
-| Desenho SSDLC | Há especificação, diagramas, handoffs, gates, estados e arquivos previstos. Revisores contestaram o desenho. | É uma proposta de orquestração, não runtime automatizado em produção. |
-| Controle de estado | Fixture local testou bloqueio, retomada, eventos e escrita de evidência. | Prova do controle local, separada da lógica de imagens. |
-| Modelo local | OpenCode no Mac chamou o modelo hospedado no servidor de IA em provas sintéticas. | O servidor executou inferência; isso não significa que o workflow do domínio foi concluído por ele. |
-| BMad Loop | Uma história sintética chegou a `done` com revisão, testes e recibo formal em uma variante isolada. | Prova de caminho técnico. O perfil de revisão e o controle de contexto continuam experimentais. |
-| Contexto e escopo | Checkpoint externo e gate Git foram testados; uma retomada sintética concluiu. | Uso/compreensão do checkpoint pelo modelo após compactação em execução real ainda não foi comprovado. |
+| Planejado | `PLAN.md` com pergunta, fontes, limites e critérios. | Pesquisar ou obter acesso. |
+| Pesquisando | Fontes e achados registrados, com fatos separados de hipóteses. | Produzir contrato da POC. |
+| Especificado | Contrato, arquitetura, testes e histórias com entradas definidas. | Preparar pacote de revisão. |
+| Aguardando revisão | Pacote identificado por versão e hashes. | Aguardar decisão humana; sem despacho. |
+| Aprovado | Decisão registra escopo, histórias e limites. | Fazer preflight. |
+| Em execução | História autorizada, workspace, comandos e recibos de etapa. | Implementar, testar e verificar dentro do limite. |
+| Verificado | Testes, revisão, diff permitido e recibo concordam. | Consolidar `RESULTS.md`. |
+| Fechado | Resultado consolidado recebeu decisão humana. | Abrir outra rodada, se houver. |
+| Bloqueado | Último estado válido e motivo preservados. | Retomar do checkpoint após resolver a dependência. |
 
-## O que não foi feito
+Um arquivo de história marcado `done` isoladamente **não** basta: o controlador também precisa registrar verificação, estado terminal e recibo. Na retomada, conferir a identidade das entradas, o último estado confirmado e os efeitos externos antes de repetir qualquer ação.
 
-- O ciclo inteiro **Discovery → especificação → histórias → Loop → verificação → fechamento** não foi executado com uma história real de atualização de imagem base.
-- O desenho de workflow não foi promovido como padrão reutilizável para outros produtos.
-- A variante enxuta de revisão do Loop não foi homologada para histórias reais. A revisão de um caso correto, sozinha, não prova que ela encontra defeitos ou mudanças fora do escopo.
-- Paperclip, Orca e Open WebUI foram estudados em experimentos anteriores; nenhum foi escolhido como coordenador desta POC.
+## Artefatos e passagens
 
-## Regra para continuar
+| Passagem | Entrada | Saída que deve ser conferida |
+|---|---|---|
+| Abrir rodada → Discovery | `PLAN.md`, contexto e fontes. | Pesquisa com procedência e `POC_CONTRACT.md` (contrato nosso, não saída automática de skill). |
+| Discovery → especificação | Contrato e achados revisados. | PRD e arquitetura BMAD; decisões abertas marcadas. |
+| Especificação → histórias | PRD, arquitetura e desenho de testes TEA. | `epics.md`, histórias delimitadas e `sprint-status.yaml` no modo sprint escolhido. |
+| Histórias → Loop | Pacote revisado e decisão G0 com versão/hashes. | Preflight, história pronta, lista de arquivos permitidos, testes, orçamento e parada. |
+| Loop → verificação | Código, testes, diff e journal. | Parecer de revisão, testes determinísticos, estado e recibo concordantes. |
+| Verificação → fechamento | Evidências observadas, custo e limitações. | `RESULTS.md` e decisão G1 sobre aceitar, ajustar ou encerrar. |
 
-Antes de usar o Loop em trabalho de domínio, congelar uma história pequena com arquivos permitidos, saída exigida, testes e critério de parada. Provar a checagem independente de alterações e a retomada de contexto. Depois executar **uma** história real e comparar o resultado com a especificação, sem confundir um recibo sintético com maturidade do fluxo inteiro.
+Os outputs intermediários do BMAD ficam em `_bmad-output/`; o desenho local prevê copiar e vincular por hash somente o que sustenta a rodada. `.memlog.md` ajuda a retomar uma skill, mas **não** substitui o estado global, a decisão humana nem o recibo.
 
-Os arquivos e versões de cada experimento estão listados em [Fontes e migração](SOURCES.md). Esta página é um mapa; os relatórios de prova continuam sendo a evidência técnica.
+## O que foi realmente testado
+
+- **Instalação:** BMAD Method, CIS, TEA e BMad Loop foram instalados e inventariados no projeto local. Isso não executou um fluxo de negócio.
+- **Estado sem modelo:** a fixture local chegou a **13 testes passando** de autorização, bloqueio, replay, concorrência e publicação de evidência. Ela não é o coordenador completo.
+- **Loop sintético:** uma história de função pequena alcançou `done` oficial em uma prova isolada, com revisão, três testes por verificação e recibo. A retomada do Trial12 precisou de **duas invocações**: a primeira expirou, a segunda recuperou o estado confirmado sem nova chamada ao modelo.
+- **Revisão enxuta:** sondas isoladas acharam defeito semântico e teste fraco, mas não identificaram explicitamente uma edição fora do escopo. Por isso a checagem de caminhos no Git precisa ser independente do parecer do modelo.
+- **Contexto:** checkpoint externo e gate de escopo tiveram testes; a entrega do checkpoint após compactação passou em teste controlado. O uso e a compreensão desse checkpoint pelo modelo em uma execução real ainda não foram comprovados.
+
+**Não foi executado:** o ciclo completo Discovery → especificação → histórias → Loop → verificação → fechamento para uma história real de atualização de imagem base. O perfil enxuto de revisão e a gestão de contexto não foram homologados como padrão geral. Nenhuma das ferramentas de coordenação estudadas em outras provas foi escolhida para este fluxo.
+
+## Como continuar sem inventar avanço
+
+Escolha uma história de domínio pequena **depois** de fechar o contrato e a revisão do pacote. Antes de despachar ao Loop, exija preflight, diff permitido e verificação determinística. Registre cada tentativa como uma execução própria; se houver bloqueio ou resultado incerto, preserve o estado e retome a partir dele. Só marque o ciclo como concluído quando a evidência final estiver reunida e revisada.
+
+A procedência dos relatórios locais está em [Fontes](SOURCES.md). O [estado geral](STATUS.md) separa esse trabalho do protótipo visual e da POC de correlação.

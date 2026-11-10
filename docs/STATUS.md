@@ -1,34 +1,26 @@
 # Marco atual — Base Image Hub e workflows
 
-**Revisão:** 10 de novembro de 2026. **Objetivo desta página:** permitir retomar o trabalho sem ler os experimentos em ordem cronológica.
+**Revisão:** 10 de novembro de 2026. Este é um ponto de retomada: o que foi observado, o que pode ser reproduzido neste repositório e o que continua aberto.
 
-## Resumo em uma frase
+## Em uma leitura
 
-A POC local provou partes da identificação de digest, inspeção de pacote e correlação com patch para um caso Distroless Java 21/Debian 13. Ainda não existe um fluxo corporativo completo integrado nem um workflow SSDLC BMAD executado de ponta a ponta.
+A POC local mostrou que é possível vincular **digest da plataforma → pacote instalado → correção Debian → decisão registrada** no caso testado. Isso ainda não está encaixado na cadeia de imagens base já existente. O protótipo visual deste repositório não executa a POC. O workflow completo com BMAD ainda é desenho; houve provas sintéticas de partes dele.
 
-| Frente | Estado confirmado | O que falta |
+| Frente | Estado | Evidência e limite |
 |---|---|---|
-| Processo de imagens base | A cadeia atual já possui execução diária em GitHub Actions, ingestão/certificação, imagens de arquitetura, publicação no ECR e consumo por aplicações em EKS. | Definir **onde** uma observação de patch/digest acrescenta informação e **qual evento** entra nos gates existentes. |
-| Caso histórico | Dois digests da mesma variante e a versão de `libexpat1` antes/depois de uma correção Debian foram comprovados. A fixture selecionada está em `poc/`. | Não confundir esses digests com uma mudança observada hoje na tag pública. |
-| Imagem pública | Uma captura do digest estável foi vinculada ao índice, manifesto filho, 34 camadas, pacote e um advisory selecionado. | Não houve mudança pública de tag nem certificação da imagem. |
-| Comparação de entradas | Consulta direta OCI/Debian e Diun/Vunnel chegaram ao mesmo resultado nos casos principais; o validador comum preservou uma decisão e rejeitou entradas incoerentes. Há um resumo dos 44 casos em `poc/`. | O pacote público ainda não reproduz os 44 casos a partir de todas as capturas brutas. A comparação **não** decide, por si só, se Diun/Vunnel agregam valor ao processo atual. |
-| BMAD Method/CIS/TEA | Instalação e inventário de skills concluídos; há especificações de handoff, gates e arquivos de saída. | O workflow SSDLC completo continua um desenho; seus artefatos de negócio não foram produzidos por uma execução integral. |
-| BMad Loop e modelo local | Uma história sintética chegou a `done` com recibo; controle local de estado e escopo teve testes. | A variante de revisão/contexto segue experimental; não há história real do domínio concluída pelo Loop com esse contrato. |
-| Protótipo de painel deste repositório | Navegação com dados demonstrativos. | Não há backend nem integração com GitHub, JFrog, ECR ou scanners. |
+| Processo atual de imagens base | **Descrito, a validar no ambiente de destino.** | Há matriz diária de CI, ingestão/certificação, imagem de arquitetura, publicação e consumo. O ponto exato da nova informação e os gates reais precisam de validação com os responsáveis. [Arquitetura](ARCHITECTURE.md). |
+| Caso histórico de pacote | **Comprovado localmente.** | Dois digests da mesma variante contêm `libexpat1` antes/depois da correção. Manifestos e arquivos selecionados estão em [`poc/`](../poc/EVIDENCE.md); isso não é uma troca observada hoje na tag pública. |
+| Imagem pública | **Captura pontual.** | O laboratório vinculou digest estável, manifesto da plataforma, 34 camadas, pacote e advisory. Os 34 blobs completos não estão publicados aqui; não houve mudança pública de tag nem certificação. [Resultados](POC.md). |
+| Entradas A/B e correlação C | **Provas locais, sem escolha de ferramenta.** | A e B detectaram a mesma troca histórica; C registrou decisão sem duplicação. Neste repositório, os scripts A/B e o núcleo C podem ser repetidos pelo [runbook](RUNBOOK.md). A matriz arquivada tem 44 casos (6 completos, 38 parciais), mas seus dados brutos integrais não estão aqui. |
+| BMAD e Loop | **Instalação, desenho e provas sintéticas.** | A fixture de estado passou em 13 testes; uma história sintética chegou a `done` com recibo e retomada em duas invocações. O ciclo completo com história real de imagem base não foi executado. [Workflows](WORKFLOWS.md). |
+| Protótipo visual | **Demonstrativo.** | `index.html` não tem backend nem integração com CI, registry, proxy, scanners ou ECR. |
 
-## O que preservar
+## O que esta entrega permite fazer
 
-1. **Problema de produto:** reduzir o intervalo entre patch aplicável e imagem corporativa certificada, distinguindo descoberta, conteúdo do digest, decisão e certificação.
-2. **Prova técnica reutilizável:** identificar imagem/tag/plataforma/digest, verificar bytes e versão do pacote, comparar com a versão corrigida, registrar `unknown` quando a evidência falta.
-3. **Disciplina de execução:** entrada fixada, critérios de aceite, teste, recibo, revisão e estado de retomada. Isso vale mesmo que o executor de IA mude.
+- Entender [o processo informado e o encaixe proposto](ARCHITECTURE.md).
+- Ler [resultados e limites da POC](POC.md), conferir [as evidências incluídas](../poc/EVIDENCE.md) e repetir as partes executáveis pelo [runbook](RUNBOOK.md).
+- Revisar [o contrato dos workflows](WORKFLOWS.md) e seguir uma [próxima etapa ordenada](NEXT-STEPS.md).
 
-## O que não concluir deste marco
+## Decisões que **não** foram tomadas
 
-- Não há ferramenta nova aprovada. Menos requisições numa amostra local não bastam para escolher a arquitetura.
-- Diun não elimina o resolvedor OCI por plataforma; Vunnel não substitui a regra de correlação.
-- O BMad Loop sintético não demonstra que ele desenvolverá autonomamente toda a POC.
-- O protótipo visual não representa integrações funcionais.
-
-**Próxima conversa arquitetural:** mapear a informação nova sobre digest e patch contra a matriz diária e os gates existentes. [Veja o encaixe proposto](ARCHITECTURE.md).
-
-**Para executar o que já é reproduzível neste repositório:** [runbook](RUNBOOK.md). Para saber exatamente o que está incluído e o que falta: [evidências](../poc/EVIDENCE.md).
+Não foi aprovada ferramenta nova, arquitetura de implantação, certificação de imagem nem adoção geral do BMad Loop. Menos requisições numa amostra local não escolhem A em vez de B. O valor de Diun/Vunnel deve ser avaliado **contra a matriz diária já existente**, quando o encaixe for discutido. Os resultados sintéticos do Loop não autorizam chamá-lo de workflow de domínio pronto.
