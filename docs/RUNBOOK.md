@@ -1,156 +1,144 @@
-# Reexecutar a POC de atualização de imagem base
+# Runbook técnico da POC de atualização de imagem base
 
-Este guia explica **o que cada teste faz, como executá-lo e como ler o resultado**. Nenhum passo altera uma tag pública, certifica imagem ou acessa o ambiente corporativo. Execute numa cópia do repositório e grave as saídas em diretórios novos fora dela.
+Este documento permite inspecionar as provas e repetir **as execuções publicadas**. A pergunta da POC é: após uma tag apontar para outro conteúdo, conseguimos identificar o manifesto da plataforma, relacionar a versão do pacote à correção Debian, emitir uma decisão auditável e retomá-la sem duplicação?
 
-## Primeiro, entenda o percurso
+## Escopo e estado das provas
 
-**Pergunta da POC:** quando uma correção fica disponível, conseguimos identificar o conteúdo exato da imagem, verificar o pacote afetado, decidir se há candidata para validação e retomar o trabalho sem repetir a decisão?
+O caso usa a tag local `fixture.local/distroless/java21-debian13:local-replay`, plataforma `linux/amd64`, dois manifestos históricos da mesma variante e `libexpat1` antes/depois da correção de `CVE-2026-24515`. A tag é mutável; o digest identifica os bytes. `validate_candidate` significa **enviar uma candidata para validação**, nunca aprová-la.
 
-O caso congelado usa uma imagem Distroless Java 21 sobre Debian 13. Há dois manifestos históricos da mesma variante, com o pacote `libexpat1` antes e depois da correção. **Tag** é o nome mutável da imagem; **digest** identifica o conteúdo recebido; **advisory** é o comunicado da correção.
-
-No conjunto das provas, fazemos quatro coisas: servimos a mesma tag localmente apontando primeiro para o conteúdo antigo e depois para o novo; verificamos se A ou B percebe a troca; cruzamos a versão do pacote com a correção no passo C; e repetimos a leitura para confirmar que nenhuma decisão duplicada foi gravada. Esses passos estão em execuções separadas neste pacote. A fonte Debian ou o Vunnel informa a correção; nenhum dos dois inspeciona a imagem por conta própria.
-
-| Peça | Função | Prova que você pode repetir aqui |
+| Prova | Estado neste PR | O que demonstra |
 |---|---|---|
-| **A — consulta direta** | Nosso script consulta a tag e compara os digests. | Troca e repetição num registry local. |
-| **B — Diun** | A ferramenta consulta a tag, guarda o estado e emite aviso de mudança. | Mesmo caso local, usando o binário oficial. |
-| **Fonte Debian / Vunnel** | Fornece a versão corrigida do pacote. | Uma coleta nova pelo Vunnel; o feed pode ter mudado. |
-| **C — correlação** | Vincula digest, plataforma, pacote e correção; registra decisão em SQLite. | Replay da decisão com entradas históricas congeladas. |
+| A, consulta OCI direta | Reexecutável com registry temporário em `127.0.0.1` | Detecção de mudança, repetição e controles de erro; **sem** decisão de pacote. |
+| B, Diun real | Reexecutável com binário Diun 4.33.1 conferido | Um aviso na troca e nenhum na repetição; **sem** decisão de pacote. |
+| Vunnel 0.66.0 | Reexecutável com rede e feed Debian atual | Coleta e consulta do registro da CVE; resultado pode mudar com o feed. |
+| C, correlação e SQLite | Reexecutável com quatro fontes congeladas e verificadas por hash | Uma decisão, reavaliação do mesmo digest e recuperação de recibos. |
+| A/B → C em uma única execução | **Não reexecutável com os comandos deste PR** | Há um [recibo integrado histórico](../poc/experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json), mas o produtor público atual de C lê observações arquivadas, não as saídas novas de A, B ou Vunnel. |
+| Comparação de 44 linhas | Auditável nos [resultados publicados](../poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json); replay integral indisponível | As capturas brutas de aproximadamente 211 MB e parte do executor original não foram publicadas. |
 
-**Limite da ligação:** os comandos A, B e Vunnel abaixo são execuções separadas. O replay C usa entradas arquivadas. Os recibos originais mostram A e B chegando à mesma decisão no laboratório; estes comandos **não** repetem automaticamente a comparação operacional inteira de 44 casos.
+**Não trate esta página como um pipeline fim a fim executável.** Os comandos abaixo demonstram capacidades separadas. O recibo integrado histórico preserva o resultado do laboratório, mas não substitui a ligação operacional entre os scripts publicados.
 
-## Como os dados passam pelo processo
+## Mapa das execuções reais
 
 ```mermaid
-flowchart TD
-  F["Fixture: tag, índices e manifestos históricos"] --> A["A: consulta OCI direta"]
-  F --> B["B: Diun no registry local"]
-  A --> E["Evento: digest mudou"]
-  B --> N["Aviso: digest mudou"]
-  E --> I["Validar imagem, tag, plataforma e bytes do manifesto filho"]
-  N --> I
-  I --> P["Vincular pacote libexpat1 ao digest da plataforma"]
-  D["Advisory Debian arquivado: versão corrigida"] --> Q["Comparar versão instalada com correção"]
-  P --> Q
-  Q --> C["C: decidir e registrar estado"]
-  C --> S["SQLite + recibos: validar candidata, aguardar ou desconhecido"]
-  V["Vunnel: feed Debian atual"] --> R["Recibo de coleta separado"]
+flowchart LR
+  H["Manifestos históricos pré/pós"] --> A["probe.py: OCI direto A"]
+  H --> B["run_retained_b.py: Diun B"]
+  A --> AR["summary.json, eventos e corpos raw"]
+  B --> BR["results.json, aviso e receipt.json"]
+  F["Feed Debian atual"] --> V["measure_vunnel.py"]
+  V --> VR["receipt.json e workspace Vunnel"]
+  X["4 fontes arquivadas, com hash no manifest.json"] --> C["run_local.py: correlação C"]
+  C --> CR["state.sqlite, receipt.json e advisory-receipt.json"]
+  O["Ensaio integrado anterior"] --> OR["pipeline-replay.json histórico"]
 ```
 
-O diagrama mostra **a lógica do domínio**: aviso de mudança sozinho não prova correção; é preciso conferir o manifesto da plataforma, o pacote e o advisory antes da decisão. **Não é um comando único do pacote público.** A e B produzem novas observações separadas; C reproduz o caso com observações e advisory arquivados. A coleta Vunnel atual também é separada e não é injetada no replay C. O arquivo `pipeline-replay.json` preserva um ensaio integrado anterior, mas os comandos públicos não o regeneram.
+A e B começam da **mesma fixture de manifestos**, mas em processos separados. Vunnel coleta o feed atual, também separadamente. C carrega observações, pacote, advisory e prova de camadas arquivados; **não consome** `summary.json` de A, aviso do Diun ou `receipt.json` de Vunnel. O [desenho arquitetural](ARCHITECTURE.md) discute a ligação futura; este diagrama descreve o que os comandos fazem hoje.
 
-### O que cada script realmente lê e produz
+## Contratos nas fronteiras
 
-**[run_local.py](../poc/experiments/integrated-update-poc-20261108/run_local.py) — correlação C**
+| Fronteira | Campos e vínculo exigidos | Regra quando a prova não fecha | Implementação e dados |
+|---|---|---|---|
+| Tag → índice OCI → manifesto filho | `image`, `tag`, `platform`, `index_digest`, `platform_digest`; SHA-256 dos bytes recebidos = `Docker-Content-Digest`; exatamente um filho da plataforma; tamanho e media type iguais ao descritor. | Falha sem evento positivo. O índice pode mudar sem mudar o filho; isso não basta para uma candidata da plataforma. | [observador OCI](../poc/experiments/oci-observation-20261108/observe.py), [A/probe.py](../poc/experiments/operational-abc-comparison-20261108/scripts/A/probe.py). |
+| Observação → evento de troca | `event_id`, `previous_digest`, `candidate_digest`, imagem, tag e plataforma; o digest anterior deve ser o baseline persistido. | Sem baseline, evento incoerente ou repetido não pode criar nova decisão. | [observador OCI](../poc/experiments/oci-observation-20261108/observe.py), [pipeline](../poc/experiments/integrated-update-poc-20261108/src/pipeline.py), [estado SQLite](../poc/experiments/integrated-update-poc-20261108/src/state.py). |
+| Aviso Diun → manifesto filho | O aviso é um **sinal de mudança do índice**. Para virar candidata, o índice precisa ser lido e resolvido novamente até um filho `linux/amd64` cujo digest corresponda à observação. | Aviso sozinho não prova pacote nem autoriza decisão. Divergência vira `unknown`. | [B/run_retained_b.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py), [process_index_notice](../poc/experiments/integrated-update-poc-20261108/src/pipeline.py). O comando B deste runbook **não chama** esse consumidor. |
+| Manifesto filho → pacote → advisory | `platform_digest` do pacote = digest candidato; `architecture=amd64`; suite `trixie`; fonte `expat`; versão instalada em `post-libexpat1.status`; `fixed_source_version` do advisory. Fontes, schema e ledger têm hash verificado. | Campo ausente, fonte divergente, versão inválida ou ledger incompleto resulta em `unknown`, nunca em aprovação. | [schema](../poc/experiments/tool-architecture-evaluation-20261108/evidence/A3-H1/contract.schema.json), [consumidor](../poc/experiments/tool-architecture-evaluation-20261108/evidence/A3-H4/consumer-contract.py), [entradas C](../poc/experiments/integrated-update-poc-20261108/src/inputs.py). |
+| Decisão → estado e recibo | Uma decisão por `event_id`; `action=validate_candidate` ou `wait`; `image_approved=false`; revisão de advisory do mesmo digest tem chave própria. | Persistência falha não vira recibo de sucesso; recuperação lê SQLite já confirmado e reexporta JSON sem decidir de novo. | [pipeline](../poc/experiments/integrated-update-poc-20261108/src/pipeline.py), [run_local.py](../poc/experiments/integrated-update-poc-20261108/run_local.py), [estado SQLite](../poc/experiments/integrated-update-poc-20261108/src/state.py). |
 
-| Ponto | O que acontece |
-|---|---|
-| Entradas | O [manifesto de entradas](../poc/experiments/integrated-update-poc-20261108/evidence/I0-H1/manifest.json) fixa por hash quatro fontes locais: observações históricas, registros de pacote/advisory, prova do conteúdo da imagem e ledger. |
-| Processamento | Confere presença e hash das quatro fontes; lê três observações arquivadas; estabelece o digest inicial, valida o evento de mudança, compara pacote com versão corrigida e ignora a repetição. Depois reavalia o mesmo digest diante do advisory sem inventar nova imagem. |
-| Saídas para conferir | `run.json` resume uma decisão e uma reavaliação; `receipt.json` registra `validate_candidate`; `advisory-receipt.json` registra a reavaliação; `state.sqlite` guarda o estado. Use `--recover` para conferir que o banco recompõe os recibos sem outra decisão. |
-| Falha e limite | Fonte sem hash correspondente, relação digest/evento incoerente ou estado divergente não pode virar aprovação. O script **não** chama A, Diun, Vunnel nem um registry vivo. |
+O Vunnel fornece dados de correção Debian. Ele **não lê a imagem** nem resolve a plataforma. Nesta reprodução, sua coleta atual não alimenta C. O [manifesto da fixture C](../poc/experiments/integrated-update-poc-20261108/evidence/I0-H1/manifest.json) fixa quatro fontes locais por SHA-256; o hash de evidências geral cobre apenas arquivos listados, **não** scripts, testes ou dependências.
 
-**[probe.py](../poc/experiments/operational-abc-comparison-20261108/scripts/A/probe.py) — observação direta A**
+## Preparação e cadeia de custódia
 
-| Ponto | O que acontece |
-|---|---|
-| Entradas | Índices e manifestos filhos pré e pós mudança da fixture histórica; um registry temporário em `127.0.0.1`. |
-| Processamento | Faz as consultas OCI, seleciona `linux/amd64`, confere digest, tamanho e tipo do manifesto filho, compara com o estado anterior e emite evento só na mudança. Repete três ciclos e exercita plataforma diferente, índice ambíguo, erros HTTP, autenticação, tentativas limitadas e retomada. |
-| Saídas para conferir | `summary.json` reúne 36 execuções; `hashes.json` sela as saídas; subpastas de cada caso guardam `result.json`, `metric.json` e manifestos recebidos em `raw/`. Compare `event` e `error` com o caso correspondente. |
-| Falha e limite | Manifesto da plataforma ausente, duplicado, incoerente ou resposta inválida deve produzir erro sem evento positivo. Este script **detecta mudança**; não examina pacote/advisory nem grava decisão C. |
-
-**[run_retained_b.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py) — observação com Diun B**
-
-| Ponto | O que acontece |
-|---|---|
-| Entradas | Os mesmos índices e manifestos históricos de A, seus blobs de configuração, o binário Diun e um registry temporário em `127.0.0.1`. |
-| Processamento | Confere que índice aponta para filho e filho aponta para configuração com bytes e tamanhos corretos; cria configuração local do Diun; executa três verificações sobre **o mesmo banco Diun**: início, troca e repetição após reinício. Captura o aviso emitido. |
-| Saídas para conferir | `results.json` mostra cada verificação e `notifications_delta`; `notifications.jsonl` guarda o aviso; `receipt.json` liga aviso, índices e filhos; `served/` guarda os corpos servidos. A sequência esperada de novos avisos é `[0, 1, 0]`. |
-| Falha e limite | Binário ausente, retorno não zero, conteúdo inconsistente ou aviso duplicado invalida o ensaio. Diun não valida pacote/advisory nem toma a decisão C. |
-
-**[measure_vunnel.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/measure_vunnel.py) — fonte de correção atual**
-
-| Ponto | O que acontece |
-|---|---|
-| Entradas | Rede, `uv`, Python 3.13 e os feeds públicos atuais do Debian. O script fixa Vunnel 0.66.0 e cria um workspace novo. |
-| Processamento | Coleta o provedor Debian completo, guarda entrada e base processada, consulta três vezes o registro da CVE do caso e mede tempos/recursos. |
-| Saídas para conferir | `vunnel.log` mostra a coleta; `workspace/` guarda os arquivos baixados e a base; `receipt.json` registra `exit_code`, hashes das entradas, versão corrigida encontrada e medições. |
-| Falha e limite | Sem rede, instalação, espaço ou registro esperado, o comando falha; não há decisão de imagem. É feed **atual**, portanto seus bytes podem diferir do advisory arquivado usado por C. |
-
-## 1. Preparar o ambiente
-
-**Por quê:** instalar dependências sem modificar o Python global. **Entrada:** checkout deste repositório, Python 3, acesso aos pacotes Python e espaço para saídas temporárias.
-
-Comece na raiz do checkout:
+**Pré-condições:** checkout deste PR, Python 3, acesso aos pacotes para instalar [dependências fixadas](../poc/requirements.txt); `uv`, Diun e rede só nos cenários correspondentes. Use diretórios de saída **novos**. Os comandos partem de `poc/`.
 
 ```sh
+git rev-parse HEAD
+git status --short
 cd poc
-python3 --version
 python3 -m venv .venv
 . .venv/bin/activate
 python3 -m pip install -r requirements.txt
 export PYTHONPATH=experiments/integrated-update-poc-20261108
-```
-
-**Esperado:** instalação sem erro. A venv fica dentro de `poc/` e é ignorada pelo Git. **Pare se:** faltar o arquivo de dependências, houver erro de instalação ou não puder criar a venv. Os testes do núcleo foram repetidos com uma instalação limpa das versões fixadas.
-
-## 2. Conferir as entradas
-
-**Por quê:** um manifesto ou recibo modificado não deve sustentar uma conclusão. **Entrada:** 55 arquivos selecionados listados em `poc/evidence/SHA256SUMS`. Ainda dentro de `poc/`, execute no macOS:
-
-```sh
 shasum -a 256 -c evidence/SHA256SUMS
 ```
 
-No Linux, use `sha256sum -c evidence/SHA256SUMS`. **Esperado:** todos os arquivos mostram `OK`. Alguns caminhos privados foram removidos dos metadados e os hashes dependentes foram recalculados; o manifesto identifica os bytes **desta cópia pública**, conforme o [inventário](../poc/EVIDENCE.md). **Pare se:** qualquer hash falhar.
+No Linux, troque o último comando por `sha256sum -c evidence/SHA256SUMS`. Registre commit e `git status`: uma árvore modificada dificulta comparar resultados. **Esperado:** todos os 55 arquivos listados mostram `OK`. Se falhar, pare antes de confiar no replay. Este manifesto **não** autentica o código do PR; para isso, registre o commit e revise o diff. A venv é local e ignorada pelo Git.
 
-## 3. Testar as regras de correlação (C)
+## Cenário C1 — contrato e decisão histórica
 
-**Por quê:** verificar casos válidos e entradas incoerentes antes do replay. **Entradas:** manifestos, versões de pacote, advisory e contrato congelados em `poc/experiments/`.
+**Objetivo.** Verificar regras de correlação, depois produzir o estado e o recibo a partir das **quatro fontes arquivadas**: [observações](../poc/experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/replay/replay.json), [pacote e advisory normalizados](../poc/experiments/tool-architecture-evaluation-20261108/evidence/A3-H2/inputs.json), [prova da suite](../poc/experiments/tool-architecture-evaluation-20261108/evidence/A3-H4/suite-proof.json) e [ledger de camadas](../poc/experiments/tool-architecture-evaluation-20261108/evidence/A4-PATHS/ingestion/full-suite-replay.json). `run_local.py` confere os hashes, processa baseline → troca → repetição, relaciona pacote/advisory ao filho e grava SQLite. Não consulta registry.
 
 ```sh
 python3 -m unittest discover -s experiments/integrated-update-poc-20261108/tests -v
+python3 experiments/integrated-update-poc-20261108/run_local.py --output /tmp/base-image-c-01
+python3 - <<'PY'
+import json
+from pathlib import Path
+p = Path('/tmp/base-image-c-01')
+run = json.loads((p/'run.json').read_text())
+receipt = json.loads((p/'receipt.json').read_text())
+advisory = json.loads((p/'advisory-receipt.json').read_text())
+assert run['statuses'] == ['baseline', 'decided', 'unchanged']
+assert run['decision_count'] == run['reassessment_count'] == 1
+assert receipt['status'] == 'decided' and receipt['action'] == 'validate_candidate'
+assert advisory['status'] == 'reassessed' and advisory['action'] == 'already_satisfies_fix'
+assert run['image_approved'] is receipt['image_approved'] is advisory['image_approved'] is False
+print('C: uma decisão, uma reavaliação, nenhuma aprovação')
+PY
 ```
 
-**Esperado:** `Ran 18 tests` e `OK`. A suíte testa vínculos entre digest, plataforma, pacote e correção, além de estado e recuperação. **Pare se:** algum teste falhar. Os 18 testes incluídos não equivalem aos 30 da suíte local mais ampla nem aos 44 casos comparativos.
+**Esperado:** 18 testes com `OK`; mensagem `PASS baseline→validate_candidate→unchanged...`; o verificador imprime a linha C. **Intermediários para inspecionar:** o manifesto de quatro hashes e seus arquivos antes; depois `/tmp/base-image-c-01/state.sqlite`, `run.json`, `receipt.json`, `advisory-receipt.json`. A decisão `validate_candidate` indica apenas candidata apta a entrar em validação. **Diagnóstico e parada:** se teste, hash, vínculo digest/plataforma/suite, versão ou asserção falhar, não use o recibo como aprovação; confira o arquivo e o campo apontados. O diretório de saída precisa ser novo. **Limpeza:** preserve os recibos se for auditar; depois remova apenas `/tmp/base-image-c-01`.
 
-## 4. Gerar uma decisão e seu recibo (C)
+### Cenário C2 — recuperação após commit
 
-**Por quê:** atravessar o caso histórico com estado persistido. **Entradas:** os dados congelados verificados no passo 2 e um diretório de saída novo. O comando não baixa nem publica imagens.
+**Pré-condição:** C1 concluído e `state.sqlite` preservado. O comando lê o banco já confirmado, verifica a identidade da fixture e reexporta JSON; não chama o modelo nem decide de novo.
 
 ```sh
-python3 experiments/integrated-update-poc-20261108/run_local.py --output /tmp/base-image-hub-replay-01
+python3 experiments/integrated-update-poc-20261108/run_local.py --recover --output /tmp/base-image-c-01
+python3 - <<'PY'
+import json, sqlite3
+from pathlib import Path
+p=Path('/tmp/base-image-c-01')
+db=sqlite3.connect(p/'state.sqlite')
+assert db.execute('select count(*) from decisions').fetchone()[0] == 1
+assert db.execute('select count(*) from reassessments').fetchone()[0] == 1
+assert json.loads((p/'receipt.json').read_text())['image_approved'] is False
+print('C: SQLite preservado, recibos recuperados')
+PY
 ```
 
-**Esperado:** `PASS baseline→validate_candidate→unchanged; stable digest reassessed; no approval`. Abra `run.json`, `receipt.json`, `advisory-receipt.json` e `state.sqlite` no diretório de saída. `run.json` deve indicar **uma decisão**, **uma reavaliação** e `image_approved: false`. A ação `validate_candidate` significa **encaminhar para validação**, sem aprovar a imagem. **Pare se:** o diretório já contiver arquivos, faltar recibo, houver decisão duplicada ou surgir aprovação automática.
+**Esperado:** `PASS recovered receipts from committed state; no new decision`. **Parada:** banco ausente, fixture diferente ou recibo conflitante são erro, não motivo para criar nova decisão. **Limpeza:** só após guardar o que precisar para auditoria.
 
-**Exemplo de recibo real:** em `poc/experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json`, tanto A quanto B têm `baseline.status = baseline`, `decision_count = 1`, `decision_receipt.action = validate_candidate` e `decision_receipt.image_approved = false`. Esse é o registro histórico selecionado; o comando acima gera **outro recibo**, que você deve conferir por conta própria.
+## Cenário A — observar a tag por OCI direto
 
-## 5. Retomar sem decidir de novo (C)
-
-**Por quê:** verificar que a decisão gravada sobrevive à reabertura. **Entrada:** o **mesmo** diretório do passo 4; não o apague.
-
-```sh
-python3 experiments/integrated-update-poc-20261108/run_local.py --recover --output /tmp/base-image-hub-replay-01
-```
-
-**Esperado:** `PASS recovered receipts from committed state; no new decision`. O programa lê o SQLite e recompõe os JSONs sem recalcular a decisão. **Pare se:** o banco faltar, a entrada não corresponder ao estado ou o comando pedir nova decisão.
-
-## 6. Detectar a mudança por consulta direta (A)
-
-**Por quê:** mostrar que um script pode detectar mudança sem Diun. **Entradas:** os mesmos manifestos históricos; o script os serve num registry local em `127.0.0.1`, sem consultar a tag pública.
+**Pré-condições:** fixture histórica íntegra e `/tmp/base-image-a-01` inexistente. [A/probe.py](../poc/experiments/operational-abc-comparison-20261108/scripts/A/probe.py) abre um registry de teste em `127.0.0.1`, serve índice e manifesto filho pré/pós, chama o [observador](../poc/experiments/oci-observation-20261108/observe.py) e grava estado/eventos por ciclo. Os controles exercitam plataforma, identidade, autenticação, erros HTTP, retry e recuperação. O script **não** lê pacote/advisory nem chama C.
 
 ```sh
 python3 experiments/operational-abc-comparison-20261108/scripts/A/probe.py --output /tmp/base-image-a-01
+python3 - <<'PY'
+import json
+from pathlib import Path
+p=Path('/tmp/base-image-a-01')
+s=json.loads((p/'summary.json').read_text())
+assert len(s['runs']) == 36
+for i in range(1,4):
+    base=p/f'cycle-{i}'
+    rows=[json.loads((base/n/'result.json').read_text()) for n in ('baseline','changed','repeat')]
+    assert [bool(r['event']) for r in rows] == [False,True,False]
+    assert len((base/'events.jsonl').read_text().splitlines()) == 1
+for n in ('missing','duplicate','cross-platform'):
+    r=json.loads((p/'identity'/n/'result.json').read_text())
+    assert r['error'] and not r['event']
+print('A: 36 execuções; troca sem duplicata; identidade inválida bloqueada')
+PY
 ```
 
-**Esperado:** o terminal informa `runs: 36` e `cycles: 3`. Abra `/tmp/base-image-a-01/summary.json`: em cada ciclo principal, a primeira consulta cria o ponto de partida, a troca cria **um evento**, e a repetição não cria outro. Outros casos exercitam falhas, plataforma e retomada. **Pare se:** a saída já existir, houver evento positivo após falha ou o script tentar acessar registry externo. Esta etapa passou com o pacote público.
+**Esperado:** terminal informa `runs: 36`, `cycles: 3` e as asserções acima passam. **Intermediários:** `cycle-1/baseline/raw/` contém índice e filho recebidos; `cycle-1/state.json` é o último baseline; `cycle-1/events.jsonl` tem um evento; cada caso tem `result.json` com `observation`, `event`, `error`, e `metric.json` com requisições e tempo; `summary.json` e `hashes.json` fecham a execução. O script afirma internamente os três ciclos principais; o bloco acima verifica também controles negativos selecionados, **não** todos os resultados esperados dos 36 casos. **Parada:** erro de bind local, digest/tamanho/media type divergente, ciclo sem evento ou controle negativo com evento. Se a sandbox bloquear `127.0.0.1`, execute em host com loopback habilitado; isso é limitação do ambiente, não resultado da POC. **Limpeza:** remova apenas a saída nova após guardar as provas.
 
-## 7. Detectar a mesma mudança com Diun (B)
+## Cenário B — observar a tag com Diun
 
-**Por quê:** ver o que a ferramenta entrega além da consulta direta: estado e aviso. **Entradas:** os manifestos históricos, binário Diun oficial e diretório novo. O script usa somente `127.0.0.1`.
+**Pré-condições:** mesmas entradas históricas; binário Diun 4.33.1 conferido; saída nova. [B/run_retained_b.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py) confere bytes de índice→filho→configuração, cria `images.yml` e `diun.yml`, alterna pré/pós no registry local e inicia o **Diun real três vezes sobre o mesmo `diun.db`**. Guarda logs, aviso e corpos servidos. Não consulta pacote/advisory nem chama C.
 
-No Mac ARM, usamos Diun **4.33.1**. Baixe o arquivo da [release oficial](https://github.com/crazy-max/diun/releases/tag/v4.33.1), confira seu hash **antes de executar** e extraia fora do repositório:
+No **macOS ARM**, baixe a [release oficial](https://github.com/crazy-max/diun/releases/tag/v4.33.1) e confira o arquivo antes de executá-lo:
 
 ```sh
 mkdir -p /tmp/base-image-diun-4.33.1
@@ -159,39 +147,55 @@ curl -fL -o /tmp/base-image-diun-4.33.1/checksums.txt https://github.com/crazy-m
 grep -F 'diun_4.33.1_darwin_arm64.tar.gz' /tmp/base-image-diun-4.33.1/checksums.txt
 printf '%s  %s\n' '9c78a81179801866ee704db9a3bd0b2454472f60ab8a224755dfe07f13ae979a' '/tmp/base-image-diun-4.33.1/diun.tar.gz' | shasum -a 256 -c -
 tar -xzf /tmp/base-image-diun-4.33.1/diun.tar.gz -C /tmp/base-image-diun-4.33.1
-```
-
-**Esperado:** `OK` e o mesmo hash no arquivo oficial. **Pare se:** o hash divergir. Para Linux ou outra arquitetura, escolha o arquivo correspondente na release e confira o checksum específico dele.
-
-Com o binário conferido, volte à pasta `poc/` e execute:
-
-```sh
-/tmp/base-image-diun-4.33.1/diun --version
 DIUN_BIN=/tmp/base-image-diun-4.33.1/diun python3 experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py --output-dir /tmp/base-image-b-01
+python3 - <<'PY'
+import json
+from pathlib import Path
+p=Path('/tmp/base-image-b-01')
+r=json.loads((p/'results.json').read_text())
+assert [x['notifications_delta'] for x in r['rows']] == [0,1,0]
+assert [x['exit_code'] for x in r['rows']] == [0,0,0]
+assert len((p/'notifications.jsonl').read_text().splitlines()) == 1
+print('B: aviso único na troca; nenhum na repetição')
+PY
 ```
 
-**Esperado:** `notifications: 1`. Abra `/tmp/base-image-b-01/results.json`: os três passos têm avisos novos `[0, 1, 0]` — nenhum na primeira leitura, um na troca e nenhum na repetição após reiniciar. `receipt.json` liga aviso e manifestos servidos; `notifications.jsonl` guarda o aviso. **Pare se:** houver aviso duplicado, binário não conferido ou acesso fora do registry local. Diun **avisa**; a validação da plataforma e do pacote continua nossa.
+**Esperado:** checksum `OK`, `notifications: 1`, três `exit_code=0` e novos avisos `[0,1,0]`. **Intermediários:** `images.yml` referencia a tag local, `which.txt` seleciona pré/pós, `diun.db` persiste o estado, `diun-*.jsonl` mostra jobs, `served/` guarda os bytes retornados, `results.json` mostra requisições e `receipt.json` liga aviso e digests. **Parada:** checksum, instalação, job, aviso ou bytes incoerentes; confira o log do passo. Para Linux/outra arquitetura, selecione o artefato correspondente da **mesma release** e valide seu checksum oficial antes de definir `DIUN_BIN`; o bloco acima não é portátil sem essa adaptação. **Limpeza:** remova apenas `/tmp/base-image-b-01` e o diretório do binário após preservar as provas.
 
-## 8. Consultar o feed atual com Vunnel
+## Cenário V — consultar a fonte de correção atual
 
-**Por quê:** coletar dados processados de correções Debian. **Entradas:** feed **atual**, rede, espaço temporário, `uv` e Python 3.13. Isto **não** repete a revisão congelada do caso histórico; conteúdo e hashes podem mudar.
-
-Se faltar `uv`, siga a [instalação oficial](https://docs.astral.sh/uv/getting-started/installation/). Depois, ainda em `poc/`:
+**Pré-condições:** rede, espaço para o provedor Debian inteiro, `uv`, Python 3.13 e saída nova. [B/measure_vunnel.py](../poc/experiments/operational-abc-comparison-20261108/scripts/B/measure_vunnel.py) cria configuração local, executa `vunnel==0.66.0` via `uv`, guarda os arquivos brutos/processados e consulta três vezes a linha `debian:13/cve-2026-24515` em `results.db`. Não lê imagem, Diun ou C.
 
 ```sh
 uv --version
 uv python install 3.13
 python3 experiments/operational-abc-comparison-20261108/scripts/B/measure_vunnel.py --output /tmp/base-image-vunnel-01
+python3 - <<'PY'
+import json
+from pathlib import Path
+p=Path('/tmp/base-image-vunnel-01')
+r=json.loads((p/'receipt.json').read_text())
+assert r['exit_code'] == 0 and len(r['lookup']) == 3
+assert all(x['record_sha256'].startswith('sha256:') for x in r['lookup'])
+print([x['fixed_source_version'] for x in r['lookup']])
+PY
 ```
 
-**Esperado:** `receipt.json`, `vunnel.log` e um workspace de dados no diretório indicado. Em `receipt.json`, confira `exit_code: 0`, os hashes das entradas Debian, `lookup[].fixed_source_version` e métricas de tempo e tamanho. **Pare se:** rede, instalação ou coleta falhar; consulte `vunnel.log` e não use recibo incompleto. Se o feed diferir do snapshot antigo, registre a nova revisão em vez de mudar a fixture. O script fixa Vunnel 0.66.0. [Como `uv` gerencia Python](https://docs.astral.sh/uv/guides/install-python/).
+Instale `uv` conforme a [documentação oficial](https://docs.astral.sh/uv/getting-started/installation/) se necessário. **Esperado:** `receipt.json`, `vunnel.log`, `workspace/debian/input/debian.json`, `workspace/debian/input/DSA` e `workspace/debian/results/results.db`. O recibo registra `exit_code`, hashes, tempos, tamanho e as três `lookup[].fixed_source_version`. **Parada:** ausência da linha, coleta incompleta, falta de rede/espaço ou código de saída não zero; consulte `vunnel.log`. O pacote Vunnel está fixado em 0.66.0, mas `uv` e dependências transitivas não têm lockfile aqui; o feed vivo, caches e custo variam. **Limpeza:** preserve `receipt.json` e hashes necessários; depois remova a saída, que pode ser grande.
 
-## 9. Ler a comparação histórica de 44 casos
+## Como ler os resultados e o que ainda falta
 
-O arquivo `poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json` contém o resultado **arquivado**: 6 casos completos, 38 parciais, nenhum falho e nenhum bloqueado. `cost-pairs.json` guarda medições selecionadas. “Parcial” significa que aquela linha não percorreu todas as mesmas etapas nos dois caminhos; o motivo está na própria linha.
+O [recibo histórico integrado](../poc/experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json) registra, em A e B, `decision_count: 1`, `decision_receipt.action: validate_candidate` e `decision_receipt.image_approved: false`. É um **exemplo real de resultado**, não a saída dos comandos A/B acima. A matriz de [44 linhas arquivadas](../poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json) registra 6 completas e 38 parciais; o motivo de cada parcial deve ser lido na linha.
 
-**Você consegue:** conferir as linhas e recibos selecionados e repetir os passos 3 a 8. **Ainda não consegue:** recalcular os 44 casos a partir de todas as entradas brutas. O acervo original tem cerca de 211 MB de capturas não publicadas, além de scripts com caminhos locais. A inspeção integral dos 34 blobs da imagem pública também não está no pacote. [Inventário dos limites](../poc/EVIDENCE.md).
+**Ressalva de procedência:** o recibo integrado antigo usa `fixture_manifest_sha256=973ac9…` e `source_ledger_sha256=56b330…`. A fixture saneada neste PR usa manifesto `78218d…` e ledger `e5a510…`. A conclusão semântica coincide, mas **não existe cadeia criptográfica contínua** do recibo antigo para os bytes públicos. O novo recibo de C é o que valida os hashes da fixture publicada. Não compare esses hashes como se fossem do mesmo replay.
 
-## Registrar sua conferência
+| Afirmação | Evidência disponível | Reproduzível aqui? |
+|---|---|---|
+| A detecta troca e não duplica nos três ciclos principais | `/tmp/base-image-a-01/` novo + [script A](../poc/experiments/operational-abc-comparison-20261108/scripts/A/probe.py) | Sim, com loopback. |
+| Diun avisa uma vez na troca | `/tmp/base-image-b-01/` novo + [script B](../poc/experiments/operational-abc-comparison-20261108/scripts/B/run_retained_b.py) | Sim, com binário oficial e loopback. |
+| C decide e recupera sem duplicar | `/tmp/base-image-c-01/` novo + SQLite/recibos | Sim, sobre fixture pública saneada. |
+| Vunnel coleta e retorna fix | `/tmp/base-image-vunnel-01/` novo | Sim, **para o feed vigente**; não garante os mesmos bytes históricos. |
+| A e B alimentaram a mesma decisão no laboratório | [recibo arquivado](../poc/experiments/operational-abc-comparison-20261108/evidence/C/pipeline-replay.json) | Auditável como registro anterior; **não** regenerável pelos comandos publicados nem validável por hash contra a fixture saneada. |
+| Todos os 44 casos e 34 blobs foram reexecutados desta cópia | [linhas arquivadas](../poc/experiments/operational-abc-comparison-20261108/evidence/C/rows.json), [inventário](../poc/EVIDENCE.md) | Não. Capturas brutas e execução integral não foram publicadas. |
 
-Guarde o commit usado, sistema e versão de Python, comandos, diretórios de saída, hashes, testes e recibos. Se o feed ou a tag pública mudarem, faça uma **nova** captura; não altere a fixture histórica. Para decidir onde a capacidade caberia no processo existente, leia a [arquitetura](ARCHITECTURE.md). Esta POC não aprova ferramenta nem implantação.
+**Registro mínimo da sua execução:** commit, `git status`, sistema/Python/Diun/uv, comandos, hashes, arquivos de saída e qualquer diferença do feed atual. Saídas A e Vunnel podem conter caminhos absolutos da sua máquina: revise antes de compartilhá-las. Esta POC não aprova ferramenta, imagem ou implantação.
