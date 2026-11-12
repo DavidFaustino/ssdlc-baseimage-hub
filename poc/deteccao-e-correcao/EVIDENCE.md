@@ -1,12 +1,12 @@
 # Inventário de evidências da POC
 
-Este arquivo responde **qual prova sustenta cada conclusão e o que pode ser reexecutado a partir deste repositório**. Para interpretação, veja o [relatório técnico](../docs/POC.md); para comandos, entradas, asserções e diagnóstico, siga o [runbook](../docs/RUNBOOK.md).
+Este arquivo responde **qual prova sustenta cada conclusão e o que pode ser reexecutado a partir deste repositório**. Para interpretação, veja o [relatório técnico](../../docs/poc-deteccao-e-correcao/POC.md); para comandos, entradas, asserções e diagnóstico, siga o [runbook](../../docs/poc-deteccao-e-correcao/RUNBOOK.md).
 
 Para a conferência em outro computador, as linhas **C** e **A** da matriz abaixo são as referências principais: C repete decisão e recuperação com fontes arquivadas; A repete a detecção na tag local. B e Vunnel são ensaios publicados adicionais, não uma escolha de ferramentas. A matriz histórica de 44 casos permanece auditável apenas nos registros selecionados, sem replay integral; essa ausência não impede repetir C e A.
 
 ## Verificação inicial
 
-O [manifesto SHA-256](evidence/SHA256SUMS) lista **55 arquivos selecionados** desta cópia pública. Na pasta `poc/`, execute `shasum -a 256 -c evidence/SHA256SUMS` (Linux: `sha256sum -c evidence/SHA256SUMS`). Registre também `git rev-parse HEAD` e `git status --short`. **Os 55 hashes cobrem evidências listadas, não scripts, testes ou dependências.** Um hash válido não substitui revisão do código nem demonstra que o experimento histórico foi repetido.
+O [manifesto SHA-256](evidence/SHA256SUMS) lista **55 arquivos selecionados** desta cópia pública. Na pasta `poc/deteccao-e-correcao/`, execute `shasum -a 256 -c evidence/SHA256SUMS` (Linux: `sha256sum -c evidence/SHA256SUMS`). Registre também `git rev-parse HEAD` e `git status --short`. **Os 55 hashes cobrem evidências listadas, não scripts, testes ou dependências.** Um hash válido não substitui revisão do código nem demonstra que o experimento histórico foi repetido.
 
 ## Cadeia de evidência por cenário
 
@@ -21,7 +21,7 @@ O [manifesto SHA-256](evidence/SHA256SUMS) lista **55 arquivos selecionados** de
 | Digest público estável, sem decisão de troca. | Captura pública e duas revisões arquivadas de feed. | [Pipeline público](experiments/integrated-update-poc-20261108/src/pipeline.py) no laboratório. | [Recibo selecionado](experiments/operational-abc-comparison-20261108/evidence/C/public-pipeline-20261108-verified/receipt.json): 1 observação, 2 reavaliações, 0 decisões de imagem. | Não houve troca da tag pública nem inspeção de todas as CVEs/pacotes. |
 | Comparação de 44 casos e custo local. | Capturas do laboratório original. | Executor integral **não publicado**; scripts A/B acima repetem só percursos selecionados. | [`rows.json`](experiments/operational-abc-comparison-20261108/evidence/C/rows.json): 6 completas, 38 parciais. [`cost-pairs.json`](experiments/operational-abc-comparison-20261108/evidence/C/cost-pairs.json): 3 pares quentes, A 7 e B 16 requisições por par. | Linha parcial não é prova completa; custos não representam implantação ou manutenção. |
 
-As provas BMAD/Loop pertencem a outra frente: seus resultados estão **descritos** em [Workflows](../docs/WORKFLOWS.md), mas não há aqui scripts, fixture, journal ou recibos para repeti-las. Este inventário cobre somente a POC de imagem base publicada.
+As provas BMAD/Loop pertencem a outra frente: seus resultados estão **descritos** em [Workflows](../../docs/apoio-workflows/README.md), mas não há aqui scripts, fixture, journal ou recibos para repeti-las. Este inventário cobre somente a POC de imagem base publicada.
 
 ## Saneamento e procedência
 

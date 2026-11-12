@@ -1,5 +1,9 @@
 # Arquitetura: processo atual e encaixe da POC
 
+> **Registro histórico da POC.** Preserva o desenho e as hipóteses da rodada anterior, inclusive informações posteriormente contestadas sobre aprovação da base derivada. Não use este documento como definição atual do processo. A referência compartilhada é a [arquitetura do processo](../processo/ARQUITETURA.md); o novo trabalho está na [especificação do piloto](../piloto-distroless/ESPECIFICACAO.md).
+
+> **Contexto arquitetural da rodada histórica.** O processo e as propostas abaixo foram preservados com seus limites e divergências. Não constituem arquitetura aprovada para o novo piloto Distroless.
+
 **Estado em 10/11/2026.** O AS-IS abaixo vem da documentação do processo de imagens base e de esclarecimentos do responsável. Esta POC não inspecionou os jobs corporativos nem se conectou a JFrog, ECR ou EKS. **Use esta arquitetura depois de reproduzir e conferir os experimentos publicados**: ela serve para identificar o que se aproveita no processo atual, não para substituir a revisão do material. A evolução funcional do protótipo local da seção 6 foi autorizada; ferramenta, integração corporativa e implantação continuam sem aprovação.
 
 ## 1. AS-IS: da imagem upstream à aplicação
@@ -41,7 +45,7 @@ Esses donos são funções descritas pela fonte. RACI, jobs e modo de aprovaçã
 
 O rebuild diário não liga, por si só, **correção aplicável → digest upstream → plataforma → pacote instalado → versão corrigida** com evidência verificável. Recompilar uma Distroless antiga também não instala automaticamente um pacote Debian atualizado. A POC investigou essa ligação para justificar uma *candidata* que ainda passaria pelos gates existentes.
 
-O caso histórico usa Distroless Java 21/Debian 13 e `libexpat1` antes e depois de uma correção. Uma imagem pública estável foi inspecionada para um advisory específico. Isso não certifica a imagem inteira nem define regra para outras distribuições. Veja [resultados e limites](POC.md) e [evidências](../poc/EVIDENCE.md).
+O caso histórico usa Distroless Java 21/Debian 13 e `libexpat1` antes e depois de uma correção. Uma imagem pública estável foi inspecionada para um advisory específico. Isso não certifica a imagem inteira nem define regra para outras distribuições. Veja [resultados e limites](POC.md) e [evidências](../../poc/deteccao-e-correcao/EVIDENCE.md).
 
 ## 3. TO-BE: encaixe proposto, sem integração implantada
 
@@ -84,7 +88,7 @@ Um advisory novo exige reavaliação mesmo com **digest estável**. Uma tag que 
 | Correlação | Entradas verificadas e baseline persistido. | Decisão, razão, evidências e recibo idempotente com `image_approved=false`. | Entrada incoerente: nenhuma promoção; registrar motivo. |
 | Handoff ao CI **proposto** | Digest candidato e recibo verificável. | Pedido de avaliação e, se aprovado nos gates, vínculo ao digest corporativo. | Falha de gate/autorização: não mover alias estável. |
 
-Digest novo e advisory novo são gatilhos diferentes: o mesmo digest pode precisar de reavaliação quando surge um fix. O protótipo local persiste estado e recibos em SQLite e retorna `unknown` em falhas relevantes; não implementa o handoff corporativo. Veja [correlação](../poc/experiments/integrated-update-poc-20261108/src/pipeline.py) e [adaptadores de replay](../poc/experiments/integrated-update-poc-20261108/src/adapters.py).
+Digest novo e advisory novo são gatilhos diferentes: o mesmo digest pode precisar de reavaliação quando surge um fix. O protótipo local persiste estado e recibos em SQLite e retorna `unknown` em falhas relevantes; não implementa o handoff corporativo. Veja [correlação](../../poc/deteccao-e-correcao/experiments/integrated-update-poc-20261108/src/pipeline.py) e [adaptadores de replay](../../poc/deteccao-e-correcao/experiments/integrated-update-poc-20261108/src/adapters.py).
 
 ### Handoff e autoridade — contrato proposto, ainda não implantado
 
@@ -108,7 +112,7 @@ Antes da integração, devem ser nomeados **job receptor, aprovador, política d
 | Estado, retomada e duplicação | Protótipo local de correlação testado; integração operacional ausente. | Exibir último estado válido, recibo, bloqueio e reavaliação. |
 | Publicação e consumo por ambiente | Cadeia descrita, sem conexão da POC com ECR/EKS. | Separar “certificado”, “publicado” e “consumido” por digest e evidência. |
 
-O [protótipo navegável](../index.html) hoje usa dados fixos e não implementa essas capacidades. A vista **Imagens** reúne uma lista e a ficha de cada imagem, com jornada da base, gates e consumo ilustrativos; Automações continua demonstrativa. Uma versão operacional precisa ligar cada estado a uma identidade e evidência, sem apresentar decisão da POC como aprovação.
+O [protótipo navegável](../../index.html) hoje usa dados fixos e não implementa essas capacidades. A vista **Imagens** reúne uma lista e a ficha de cada imagem, com jornada da base, gates e consumo ilustrativos; Automações continua demonstrativa. Uma versão operacional precisa ligar cada estado a uma identidade e evidência, sem apresentar decisão da POC como aprovação.
 
 ## 4. Alternativas de entrada ainda abertas
 
@@ -132,6 +136,8 @@ Outra decisão, independente da ferramenta de entrada, é **aguardar a imagem of
 O [status do marco](STATUS.md) separa as provas locais do que ainda falta integrar.
 
 ## 6. Recorte funcional do Hub aprovado para protótipo local
+
+A [especificação do produto e da interface](../hub/ESPECIFICACAO.md) detalha as telas implementadas, seus casos de uso, o modelo observado e os contratos de integração pendentes. Esta seção mantém a visão de arquitetura e autoridade.
 
 **Objetivo do produto:** permitir que quem opera imagens base próprias acompanhe uma execução, identifique o artefato exato, compreenda o resultado dos gates, encontre a evidência e encaminhe o próximo trabalho pelo processo existente. O Hub mostra e coordena o fluxo; GitHub Actions, JFrog, scanners, aprovadores, ECR e ferramentas de implantação conservam sua autoridade. A referência a Konflux inspira a visibilidade entre build, teste e liberação; **Konflux não foi adotado** nem substitui a arquitetura atual.
 

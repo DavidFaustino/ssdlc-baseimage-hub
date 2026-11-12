@@ -1,8 +1,10 @@
 # Workflow de desenvolvimento: desenho e provas
 
+> **Apoio BMAD/workflows — frente histórica independente.** Este documento preserva o desenho de desenvolvimento e seus testes sintéticos. Não é o pipeline de imagens nem requisito para executar o [piloto Distroless](../piloto-distroless/README.md).
+
 Esta frente organiza **como desenvolver e retomar trabalho** com BMAD Method, CIS, TEA e BMad Loop. Ela é diferente da lógica que avalia imagens base. O fluxo completo abaixo é um **contrato proposto**; só algumas partes foram executadas em testes isolados.
 
-Esta frente **não é pré-requisito** para repetir os ensaios de imagem base publicados no [runbook](RUNBOOK.md). A conferência atual em outro computador se concentra em C (decisão sobre entradas arquivadas) e A (detecção local). Uma história real de domínio e a integração com CI/Hub só seriam avaliadas depois, se o reuso for decidido.
+Esta frente **não é pré-requisito** para repetir os ensaios de imagem base publicados no [runbook](../poc-deteccao-e-correcao/RUNBOOK.md). A conferência atual em outro computador se concentra em C (decisão sobre entradas arquivadas) e A (detecção local). Uma história real de domínio e a integração com CI/Hub só seriam avaliadas depois, se o reuso for decidido.
 
 ## Fluxo proposto
 
@@ -17,7 +19,7 @@ flowchart LR
 
 A revisão antecipada de arquitetura ocorre **quando uma escolha impedir o fechamento do plano**. O pacote completo passa por revisão humana antes do Loop. Durante a execução, falta de acesso ou mudança fora do escopo aprovado bloqueia apenas a parte dependente e pede direção. O resultado consolidado volta para revisão humana ao final.
 
-**Fronteira de autoridade:** G0 autoriza a *execução da história de desenvolvimento* e G1 aceita ou pede ajuste no *resultado do trabalho*. Esses gates não certificam imagem base, não aprovam risco residual e não movem alias. Uma história que implemente a correlação ainda precisa respeitar o [handoff proposto ao CI e os gates da imagem](ARCHITECTURE.md#handoff-e-autoridade--contrato-proposto-ainda-não-implantado).
+**Fronteira de autoridade:** G0 autoriza a *execução da história de desenvolvimento* e G1 aceita ou pede ajuste no *resultado do trabalho*. Esses gates não certificam imagem base, não aprovam risco residual e não movem alias. Uma história que altere o fluxo de imagens precisa respeitar as responsabilidades e os gates definidos na [arquitetura compartilhada do processo](../processo/ARQUITETURA.md). Este documento de desenvolvimento não redefine esse processo nem suas autoridades.
 
 ## Estado e retomada
 
@@ -64,4 +66,4 @@ Para uma história real do Hub, o pacote de G0 deve declarar também **qual capa
 
 Se esta frente voltar ao escopo, escolha uma história de domínio pequena **depois** de fechar o contrato e a revisão do pacote. Antes de despachar ao Loop, exija preflight, diff permitido e verificação determinística. Registre cada tentativa como uma execução própria; se houver bloqueio ou resultado incerto, preserve o estado e retome a partir dele. Só marque o ciclo como concluído quando a evidência final estiver reunida e revisada. Nada disso é condição para conferir agora as provas C e A do runbook.
 
-A procedência dos relatórios locais está em [Fontes](SOURCES.md). O [estado geral](STATUS.md) separa esse trabalho do protótipo visual e da POC de correlação.
+A procedência dos relatórios locais está em [Fontes](../poc-deteccao-e-correcao/SOURCES.md). O [estado geral](../poc-deteccao-e-correcao/STATUS.md) separa esse trabalho do protótipo visual e da POC de correlação.
